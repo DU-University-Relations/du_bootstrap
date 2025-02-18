@@ -1,0 +1,6 @@
+<article{{ attributes }} >
+    {{ thumbnail }}
+    <div class="article-related-type">{{ type }}</div>
+    {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with { 'title' : title, 'type' : 'h3' } %}
+    {% include "themes/custom/du_bootstrap/templates/misc/button.twig" with { 'title': "Read More", 'type' : 'small' } %}
+</article>

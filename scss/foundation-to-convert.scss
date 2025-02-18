@@ -1,0 +1,377 @@
+.top-bar {
+  display: flex;
+  // By default, use wrap so that items fall on new lines if needed.
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  background-color: #fefefe;
+
+  // Ensure any unordered lists inside the top bar inherit the background
+  ul {
+    background-color: inherit;
+  }
+
+  // Input styling
+  input {
+    max-width: 200px;
+    margin-right: 1rem;
+
+    &.button {
+      width: auto;
+    }
+  }
+
+  // Input group field settings (if used)
+  .input-group-field {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  // Default flex settings for left/right containers
+  .top-bar-left,
+  .top-bar-right {
+    flex: 0 0 auto;
+  }
+
+  // For screens & print at a minimum width of 48em,
+  // reset flex-wrap and adjust left/right spacing.
+  @media print, screen and (min-width: 48em) {
+    flex-wrap: nowrap;
+
+    .top-bar-left {
+      flex: 1 1 auto;
+      margin-right: auto;
+    }
+
+    .top-bar-right {
+      flex: 0 1 auto;
+      margin-left: auto;
+    }
+  }
+
+  // For various stacked behaviors, force a complete wrap responsively.
+  @media print, screen and (max-width: 63.99875em) {
+    &.stacked-for-medium {
+      flex-wrap: wrap;
+
+      .top-bar-left,
+      .top-bar-right {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
+  @media print, screen and (max-width: 74.99875em) {
+    &.stacked-for-large {
+      flex-wrap: wrap;
+
+      .top-bar-left,
+      .top-bar-right {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
+  @media print, screen and (max-width: 89.99875em) {
+    &.stacked-for-xlarge {
+      flex-wrap: wrap;
+
+      .top-bar-left,
+      .top-bar-right {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
+  @media print, screen and (max-width: 118.74875em) {
+    &.stacked-for-xxlarge {
+      flex-wrap: wrap;
+
+      .top-bar-left,
+      .top-bar-right {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
+  // The xxxlarge stacked variant (applied regardless of media query)
+  &.stacked-for-xxxlarge {
+    flex-wrap: wrap;
+
+    .top-bar-left,
+    .top-bar-right {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+.top-bar-title {
+  flex: 0 0 auto;
+  margin: 0.5rem 1rem 0.5rem 0;
+}
+
+.top-bar-left,
+.top-bar-right {
+  flex: 0 0 auto;
+}
+
+.mw-120rem {
+  max-width: 120rem !important;
+}
+
+.menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap; }
+  [data-whatinput='mouse'] .menu li {
+    outline: 0; }
+  .menu a,
+  .menu .button {
+    line-height: 1;
+    text-decoration: none;
+    display: block;
+    padding: 1.3rem 1.8rem; }
+  .menu input,
+  .menu select,
+  .menu .du-tuition-calculator-calculator .chosen-container-single.chosen-select .chosen-single,
+  .du-tuition-calculator-calculator .chosen-container-single.chosen-select .menu .chosen-single,
+  .menu a,
+  .menu button {
+    margin-bottom: 0; }
+  .menu input {
+    display: inline-block; }
+  .menu, .menu.horizontal {
+    flex-wrap: wrap;
+    flex-direction: row; }
+  .menu.vertical {
+    flex-wrap: nowrap;
+    flex-direction: column; }
+    .menu.vertical.icon-top li a img,
+    .menu.vertical.icon-top li a i,
+    .menu.vertical.icon-top li a svg, .menu.vertical.icon-bottom li a img,
+    .menu.vertical.icon-bottom li a i,
+    .menu.vertical.icon-bottom li a svg {
+      text-align: left; }
+  .menu.expanded li {
+    flex: 1 1 0px; }
+  .menu.expanded.icon-top li a img,
+  .menu.expanded.icon-top li a i,
+  .menu.expanded.icon-top li a svg, .menu.expanded.icon-bottom li a img,
+  .menu.expanded.icon-bottom li a i,
+  .menu.expanded.icon-bottom li a svg {
+    text-align: left; }
+  .menu.simple {
+    align-items: center; }
+    .menu.simple li + li {
+      margin-left: 1rem; }
+    .menu.simple a {
+      padding: 0; }
+  @media print, screen and (min-width: 48em) {
+    .menu.medium-horizontal {
+      flex-wrap: wrap;
+      flex-direction: row; }
+    .menu.medium-vertical {
+      flex-wrap: nowrap;
+      flex-direction: column; }
+    .menu.medium-expanded li {
+      flex: 1 1 0px; }
+    .menu.medium-simple li {
+      flex: 1 1 0px; } }
+  @media print, screen and (min-width: 64em) {
+    .menu.large-horizontal {
+      flex-wrap: wrap;
+      flex-direction: row; }
+    .menu.large-vertical {
+      flex-wrap: nowrap;
+      flex-direction: column; }
+    .menu.large-expanded li {
+      flex: 1 1 0px; }
+    .menu.large-simple li {
+      flex: 1 1 0px; } }
+  @media screen and (min-width: 75em) {
+    .menu.xlarge-horizontal {
+      flex-wrap: wrap;
+      flex-direction: row; }
+    .menu.xlarge-vertical {
+      flex-wrap: nowrap;
+      flex-direction: column; }
+    .menu.xlarge-expanded li {
+      flex: 1 1 0px; }
+    .menu.xlarge-simple li {
+      flex: 1 1 0px; } }
+  @media screen and (min-width: 90em) {
+    .menu.xxlarge-horizontal {
+      flex-wrap: wrap;
+      flex-direction: row; }
+    .menu.xxlarge-vertical {
+      flex-wrap: nowrap;
+      flex-direction: column; }
+    .menu.xxlarge-expanded li {
+      flex: 1 1 0px; }
+    .menu.xxlarge-simple li {
+      flex: 1 1 0px; } }
+  @media screen and (min-width: 118.75em) {
+    .menu.xxxlarge-horizontal {
+      flex-wrap: wrap;
+      flex-direction: row; }
+    .menu.xxxlarge-vertical {
+      flex-wrap: nowrap;
+      flex-direction: column; }
+    .menu.xxxlarge-expanded li {
+      flex: 1 1 0px; }
+    .menu.xxxlarge-simple li {
+      flex: 1 1 0px; } }
+  .menu.nested {
+    margin-right: 0;
+    margin-left: 1rem; }
+  .menu.icons a {
+    display: flex; }
+  .menu.icon-top a, .menu.icon-right a, .menu.icon-bottom a, .menu.icon-left a {
+    display: flex; }
+  .menu.icon-left li a, .menu.nested.icon-left li a {
+    flex-flow: row nowrap; }
+    .menu.icon-left li a img,
+    .menu.icon-left li a i,
+    .menu.icon-left li a svg, .menu.nested.icon-left li a img,
+    .menu.nested.icon-left li a i,
+    .menu.nested.icon-left li a svg {
+      margin-right: 0.45rem; }
+  .menu.icon-right li a, .menu.nested.icon-right li a {
+    flex-flow: row nowrap; }
+    .menu.icon-right li a img,
+    .menu.icon-right li a i,
+    .menu.icon-right li a svg, .menu.nested.icon-right li a img,
+    .menu.nested.icon-right li a i,
+    .menu.nested.icon-right li a svg {
+      margin-left: 0.45rem; }
+  .menu.icon-top li a, .menu.nested.icon-top li a {
+    flex-flow: column nowrap; }
+    .menu.icon-top li a img,
+    .menu.icon-top li a i,
+    .menu.icon-top li a svg, .menu.nested.icon-top li a img,
+    .menu.nested.icon-top li a i,
+    .menu.nested.icon-top li a svg {
+      align-self: stretch;
+      margin-bottom: 0.45rem;
+      text-align: center; }
+  .menu.icon-bottom li a, .menu.nested.icon-bottom li a {
+    flex-flow: column nowrap; }
+    .menu.icon-bottom li a img,
+    .menu.icon-bottom li a i,
+    .menu.icon-bottom li a svg, .menu.nested.icon-bottom li a img,
+    .menu.nested.icon-bottom li a i,
+    .menu.nested.icon-bottom li a svg {
+      align-self: stretch;
+      margin-bottom: 0.45rem;
+      text-align: center; }
+  .menu .is-active > a {
+    background: #1779ba;
+    color: #fefefe; }
+  .menu .active > a {
+    background: #1779ba;
+    color: #fefefe; }
+  .menu.align-left {
+    justify-content: flex-start; }
+  .menu.align-right li {
+    display: flex;
+    justify-content: flex-end; }
+    .menu.align-right li .submenu li {
+      justify-content: flex-start; }
+  .menu.align-right.vertical li {
+    display: block;
+    text-align: right; }
+    .menu.align-right.vertical li .submenu li {
+      text-align: right; }
+  .menu.align-right.icon-top li a img,
+  .menu.align-right.icon-top li a i,
+  .menu.align-right.icon-top li a svg, .menu.align-right.icon-bottom li a img,
+  .menu.align-right.icon-bottom li a i,
+  .menu.align-right.icon-bottom li a svg {
+    text-align: right; }
+  .menu.align-right .nested {
+    margin-right: 1rem;
+    margin-left: 0; }
+  .menu.align-center li {
+    display: flex;
+    justify-content: center; }
+    .menu.align-center li .submenu li {
+      justify-content: flex-start; }
+  .menu .menu-text {
+    padding: 0.7rem 1rem;
+    font-weight: bold;
+    line-height: 1;
+    color: inherit; }
+
+.menu-centered > .menu {
+  justify-content: center; }
+  .menu-centered > .menu li {
+    display: flex;
+    justify-content: center; }
+    .menu-centered > .menu li .submenu li {
+      justify-content: flex-start; }
+
+.no-js [data-responsive-menu] ul {
+  display: none; }
+
+.menu-icon {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 16px;
+  cursor: pointer; }
+  .menu-icon::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #fefefe;
+    box-shadow: 0 7px 0 #fefefe, 0 14px 0 #fefefe;
+    content: ''; }
+  .menu-icon:hover::after {
+    background: #cacaca;
+    box-shadow: 0 7px 0 #cacaca, 0 14px 0 #cacaca; }
+
+.menu-icon.dark {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 16px;
+  cursor: pointer; }
+  .menu-icon.dark::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #0a0a0a;
+    box-shadow: 0 7px 0 #0a0a0a, 0 14px 0 #0a0a0a;
+    content: ''; }
+  .menu-icon.dark:hover::after {
+    background: #8a8a8a;
+    box-shadow: 0 7px 0 #8a8a8a, 0 14px 0 #8a8a8a; }
+
+// FIX THIS - Add to _variables.scss
+.row-mw-120 {
+  max-width: 120rem;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+// FIX THIS - Convert to SDC Paragraph
+

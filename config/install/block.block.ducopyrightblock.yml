@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  theme:
+    - du_bootstrap
+id: ducopyrightblock
+theme: du_bootstrap
+region: footer
+weight: -1
+provider: null
+plugin: du_copyright_block
+settings:
+  id: du_copyright_block
+  label: 'DU Copyright Block'
+  provider: du_site
+  label_display: '0'
+  copyright_block_body:
+    value: "<p class=\"copyright\">Copyright ©[current-date:html_year] | All Rights Reserved | Equal Opportunity Affirmative Action Institution</p>\r\n"
+    format: rich_text
+visibility: {  }

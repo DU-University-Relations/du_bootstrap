@@ -1,0 +1,349 @@
+@media screen {
+  .unit-nav-group {
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 9;
+
+    a {
+      color: $neutral-color-2;
+    }
+    .btn {
+      color: white;
+    }
+
+    // Height adjustments if hero media is hidden.
+    &.no-hero {
+      height: 26.5rem;
+      @include media-breakpoint-up(md) {
+        height: 26.5rem;
+      }
+      @media screen and (min-width: 630px) and (max-width: 770px) {
+        height: 26.5rem;
+        ~ header.alert-closed {
+          margin-top: -8.5rem;
+        }
+      }
+      @include media-breakpoint-up(lg) {
+        height: 31.5rem;
+      }
+      @include media-breakpoint-up(lg) {
+        ~ header.alert-closed {
+          margin-top: -6.5rem;
+        }
+      }
+    }
+
+    // Top bar sticky section.
+    &.no-hero #top-bar-sticky-wrap {
+      width: 100%;
+      &:after {
+        position: absolute;
+        width: 100%;
+        display: block;
+        height: 3rem;
+        content: "";
+        background: linear-gradient(to bottom, rgba(181, 183, 186, 1) 0%, rgba(181, 183, 186, 0) 50%);
+        pointer-events: none;
+        transition: height 0.5s ease;
+      }
+    }
+
+    #top-bar-sticky-wrap {
+      z-index: 500; // Adjusted for mega nav stacking.
+      width: 100%;
+      *,
+      & {
+        transition: all 0.5s ease, height 0s;
+      }
+    }
+
+    // MAIN MENU Section.
+    #main-menu-wrap {
+      position: relative;
+      z-index: 10;
+      background-color: white;
+      height: 6rem;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      @include media-breakpoint-up(lg) {
+        height: 8rem;
+      }
+
+      .logo {
+        display: flex;
+        z-index: 3;
+        color: $neutral-color-2;
+        text-decoration: none;
+        position: relative;
+        user-select: none;
+        padding: 0.6rem 0 0 1.8rem;
+        align-items: center;
+        @include media-breakpoint-up(md) {
+          width: auto;
+        }
+        @include media-breakpoint-up(lg) {
+          padding: 0.6rem 0 0 3.8rem;
+        }
+        img {
+          height: 5rem;
+          width: auto;
+          @include media-breakpoint-up(lg) {
+            height: 6.8rem;
+          }
+        }
+        .site-identity {
+          padding-left: 1.6rem;
+        }
+        .site-prefix {
+          display: block;
+          font-family: $primary-font;
+          font-size: 1.2rem;
+          font-weight: 600;
+          line-height: 1rem;
+          letter-spacing: 0.045rem;
+          @include media-breakpoint-up(lg) {
+            font-size: 1.6rem;
+            line-height: 1.2;
+          }
+          @include media-breakpoint-up(xl) {
+            font-size: 1.7rem;
+          }
+        }
+        .site-name {
+          font-family: $accent-font;
+          font-size: 1.8rem;
+          font-weight: 900;
+          line-height: 1;
+          letter-spacing: -0.018rem;
+          margin-bottom: -0.3rem;
+          white-space: pre-wrap;
+          @include media-breakpoint-up(md) {
+            font-size: 2rem;
+          }
+          @include media-breakpoint-up(lg) {
+            font-size: 2.6rem;
+          }
+        }
+        &.image {
+          background: white;
+          &:before {
+            content: "";
+            position: absolute;
+            right: 100%;
+            width: 16rem;
+            height: 3rem;
+            z-index: 1;
+            background: white;
+          }
+          &:after {
+            content: "";
+            position: absolute;
+            left: 100%;
+            width: 16rem;
+            height: 3rem;
+            z-index: 1;
+            background: linear-gradient(to right, white 0, white 60px, rgba(255, 255, 255, 0) 100%);
+          }
+        }
+        @include media-breakpoint-down(sm) {
+          width: auto;
+          &.image {
+            &:before,
+            &:after {
+              display: none;
+            }
+          }
+        }
+      } // end .logo
+    } // end #main-menu-wrap
+
+  } // end .unit-nav-group
+} // end @screen
+
+.unit-site {
+  // Adjusting last main level link to open inside the window.
+  li.is-dropdown-submenu-parent:last-of-type .mega-flyout.mega-menu--dropdown {
+    margin-left: -12%;
+  }
+}
+
+// Logged in adjustment of navigation
+body.adminimal-admin-toolbar.unit-site {
+  padding-top: 19.0rem !important;
+}
+
+//Sturm College of Law -- specific adjustments to have site name on one line
+.sturm-college-of-law .unit-nav-group #main-menu-wrap .logo .site-name {
+  line-height: 2.5em;
+  @include media-breakpoint-down(lg) {
+    margin-top: .6rem;
+  }
+}
+.sturm-college-of-law .unit-nav-group > div > div.is-at-top.is-anchored #main-menu-wrap .logo .site-name {
+  @include media-breakpoint-down(lg) {
+    margin-top: 1.0rem;
+  }
+}
+
+//CAHSS -reduce font size from 28-24px
+.arts-humanities-social-sciences .unit-nav-group #main-menu-wrap .logo .site-name {
+  font-size: 2.4rem;
+  @include media-breakpoint-down(sm) {
+    font-size: 3.8vw;
+  }
+}
+
+.arts-humanities-social-sciences .unit-nav-group #main-menu-wrap #main-menu .main-menu-contents > nav > ul li > a {
+  font-size: 1.8rem;
+}
+
+.arts-humanities-social-sciences #unit-main-menu-toggler.display-none-toggle {
+  display: none;
+}
+
+//Burnes - make site identity /name bold for top nav
+.poverty-homelessness .unit-nav-group {
+  #main-menu-wrap .logo {
+    .site-prefix, .site-name {
+      font-family: "BreveText", sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 1.8rem;
+      letter-spacing: -0.18rem;
+      margin-bottom: -.3rem;
+      white-space: pre-wrap;
+      @include media-breakpoint-down(md) {
+        font-size: 2.6rem;
+      }
+      @include media-breakpoint-down(sm) {
+        display: block;
+        font-size: 1.8rem;
+      }
+      @media screen and (max-width: 460px) {
+        font-size: 1.3rem;
+      }
+    }
+  }
+  //on scroll
+  #top-bar-sticky-wrap.is-stuck #main-menu-wrap .logo {
+    .site-prefix, .site-name {
+      font-size: 2.0rem;
+      @include media-breakpoint-down(md) {
+        font-size: 1.8rem;
+      }
+      @include media-breakpoint-down(sm) {
+        font-size: 1.4rem;
+      }
+    }
+  }
+} //end Burnes
+
+//GSPP clinics microsite
+.clinics .unit-nav-group {
+  #main-menu-wrap .logo {
+    .site-prefix, .site-name {
+      font-family: "BreveText", sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 1.8rem;
+      letter-spacing: -0.18rem;
+      margin-bottom: -.3rem;
+      white-space: pre-wrap;
+      @include media-breakpoint-down(md) {
+        font-size: 2.6rem;
+        display: block;
+      }
+      @media screen and (max-width: 460px) {
+        font-size: 2.2rem;
+      }
+    }
+  }
+  //on scroll
+  #top-bar-sticky-wrap.is-stuck #main-menu-wrap .logo {
+    .site-prefix, .site-name {
+      font-size: 2.4rem;
+      @include media-breakpoint-down(md) {
+        font-size: 2.0rem;
+      }
+      @include media-breakpoint-down(sm) {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+
+//Denver Advantage -- specific adjustments to have site name on one line
+.denver-advantage header.core-inline-site #main-menu-wrap .logo .site-name {
+  line-height: 2.5rem;
+  @include media-breakpoint-down(lg) {
+    margin-top: 0;
+  }
+}
+.denver-advantage header.core-inline-site > div > div.is-at-top.is-anchored #main-menu-wrap .logo .site-name {
+  @include media-breakpoint-down(lg) {
+    margin-top: .2rem;
+  }
+}
+
+//Denver Advantage -- specific adjustments to have site name on one line
+.denver-advantage header.core-inline-site #main-menu-wrap .logo .site-name {
+  line-height: 2.5rem;
+  @include media-breakpoint-down(lg) {
+    margin-top: 0;
+  }
+}
+
+
+//Giving & Alumni,  Accessibility
+.giving, .alumni, .accessibility {
+  .unit-nav-group #top-bar-sticky-wrap.is-stuck #main-menu-wrap .logo .site-identity { //on scroll
+    margin-top: 0;
+  }
+}
+
+.giving, .alumni, .accessibility {
+  .unit-nav-group #main-menu-wrap .logo .site-identity {
+    margin-top: 0;
+  }
+}
+
+//Korbel
+.international-studies {
+  .unit-nav-group #main-menu-wrap #main-menu > div > ul li {
+    overflow: initial;
+    > a { display: flex;}
+  }
+}
+
+//CWC and C+V
+.colorado-womens-college, .community--values {
+  .header #main-menu-wrap a.logo.inline-site .site-name {
+    margin-bottom: 0;
+    margin-top: -.2rem;
+    max-width: 14.5rem;
+    @media (min-width: 350px) {
+      max-width: 16.0rem;
+      margin-top: -.3rem;
+    }
+    @media (min-width: 410px) {
+      max-width: 18.0rem;
+      margin-top: -.5rem;
+    }
+    @include media-breakpoint-up(md) {
+      margin-top: .8rem;
+      max-width: 50.0rem;
+      &.is-stuck {
+        margin-top: .6rem;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {  //on scroll
+  .off-canvas-wrap.colorado-womens-college header #top-bar-sticky-wrap.is-stuck #main-menu-wrap a.logo.inline-site .site-name {
+    margin-top: .6rem;
+  }
+}

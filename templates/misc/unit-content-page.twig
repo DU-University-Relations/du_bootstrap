@@ -1,0 +1,34 @@
+{% embed "themes/custom/du_bootstrap/templates/misc/page-unit.twig" %}
+    {% block content %}
+        {% embed "themes/custom/du_bootstrap/templates/misc/node.twig" %}
+            {% block page_title %}
+                {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {"title": page_name, "type": "h1"} %}
+            {% endblock %}
+            {% block page_overview %}
+                {% include "themes/custom/du_bootstrap/templates/misc/_unit_sample_overview.twig" %}
+            {% endblock %}
+            {% block page_content %}
+                {% if show_content.mini_event_feed %}
+                    {% include "themes/custom/du_bootstrap/templates/misc/mini-event-feed.twig" %}
+                {% endif %}
+                {% if show_content.generic_listing %}
+                    {% include "themes/custom/du_bootstrap/templates/misc/listing.twig" %}
+                {% endif %}
+                {% if show_content.unit_carousel %}
+                    {% include "themes/custom/du_bootstrap/templates/misc/unit-carousel.twig" %}
+                {% endif %}
+                {% if show_content.unit_carousel_single %}
+                    {% include "themes/custom/du_bootstrap/templates/misc/unit-carousel.twig" with {
+                        "slide_count": 1,
+                        "slides": [
+                            {
+                                "image": "<img src=\"/images/unit-carousel-image.png\" alt=\"Carousel Image 1\">",
+                                "caption": "<p>Vibrant and lively yet peaceful, our campus is a great place to enrich your mind and body. It's a place of many facets: exciting and busy, but welcoming and serene.</p>"
+                            }
+                        ]
+                    } %}
+                {% endif %}
+            {% endblock %}
+        {% endembed %}
+    {% endblock %}
+{% endembed %}

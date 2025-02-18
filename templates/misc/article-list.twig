@@ -1,0 +1,11 @@
+<div class="article-list">
+  <div class="article-list-content">
+  	<div class="row">
+  		{% block article_list %}
+  			{% for item in row %}
+  				{% include "themes/custom/du_bootstrap/templates/misc/article-list-item.twig" with item %}
+  			{% endfor %}
+  		{% endblock %}
+  	</div>
+  </div>
+</div>

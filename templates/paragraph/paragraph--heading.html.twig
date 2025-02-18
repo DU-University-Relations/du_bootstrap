@@ -1,0 +1,5 @@
+{% set heading = {
+    "title": content.field_heading|field_value,
+	"alignment": content.field_alignment|field_value|render,
+} %}
+{% include "themes/custom/du_bootstrap/templates/misc/heading.twig" with heading %}

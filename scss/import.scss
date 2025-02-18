@@ -1,0 +1,197 @@
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../node_modules/bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+// variables
+@import "_variables";
+
+// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/variables-dark";
+
+// 4. Include any default map overrides here
+// 5. Include remainder of required parts
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/root";
+
+// 6. Optionally include any other parts as needed
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/containers";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/helpers";
+
+@import "../node_modules/bootstrap/scss/tables";
+@import "../node_modules/bootstrap/scss/forms";
+@import "../node_modules/bootstrap/scss/buttons";
+@import "../node_modules/bootstrap/scss/transitions";
+@import "../node_modules/bootstrap/scss/dropdown";
+@import "../node_modules/bootstrap/scss/button-group";
+@import "../node_modules/bootstrap/scss/nav";
+@import "../node_modules/bootstrap/scss/navbar";
+@import "../node_modules/bootstrap/scss/card";
+@import "../node_modules/bootstrap/scss/accordion";
+@import "../node_modules/bootstrap/scss/breadcrumb";
+@import "../node_modules/bootstrap/scss/pagination";
+@import "../node_modules/bootstrap/scss/badge";
+@import "../node_modules/bootstrap/scss/alert";
+@import "../node_modules/bootstrap/scss/progress";
+@import "../node_modules/bootstrap/scss/list-group";
+@import "../node_modules/bootstrap/scss/close";
+@import "../node_modules/bootstrap/scss/toasts";
+@import "../node_modules/bootstrap/scss/modal";
+@import "../node_modules/bootstrap/scss/tooltip";
+@import "../node_modules/bootstrap/scss/popover";
+@import "../node_modules/bootstrap/scss/carousel";
+@import "../node_modules/bootstrap/scss/spinners";
+@import "../node_modules/bootstrap/scss/offcanvas";
+@import "../node_modules/bootstrap/scss/placeholders";
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "../node_modules/bootstrap/scss/utilities/api";
+
+// 8. Add additional custom code here
+// Base theme
+@import "base";
+
+// 9. University of Denver custom imports
+@import "mixins";
+@import "_settings";
+@import "_fatv18";
+@import "_find-an-expert";
+@import "_fontface";
+@import "_gallery-date";
+@import "_global";
+@import "_policy";
+@import "_repsonsive-iframe";
+@import "_training";
+@import "_tuition-calculator";
+@import "academic-programs";
+@import "activity-card";
+@import "admission-steps";
+@import "alert";
+@import "application-cards";
+@import "article-list";
+@import "article-teaser";
+@import "article";
+@import "author";
+@import "blockquote";
+@import "captcha";
+@import "captioned-image";
+@import "card-list-module";
+@import "cards";
+@import "category-list";
+@import "contact-single";
+@import "contacts";
+@import "content-elements";
+@import "content-gallery-slider";
+@import "content-gallery";
+@import "copy";
+@import "core-inline-nav";
+@import "counselor";
+@import "courses";
+@import "cta-inline";
+@import "cta";
+@import "dropdown-video";
+@import "drupal";
+@import "du-in-the-news";
+@import "elevate-cards-list";
+@import "elevate-course";
+@import "elevate-filters";
+@import "enhanced-expanding-list";
+@import "event-card";
+@import "events";
+@import "example-classes";
+@import "experiential-story-slide";
+@import "experiential-story";
+@import "expert-list-item";
+@import "feature-video";
+@import "featured-article-slider";
+@import "filter-button";
+@import "find-stories";
+@import "fontello";
+@import "fonts";
+@import "footer";
+@import "forms";
+@import "foundation-ext";
+@import "foundation-to-convert.scss";
+@import "handbook";
+@import "hero-media-items";
+@import "hero-media";
+@import "home";
+@import "image-with-caption";
+@import "information-overview";
+@import "key-faculty";
+@import "large-image";
+@import "layout";
+@import "list-filter";
+@import "list-pager";
+@import "listing-filters";
+@import "listing";
+@import "main-navigation";
+@import "mega-flyout";
+@import "mini-event-feed";
+@import "modal";
+@import "news-carousel";
+@import "newsroom";
+@import "pager";
+@import "print";
+@import "profile";
+@import "push-menu";
+@import "quotes";
+@import "recent-content";
+@import "records";
+@import "related-stories";
+@import "research-project-teaser";
+@import "research-project";
+@import "resource";
+@import "reusable-content";
+@import "scholarship";
+@import "search";
+@import "shared-content-block";
+@import "stories";
+@import "sub-menu";
+@import "swapping-img-feature";
+@import "tab-menu";
+@import "table";
+@import "tabs";
+@import "taxonomy-term-page";
+@import "testimonial_spotlight";
+@import "three-col-facts";
+@import "top-bar-main-menu";
+@import "two-column-copy";
+@import "typography";
+@import "ui-datepicker";
+@import "utility-menu";
+@import "unit-top-bar-main-menu.scss";
+@import "webform";
+@import "wide-carousel";
+
+// Import Unit SCSS
+@import "./unit/footer-site-level.scss";
+@import "./unit/unit-article-research-filters";
+@import "./unit/unit-copy";
+@import "./unit/unit-elevate-cart";
+@import "./unit/unit-featured-video";
+@import "./unit/unit-generic-flyout";
+@import "./unit/unit-hero-media";
+@import "./unit/unit-home";
+@import "./unit/unit-key-faculty";
+@import "./unit/unit-layout";
+@import "./unit/unit-listing";
+@import "./unit/unit-nav-back";
+@import "./unit/unit-nav-close";
+@import "./unit/unit-resources";
+@import "./unit/unit-search-form";
+@import "./unit/unit-site-carousel";
+@import "./unit/unit-sites-list";
+@import "./unit/unit-top-bar-main-menu";
+@import "./unit/unit-utility-menu";
+@import "./unit/unit-utility-node";
+
+// Import Micro SCSS
+@import "./micro/micro-profile-list";
+@import "./micro/micro";

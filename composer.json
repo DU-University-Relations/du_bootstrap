@@ -1,0 +1,10 @@
+{
+  "name": "university-of-denver/du_bootstrap",
+  "description": "Bootstrap 5 base theme.",
+  "type": "drupal-theme",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://github.com/University-of-Denver/du_bootstrap",
+  "require": {
+    "twbs/bootstrap": "^5.0.0"
+  }
+}

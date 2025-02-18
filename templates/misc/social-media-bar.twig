@@ -1,0 +1,32 @@
+<div class="follow-us">
+    <div class="row-mw-120 align-items-center">
+        <div class="col-12 col-lg-3">
+            <h2>
+                {{ data.header }}
+            </h2>
+        </div>
+        <div class="col-12 col-lg-6">
+            <ul class="menu social-media justify-content-between">
+                {% block links %}
+                    {% for item in social_media %}
+                        <li>
+                            <a href="{{ item.url }}" {% if item.alt_text %}title="{{ item.alt_text|e('html_attr') }}"{% endif %}
+                                    {% if item.target %}target="{{ item.target|e('html_attr') }}"{% endif %}
+                                    {% if item.onclick %}onclick="{{ item.onclick|e('html_attr') }}"{% endif %}>
+                                <span class="icon-du-{{ item.icon_class }}" aria-hidden="true"></span>
+                                <span class="visually-hidden">{{ item.title }}"</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                {% endblock %}
+            </ul>
+        </div>
+        <div class="col-12 col-lg-3">
+            <a href="{{ data.social_page_url }}" class="follow-us__view-all">
+                <strong>{{ data.view_all }}
+                    <span class="icon-du-right-arrow" aria-hidden="true"></span>
+                </strong>
+            </a>
+        </div>
+    </div>
+</div>

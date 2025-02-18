@@ -1,0 +1,50 @@
+<nav class="unit-nav-group {% if hide_hero %}no-hero{% endif %}">
+    {% block alert %}
+        {{ du_alert }}
+    {% endblock %}
+    <div data-sticky-container>
+        <div id="top-bar-sticky-wrap" class="sticky-top" data-margin-top="0" data-top-anchor="0">
+            <div class="top-bar">
+                <nav id="main-menu-wrap">
+                    <div class="container">
+                        <div class="row container-120 h-100">
+                            <div class="col-auto">
+                                <a href="/" class="text-logo logo">
+                                    <div class="site-logo">
+                                        <img src="/{{ active_theme_path() }}/images/svg/university-of-denver-du-logo-unit.svg" width="80" alt="University of Denver">
+                                    </div>
+                                    <div class="site-identity">
+                                        {# FIX THIS - TEMPORARY BECAUSE OF INLINE SITES NOT EXISTING #}
+                                        <span class="site-prefix">{{ site_prefix }}</span>
+                                        <span class="site-name">{{ site_name }}Why DU</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col">
+                                <div id="main-menu" aria-expanded="false">
+                                    <div class="main-menu-contents">
+                                        {% block mega_nav %}
+                                            {% include "themes/custom/du_bootstrap/templates/misc/mega-nav.twig" %}
+                                        {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div id="unit-main-menu-toggler" class="text-end d-lg-none">
+                                    <button class="icon-du-cust-menu" type="button" aria-controls="main-menu">
+                                        <span class="visually-hidden">Toggle Menu</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</nav>
+<header class="header micro-header {% if hide_hero %}no-hero{% endif %}{% if hero_class == "content-card" %} content-card{% endif %}" role="banner">
+    {% if not hide_hero %}
+        {% include "themes/custom/du_bootstrap/templates/misc/hero-media-unit.twig" %}
+    {% endif %}
+</header>
