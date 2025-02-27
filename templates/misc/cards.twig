@@ -1,0 +1,24 @@
+{% if (col_header.title and layout == "three_col") %}
+    <div class="row row-mw-120">
+        <div class="col">
+            {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with col_header %}
+        </div>
+    </div>
+{% endif %}
+<div class="cards-module py-4{% if layout == "two_col" %} two-column{% endif %}">
+    {# Add the alignment assigned by the user to the row #}
+    <div class="row row-mw-120 {{ alignment }}-card-alignment">
+        {% if layout == "two_col" %}
+            <div class="col-12 col-lg-4">
+                <div class="cards-module__content h-100">
+                    {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with col_header %}
+                </div>
+            </div>
+        {% endif %}
+        {% block cards %}
+            {% for card in cards %}
+                {% include "themes/custom/du_bootstrap/templates/misc/card.twig" with card %}
+            {% endfor %}
+        {% endblock %}
+    </div>
+</div>

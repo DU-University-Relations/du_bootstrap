@@ -1,0 +1,54 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present a menu link entity entity.
+ *
+ * Available variables:
+ * - menu_link_content: Menu link entity.
+ * - show_item_link: Indicator for menu item link.
+ *
+ * @see template_preprocess_menu_link_content()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% if content['#menu_level'] == 0 %}
+  {# Top level menu items #}
+  {% if content.children or content.is_expanded %}
+    <div class="menu_link_content menu-dropdown menu-dropdown--links-only menu-dropdown-0 menu-type-default">
+      <div class="menu-dropdown__sub-links">
+        {{ content.children }}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if content.field_nav_image.0 or content.field_nav_headline.0 or content.field_nav_description.0 or content.field_nav_button.0 %}
+    <div class="menu_link_content menu-dropdown menu-type-default mega-menu">
+      <div class="row">
+        <div class="menu-dropdown__content {{ content.children ? 'col-md-8' : 'col-md-12' }}">
+          {% if content.field_nav_image.0 %}
+            <div class="menu-dropdown__content__image">
+              {{ content.field_nav_image }}
+            </div>
+          {% endif %}
+          {% if content.field_nav_headline.0 or content.field_nav_description.0 or content.field_nav_button.0 %}
+            <div class="menu-dropdown__content__card">
+              {% if content.field_nav_headline.0 %}
+                <h2>{{ content.field_nav_headline }}</h2>
+              {% endif %}
+              {% if content.field_nav_description.0 %}
+                {{ content.field_nav_description }}
+              {% endif %}
+              {% if content.field_nav_button.0 %}
+                <a href="{{ content.field_nav_button.0['#url'] }}" class="btn btn-primary">
+                  {{ content.field_nav_button.0['#title'] }}
+                </a>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}

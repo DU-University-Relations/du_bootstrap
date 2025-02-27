@@ -1,0 +1,126 @@
+{#
+  This template conditionally renders the page based on the chosen subtheme (core, unit, or micro).
+
+  Note:
+    - The header embed uses an inline ternary operator to choose between header-unit.twig,
+      micro-header.twig, or the default header.twig.
+    - The utility navigation blocks always exist but conditionally output content based on subtheme_selection.
+    - For the footer, unit sites output page.footer directly; for others, we embed misc/footer.twig.
+#}
+{% if catastrophic_alert %}
+  {{ page.content_top }}
+  {{ page.content }}
+{% else %}
+  <div class="page-wrapper">
+
+    {# Set up hero variables based on conditions #}
+    {% if hero_video_url %}
+      {% set hero_video = {
+        "id": "hero-video",
+        "is_hero_video": true,
+        "mp4_url": hero_video_url
+      } %}
+      {% set hide_hero = false %}
+    {% endif %}
+
+    {% if hero_url %}
+      {% if (is_utility_page == FALSE) and (image_type == FALSE) %}
+        {% set hero_image = {
+          '#type': 'responsive_image',
+          '#responsive_image_style_id': 'hero_image',
+          '#uri': hero_url,
+          '#attributes': { 'alt': hero_alt },
+        } %}
+        {% set hide_hero = false %}
+      {% elseif (image_type == '1') %}
+        {% set hero_image = {
+          '#type': 'responsive_image',
+          '#responsive_image_style_id': 'short_image',
+          '#uri': hero_url,
+          '#attributes': { 'alt': hero_alt },
+        } %}
+        {% set hide_hero = false %}
+      {% else %}
+        {% set hero_image = {
+          '#type': 'responsive_image',
+          '#responsive_image_style_id': 'utility_hero',
+          '#uri': hero_url,
+          '#attributes': { 'alt': hero_alt },
+        } %}
+        {% set hide_hero = false %}
+      {% endif %}
+    {% endif %}
+
+    {% if experiential_story %}
+      {% set hide_hero = false %}
+    {% endif %}
+
+    {# Set page classes #}
+    {% set page_class = "" %}
+    {% if is_utility_page %}
+      {% set page_class = page_class ~ " " ~ utility_page_hero_css %}
+    {% endif %}
+    {% if hide_hero %}
+      {% set page_class = page_class ~ " hide-hero" %}
+    {% endif %}
+
+    {# Header Section #}
+    {% embed ( subtheme_selection == 'unit'
+        ? "themes/custom/du_bootstrap/templates/misc/header-unit.twig"
+        : ( subtheme_selection == 'micro'
+            ? "themes/custom/du_bootstrap/templates/misc/micro-header.twig"
+            : "themes/custom/du_bootstrap/templates/misc/header.twig"
+          )
+      ) %}
+
+      {# Utility Navigation is a top-level block that conditionally outputs its content #}
+      {% block utility_nav %}
+        {% if subtheme_selection != 'micro' %}
+          {% embed ( subtheme_selection == 'unit'
+              ? "themes/custom/du_bootstrap/templates/misc/unit-utility-nav.twig"
+              : "themes/custom/du_bootstrap/templates/misc/utility-nav.twig"
+            ) %}
+            {% block utility_menu %}
+              {{ page.utility_nav }}
+            {% endblock %}
+          {% endembed %}
+        {% endif %}
+      {% endblock %}
+
+      {% block utility_nav_sm %}
+        {% if subtheme_selection != 'micro' %}
+          {% embed ( subtheme_selection == 'unit'
+              ? "themes/custom/du_bootstrap/templates/misc/unit-utility-nav.twig"
+              : "themes/custom/du_bootstrap/templates/misc/utility-nav-sm.twig"
+           ) %}
+            {% block utility_menu %}
+              {{ page.utility_nav }}
+            {% endblock %}
+          {% endembed %}
+        {% endif %}
+      {% endblock %}
+
+      {% block utility_flyouts %}
+        {% if subtheme_selection == 'unit' %}
+          {{ page.utility_flyouts }}
+        {% endif %}
+      {% endblock %}
+
+      {# Mega Navigation is common for all variants #}
+      {% block mega_nav %}
+        {{ page.mega_nav }}
+      {% endblock %}
+
+    {% endembed %}
+
+    {# Main Content Section #}
+    <main class="content {{ page_class }}">
+      {{ page.content_top }}
+      {{ page.content }}
+    </main>
+
+    {# Footer Section #}
+    {{ page.footer }}
+
+  </div>
+{% endif %}

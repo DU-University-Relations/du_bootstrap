@@ -1,0 +1,1059 @@
+
+@mixin breakpoint($size) {
+  @if $size == small {
+      @media (max-width: 767px) {
+          @content;
+      }
+  } @else if $size == medium {
+      @media (min-width: 768px) and (max-width: 1023px) {
+          @content;
+      }
+  } @else if $size == large {
+      @media (min-width: 1024px) {
+          @content;
+      }
+  } @else if $size == xlarge {
+      @media (min-width: 1200px) and (max-width: 1439px) {
+          @content;
+      }
+  } @else if $size == xxlarge {
+      @media (min-width: 1440px) and (max-width: 1899px) {
+          @content;
+      }
+  } @else if $size == xxxlarge {
+      @media (min-width: 1900px) {
+          @content;
+      }
+  }
+}
+
+@mixin flex-grid-row(
+  $behavior: null,
+  $size: $grid-row-width,
+  $columns: null,
+  $base: true,
+  $wrap: true,
+  $gutters: $grid-column-gutter
+) {
+  $margin: auto;
+  $wrap: if($wrap, wrap, nowrap);
+
+  @if index($behavior, nest) != null {
+    @include grid-row-nest($gutters);
+
+    @if index($behavior, collapse) != null {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+  @else {
+    @include grid-row-size($size);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @if $base {
+    display: flex;
+    flex-flow: row $wrap;
+  }
+
+  @if $columns != null {
+    @include grid-context($columns, $base) {
+      @content;
+    }
+  }
+}
+
+
+////
+/// @group grid
+////
+
+/// Change the behavior of columns defined inside this mixin to use a different column count.
+/// @content
+///
+/// @param {Number} $columns - Number of columns to use.
+/// @param {Boolean} $root [false]
+///   If `false`, selectors inside this mixin will nest inside the parent selector.
+///   If `true`, selectors will not nest.
+@mixin grid-context(
+  $columns,
+  $root: false
+) {
+  // Store the current column count so it can be re-set later
+  $old-grid-column-count: $grid-column-count;
+  $grid-column-count: $columns !global;
+
+  @if $root {
+    @at-root { @content; }
+  }
+  @else {
+    @content;
+  }
+
+  // Restore the old column count
+  $grid-column-count: $old-grid-column-count !global;
+}
+
+/// Creates a grid row.
+/// @content
+///
+/// @param {Number} $columns [null] - Column count for this row. `null` will use the default column count.
+/// @param {Keywords} $behavior [null]
+///   Modifications to the default grid styles. `nest` indicates the row will be placed inside another row. `collapse` indicates that the columns inside this row will not have padding. `nest collapse` combines both behaviors.
+/// @param {Keyword|Number} $size [$grid-row-width] Maximum size of the row. Set to `expand` to make the row taking the full width.
+/// @param {Boolean} $cf [true] - Whether or not to include a clearfix.
+/// @param {Number|Map} $gutters [$grid-column-gutter] - Gutter map or single value to use when inverting margins. Responsive gutter settings by default.
+@mixin grid-row(
+  $columns: null,
+  $behavior: null,
+  $size: $grid-row-width,
+  $cf: true,
+  $gutters: $grid-column-gutter
+) {
+  $margin: auto;
+
+  @if index($behavior, nest) != null {
+    @include grid-row-nest($gutters);
+
+    @if index($behavior, collapse) != null {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+  @else {
+    @include grid-row-size($size);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @if $cf {
+    @include clearfix;
+  }
+
+  @if $columns != null {
+    @include grid-context($columns) {
+      @content;
+    }
+  }
+}
+
+/// Inverts the margins of a row to nest it inside of a column.
+///
+/// @param {Number|Map} $gutters [$grid-column-gutter] - Gutter map or single value to use when inverting margins. Responsive gutter settings by default.
+@mixin grid-row-nest($gutters: $grid-column-gutter) {
+  @include -zf-each-breakpoint {
+    $margin: -zf-get-bp-val($gutters, $-zf-size) * 0.5 * -1;
+
+    margin-right: $margin;
+    margin-left: $margin;
+  }
+}
+
+/// Set a grid row size
+///
+/// @param {Keyword|Number} $size [$grid-row-width] Maximum size of the row. Set to `expand` to make the row taking the full width.
+@mixin grid-row-size($size: $grid-row-width) {
+  @if $size == expand {
+    $size: none;
+  }
+
+  max-width: $size;
+}
+
+// Foundation for Sites
+// https://get.foundation
+// Licensed under MIT Open Source
+
+////
+/// @group flex-grid
+////
+
+/// Creates a container for a flex grid row.
+///
+/// @param {Keyword|List} $behavior [null]
+///   Modifications to the default grid styles. `nest` indicates the row will be placed inside another row. `collapse` indicates that the columns inside this row will not have padding. `nest collapse` combines both behaviors.
+/// @param {Keyword|Number} $size [$grid-row-width] Maximum size of the row. Set to `expand` to make the row taking the full width.
+/// @param {Number} $columns [null] - Number of columns to use for this row. If set to `null` (the default), the global column count will be used.
+/// @param {Boolean} $base [true] - Set to `false` to prevent basic styles from being output. Useful if you're calling this mixin on the same element twice, as it prevents duplicate CSS output.
+/// @param {Boolean} $wrap [true] - Set to `false` to have row wrapping behavior set to nowrap
+/// @param {Number|Map} $gutters [$grid-column-gutter] - Gutter map or single value to use when inverting margins, in case the row is nested. Responsive gutter settings by default.
+@mixin flex-grid-row(
+  $behavior: null,
+  $size: $grid-row-width,
+  $columns: null,
+  $base: true,
+  $wrap: true,
+  $gutters: $grid-column-gutter
+) {
+  $margin: auto;
+  $wrap: if($wrap, wrap, nowrap);
+
+  @if index($behavior, nest) != null {
+    @include grid-row-nest($gutters);
+
+    @if index($behavior, collapse) != null {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+  @else {
+    @include grid-row-size($size);
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @if $base {
+    display: flex;
+    flex-flow: row $wrap;
+  }
+
+  @if $columns != null {
+    @include grid-context($columns, $base) {
+      @content;
+    }
+  }
+}
+
+/// Calculates the `flex` property for a flex grid column. It accepts all of the same values as the basic `grid-column()` function, along with two extras:
+///   - `expand` (the default) will make the column expand to fill space.
+///   - `shrink` will make the column contract, so it only takes up the horizontal space it needs.
+///
+/// @param {Mixed} $columns [expand] - Width of the column.
+@function flex-grid-column($columns: expand) {
+  $flex: 1 1 0px; // sass-lint:disable-line zero-unit
+
+  @if $columns == shrink {
+    $flex: 0 0 auto;
+  }
+  @else if $columns != expand {
+    $flex: 0 0 grid-column($columns);
+  }
+
+  @return $flex;
+}
+
+/// Creates a column for a flex grid. By default, the column will stretch to the full width of its container, but this can be overridden with sizing classes, or by using the `unstack` class on the parent flex row.
+///
+/// @param {Mixed} $columns [expand] - Width of the column. Refer to the `flex-grid-column()` function to see possible values.
+/// @param {Number|Map} $gutters [$grid-column-gutter] - Map or single value for gutters width. See the `grid-column-gutter` mixin.
+@mixin flex-grid-column(
+  $columns: expand,
+  $gutters: $grid-column-gutter
+) {
+  // Base properties
+  @include flex-grid-size($columns);
+
+  // Gutters
+  @include grid-column-gutter($gutters: $gutters);
+
+  // fixes recent Chrome version not limiting child width
+  // https://stackoverflow.com/questions/34934586/white-space-nowrap-and-flexbox-did-not-work-in-chrome
+  @if $columns == expand {
+    min-width: 0;
+  }
+}
+
+/// Creates a block grid for a flex grid row.
+///
+/// @param {Number} $n - Number of columns to display on each row.
+/// @param {String} $selector - Selector to use to target columns within the row.
+@mixin flex-grid-layout(
+  $n,
+  $selector: '.column'
+) {
+  flex-wrap: wrap;
+
+  > #{$selector} {
+    $pct: percentage(divide(1, $n));
+
+    flex: 0 0 $pct;
+    max-width: $pct;
+  }
+}
+
+/// Changes the width flex grid column.
+/// @param {Mixed} $columns [expand] - Width of the column. Refer to the `flex-grid-column()` function to see possible values.
+@mixin flex-grid-size($columns: null) {
+  $columns: $columns or expand;
+
+  flex: flex-grid-column($columns);
+
+  // max-width fixes IE 10/11 not respecting the flex-basis property
+  @if $columns != expand and $columns != shrink {
+    max-width: grid-column($columns);
+  }
+}
+
+
+@mixin foundation-flex-grid {
+  // Row
+  .row {
+    @include flex-grid-row;
+
+    // Nesting behavior
+    & .row {
+      @include flex-grid-row(nest, $base: false);
+
+      &.collapse {
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
+
+    // Expanded row
+    &.expanded {
+      @include grid-row-size(expand);
+
+      .row {
+        margin-right: auto;
+        margin-left: auto;
+      }
+    }
+
+    &:not(.expanded) .row {
+      @include grid-row-size(expand);
+    }
+
+    &.collapse {
+      > .column {
+        @include grid-col-collapse;
+      }
+    }
+
+    // Undo negative margins
+    // From collapsed child
+    &.is-collapse-child,
+    &.collapse > .column > .row {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+
+  // Column
+  .column {
+    @include flex-grid-column;
+  }
+
+  // Column row
+  // The double .row class is needed to bump up the specificity
+  .column.row.row {
+    float: none;
+    display: block;
+  }
+
+  // To properly nest a column row, padding and margin is removed
+  .row .column.row.row {
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  @include -zf-each-breakpoint {
+    @for $i from 1 through $grid-column-count {
+      // Sizing (percentage)
+      .#{$-zf-size}-#{$i} {
+        flex: flex-grid-column($i);
+        max-width: grid-column($i);
+      }
+
+      // Offsets
+      $o: $i - 1;
+
+      .#{$-zf-size}-offset-#{$o} {
+        @include grid-column-offset($o);
+      }
+    }
+
+    // Block grid
+    @for $i from 1 through $block-grid-max {
+      .#{$-zf-size}-up-#{$i} {
+        @include flex-grid-layout($i);
+      }
+    }
+
+    @if $-zf-size != $-zf-zero-breakpoint {
+      // Sizing (expand)
+      @include breakpoint($-zf-size) {
+        .#{$-zf-size}-expand {
+          flex: flex-grid-column();
+        }
+      }
+
+      // Auto-stacking/unstacking
+      @at-root (without: media) {
+        .row.#{$-zf-size}-unstack {
+          > .column {
+            flex: flex-grid-column(100%);
+
+            @include breakpoint($-zf-size) {
+              flex: flex-grid-column();
+            }
+          }
+        }
+      }
+    }
+
+    // Responsive collapsing
+    .#{$-zf-size}-collapse {
+      > .column { @include grid-col-collapse; }
+    }
+
+    .#{$-zf-size}-uncollapse {
+      > .column { @include grid-col-gutter($-zf-size); }
+    }
+  }
+
+  // Sizing (shrink)
+  .shrink {
+    flex: flex-grid-column(shrink);
+    max-width: 100%;
+  }
+
+  // Block grid columns
+  .column-block {
+    @include grid-column-margin;
+  }
+
+  .columns {
+    @extend .column; // sass-lint:disable-line placeholder-in-extend
+
+  }
+}
+
+// Foundation for Sites
+// https://get.foundation
+// Licensed under MIT Open Source
+
+////
+/// @group grid
+////
+
+/// Set the gutters on a column
+/// @param {Number|Keyword} $gutter [auto]
+///   Spacing between columns, accepts multiple values:
+///   - A single value will make the gutter that exact size.
+///   - A breakpoint name will make the gutter the corresponding size in the $gutters map.
+///   - "auto" will make the gutter responsive, using the $gutters map values.
+/// @param {Number|Map} $gutters [$grid-column-gutter] - Gutter map or single value to use. Responsive gutter settings by default.
+@mixin grid-column-gutter(
+  $gutter: auto,
+  $gutters: $grid-column-gutter
+) {
+  @include -zf-breakpoint-value($gutter, $gutters) {
+    $padding: $-zf-bp-value * 0.5;
+
+    padding-right: $padding;
+    padding-left: $padding;
+  }
+}
+
+/// Collapse the gutters on a column by removing the padding. **Note:** only use this mixin within a breakpoint. To collapse a column's gutters on all screen sizes, use the `$gutter` parameter of the `grid-column()` mixin instead.
+@mixin grid-column-collapse {
+  @include grid-column-gutter(0);
+}
+
+/// Shorthand for `grid-column-gutter()`.
+/// @alias grid-column-gutter
+@mixin grid-col-gutter(
+  $gutter: auto,
+  $gutters: $grid-column-gutter
+) {
+  @include grid-column-gutter($gutter, $gutters);
+}
+
+/// Shorthand for `grid-column-collapse()`.
+/// @alias grid-column-collapse
+@mixin grid-col-collapse {
+  @include grid-column-collapse;
+}
+
+/// Sets bottom margin on grid columns to match gutters
+/// @param {Number|Keyword} $margin [auto]
+///   The bottom margin on grid columns, accepts multiple values:
+///   - A single value will make the margin that exact size.
+///   - A breakpoint name will make the margin the corresponding size in the $margins map.
+///   - "auto" will make the margin responsive, using the $margins map values.
+/// @param {Number|Map} $margins [$grid-column-gutter] - Map or single value to use. Responsive gutter settings by default.
+@mixin grid-column-margin (
+  $margin: auto,
+  $margins: $grid-column-gutter
+) {
+  @include -zf-breakpoint-value($margin, $margins) {
+    $margin-bottom: $-zf-bp-value;
+    margin-bottom: $margin-bottom;
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Foundation for Sites
+// https://get.foundation
+// Licensed under MIT Open Source
+
+////
+/// @group functions
+////
+
+// Patch to fix issue #12080
+$-zf-bp-value: null;
+
+/// Creates an inner box-shadow for only one side
+///
+/// @param {Keyword} $side - Side the shadow is supposed to appear. Can be `top`, `left`, `right` or `bottom`.
+/// @param {Number} $size - Width for the target side.
+/// @param {Color} $color - Color of the shadow.
+@mixin inner-side-shadow(
+  $side: bottom,
+  $size: 20px,
+  $color: rgba($black, 0.25)
+) {
+
+  $helper: round($size * 0.65);
+
+  @if ($side == top) {
+    box-shadow: inset 0 $helper $size (-1)*$helper $color;
+  } @else if ($side == left) {
+    box-shadow: inset $helper 0 $size (-1)*$helper $color;
+  } @else if ($side == right) {
+    box-shadow: inset (-1)*$helper 0 $size (-1)*$helper $color;
+  } @else if ($side == bottom) {
+    box-shadow: inset 0 (-1)*$helper $size (-1)*$helper $color;
+  }
+}
+
+/// Creates a CSS triangle, which can be used for dropdown arrows, dropdown pips, and more. Use this mixin inside a `&::before` or `&::after` selector, to attach the triangle to an existing element.
+///
+/// @param {Number} $triangle-size - Width of the triangle.
+/// @param {Color} $triangle-color - Color of the triangle.
+/// @param {Keyword} $triangle-direction - Direction the triangle points. Can be `up`, `right`, `down`, or `left`.
+@mixin css-triangle(
+  $triangle-size,
+  $triangle-color,
+  $triangle-direction
+) {
+  display: block;
+  width: 0;
+  height: 0;
+
+  border-style: solid;
+  border-width: $triangle-size;
+
+  content: '';
+
+  @if ($triangle-direction == down) {
+    border-bottom-width: 0;
+    border-color: $triangle-color transparent transparent;
+  }
+  @if ($triangle-direction == up) {
+    border-top-width: 0;
+    border-color: transparent transparent $triangle-color;
+  }
+  @if ($triangle-direction == right) {
+    border-right-width: 0;
+    border-color: transparent transparent transparent $triangle-color;
+  }
+  @if ($triangle-direction == left) {
+    border-left-width: 0;
+    border-color: transparent $triangle-color transparent transparent;
+  }
+}
+
+/// Creates a menu icon with a set width, height, number of bars, and colors. The mixin uses the height of the icon and the weight of the bars to determine spacing. <div class="docs-example-burger"></div>
+///
+/// @param {Color} $color [$black] - Color to use for the icon.
+/// @param {Color} $color-hover [$dark-gray] - Color to use when the icon is hovered over.
+/// @param {Number} $width [20px] - Width of the icon.
+/// @param {Number} $height [16px] - Height of the icon.
+/// @param {Number} $weight [2px] - Height of individual bars in the icon.
+/// @param {Number} $bars [3] - Number of bars in the icon.
+@mixin hamburger(
+  $color: $black,
+  $color-hover: $dark-gray,
+  $width: 20px,
+  $height: 16px,
+  $weight: 2px,
+  $bars: 3
+) {
+  // box-shadow CSS output
+  $shadow: ();
+  $hover-shadow: ();
+
+  // Spacing between bars is calculated based on the total height of the icon and the weight of each bar
+  $spacing: divide($height - ($weight * $bars), $bars - 1);
+
+  @if unit($spacing) == 'px' {
+    $spacing: floor($spacing);
+  }
+
+  @for $i from 2 through $bars {
+    $offset: ($weight + $spacing) * ($i - 1);
+    $shadow: append($shadow, 0 $offset 0 $color, comma);
+  }
+
+  // Icon container
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: $width;
+  height: $height;
+  cursor: pointer;
+
+  // Icon bars
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+    width: 100%;
+    height: $weight;
+
+    background: $color;
+    box-shadow: $shadow;
+
+    content: '';
+  }
+
+  // Hover state
+  @if $color-hover {
+    // Generate CSS
+    @for $i from 2 through $bars {
+      $offset: ($weight + $spacing) * ($i - 1);
+      $hover-shadow: append($hover-shadow, 0 $offset 0 $color-hover, comma);
+    }
+
+    &:hover::after {
+      background: $color-hover;
+      box-shadow: $hover-shadow;
+    }
+  }
+}
+
+/// Adds a downward-facing triangle as a background image to an element. The image is formatted as an SVG, making it easy to change the color. Because Internet Explorer doesn't support encoded SVGs as background images, a PNG fallback is also included.
+/// There are two PNG fallbacks: a black triangle and a white triangle. The one used depends on the lightness of the input color.
+///
+/// @param {Color} $color [$black] - Color to use for the triangle.
+@mixin background-triangle($color: $black) {
+  $rgb: 'rgb%28#{round(red($color))}, #{round(green($color))}, #{round(blue($color))}%29';
+
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="32" height="24" viewBox="0 0 32 24"><polygon points="0,0 32,0 16,24" style="fill: #{$rgb}"></polygon></svg>');
+
+  @media screen and (min-width: 0\0) {
+    @if lightness($color) < 60% {
+      // White triangle
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAYCAYAAACbU/80AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIpJREFUeNrEkckNgDAMBBfRkEt0ObRBBdsGXUDgmQfK4XhH2m8czQAAy27R3tsw4Qfe2x8uOO6oYLb6GlOor3GF+swURAOmUJ+RwtEJs9WvTGEYxBXqI1MQAZhCfUQKRzDMVj+TwrAIV6jvSUEkYAr1LSkcyTBb/V+KYfX7xAeusq3sLDtGH3kEGACPWIflNZfhRQAAAABJRU5ErkJggg==');
+    }
+    @else {
+      // Black triangle
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAYCAYAAACbU/80AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAMBJREFUeNrEllsOhCAMRVszC9IlzU7KCmVHTJsoMWYMUtpyv9BgbuXQB5ZSdgBYYY4ycgBivk8KYFsQMfMiTTBP4o3nUzCKzOabLJbLy2/g31evGkAginR4/ZegKH5qX3bJCscA3t0x3kgO5tQFyhhFf50xRqFLbyMUNJQzgyjGS/wgCpvKqkRBpuWrE4V9d+1E4dPUXqIg107SQOE/2DRQxMwTDygIInVDET9T3lCoj/6j/VCmGjZOl2lKpZ8AAwDQP7zIimDGFQAAAABJRU5ErkJggg==');
+    }
+  }
+}
+
+/// Applies the micro clearfix hack popularized by Nicolas Gallagher. Include this mixin on a container if its children are all floated, to give the container a proper height.
+/// The clearfix is augmented with specific styles to prevent borders in flexbox environments
+/// @link http://nicolasgallagher.com/micro-clearfix-hack/ Micro Clearfix Hack
+/// @link http://danisadesigner.com/blog/flexbox-clear-fix-pseudo-elements/ Flexbox fix
+@mixin clearfix {
+  &::before,
+  &::after {
+    display: table;
+    content: ' ';
+
+    @if $global-flexbox {
+      flex-basis: 0;
+      order: 1;
+    }
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+/// Adds CSS for a "quantity query" selector that automatically sizes elements based on how many there are inside a container.
+/// @link http://alistapart.com/article/quantity-queries-for-css Quantity Queries for CSS
+///
+/// @param {Number} $max - Maximum number of items to detect. The higher this number is, the more CSS that's required to cover each number of items.
+/// @param {Keyword} $elem [li] - Tag to use for sibling selectors.
+@mixin auto-width($max, $elem: li) {
+  @for $i from 2 through $max {
+    &:nth-last-child(#{$i}):first-child,
+    &:nth-last-child(#{$i}):first-child ~ #{$elem} {
+      width: percentage(divide(1, $i));
+    }
+  }
+}
+
+/// Removes the focus ring around an element when a mouse input is detected.
+@mixin disable-mouse-outline {
+  [data-whatinput='mouse'] & {
+    outline: 0;
+  }
+}
+
+/// Makes an element visually hidden, but still accessible to keyboards and assistive devices.
+/// @link http://snook.ca/archives/html_and_css/hiding-content-for-accessibility Hiding Content for Accessibility
+/// @link http://hugogiraudel.com/2016/10/13/css-hide-and-seek/
+///
+/// @param {Boolean} $enforce - If `true`, use `!important` on applied properties
+@mixin element-invisible(
+  $enforce: true
+) {
+  $important: if($enforce, '!important', null);
+
+  position: absolute #{$important};
+  width: 1px #{$important};
+  height: 1px #{$important};
+  padding: 0 #{$important};
+  overflow: hidden #{$important};
+  clip: rect(0, 0, 0, 0) #{$important};
+  white-space: nowrap #{$important};
+  border: 0 #{$important};
+}
+
+/// Reverses the CSS output created by the `element-invisible()` mixin.
+/// @param {Boolean} $enforce - If `true`, use `!important` on applied properties
+@mixin element-invisible-off(
+  $enforce: true
+) {
+  $important: if($enforce, '!important', null);
+
+  position: static #{$important};
+  width: auto #{$important};
+  height: auto #{$important};
+  overflow: visible #{$important};
+  clip: auto #{$important};
+  white-space: normal #{$important};
+}
+
+/// Vertically centers the element inside of its first non-static parent,
+/// @link http://www.sitepoint.com/centering-with-sass/ Centering With Sass
+@mixin vertical-center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/// Horizontally centers the element inside of its first non-static parent,
+/// @link http://www.sitepoint.com/centering-with-sass/ Centering With Sass
+@mixin horizontal-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/// Absolutely centers the element inside of its first non-static parent,
+/// @link http://www.sitepoint.com/centering-with-sass/ Centering With Sass
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/// Iterates through breakpoints defined in `$breakpoint-classes` and prints the CSS inside the mixin at each breakpoint's media query. Use this with the grid, or any other component that has responsive classes.
+///
+/// @param {Boolean} $small [true] - If `false`, the mixin will skip the `small` breakpoint. Use this with components that don't prefix classes with `small-`, only `medium-` and up.
+/// @param {Boolean} $auto-insert-breakpoints [true] - If `false`, the mixin will iterate over breakpoints without doing the media query itself. Useful for more complex media query generation as in the margin grid.
+@mixin -zf-each-breakpoint(
+  $small: true,
+  $auto-insert-breakpoints: true
+) {
+  @include -zf-each-breakpoint-in(auto, -zf-bool($small), -zf-bool($auto-insert-breakpoints)) {
+    @content
+  };
+}
+
+/// Iterates with `@content` through the given list of breakpoints `$breakpoints`.
+///
+/// @access private
+///
+/// @param {Keyword|List} $breakpoints [auto] - Breakpoints to iterates on. It can be a breakpoint name, list of breakpoints or `auto` for all breakpoints.
+/// @param {Boolean|Null} $zero-breakpoint [null] - Whether the zero-breakpoint (often `small`) must be included. If `true`, it will always be added to the list if not already there. If `false`, it will always be removed. Does nothing by default.
+/// @param {Boolean|Keyword} $media-queries [true] - Whether media-queries must be generated. If `for-lists`, only generate media-queries when `$breakpoints` is a list.
+@mixin -zf-each-breakpoint-in(
+  $breakpoints: auto,
+  $zero-breakpoint: null,
+  $media-queries: true
+) {
+  $-list: ();
+  $-breakpoints-is-a-list: true;
+
+  // Retrieve the list of breakpoint(s) to iterate on.
+  @if $breakpoints == auto {
+    $-list: $breakpoint-classes;
+  }
+  @else if type-of($breakpoints) == 'list' {
+    $-list: $breakpoints;
+  }
+  @else if type-of($breakpoints) == 'string' {
+    $-list: ($breakpoints);
+    $-breakpoints-is-a-list: false;
+  }
+  @else {
+    @error 'Wrong syntax for "$breakpoints" in "-zf-each-breakpoint-in()". Got "#{$breakpoints}" (#{type-of($breakpoints)}). Expected a breakpoint name, a list of breakpoints or "auto"';
+  }
+
+  // Add or remove the zero breakpoint according to `$zero-breakpoint`
+  @if $zero-breakpoint == true {
+    $-list: join(($-zf-zero-breakpoint), sl-remove($-list, $-zf-zero-breakpoint));
+  }
+  @else if $zero-breakpoint == false {
+    $-list: sl-remove($-list, $-zf-zero-breakpoint);
+  }
+
+  // Iterate on breakpoint(s)
+  @each $bp in $-list {
+    $old-zf-size: null;
+    @if global-variable-exists(-zf-size) {
+      $old-zf-size: $-zf-size;
+    }
+    $-zf-size: $bp !global;
+
+    @if ($media-queries == true or ($media-queries == 'for-lists' and $-breakpoints-is-a-list)) {
+      @include breakpoint($bp) {
+        @content;
+      }
+    }
+    @else {
+      @content;
+    }
+
+    $-zf-size: $old-zf-size !global;
+  }
+}
+
+/// Generate the `@content` passed to the mixin with a value `$-zf-bp-value` related to a breakpoint, depending on the `$name` parameter:
+/// - For a single value, `$-zf-bp-value` is this value.
+/// - For a breakpoint name, `$-zf-bp-value` is the corresponding breakpoint value in `$map`.
+/// - For "auto", `$-zf-bp-value` is the corresponding breakpoint value in `$map` and is passed to `@content`, which is made responsive for each breakpoint of `$map`.
+/// @param {Number|Array|Keyword} $name [auto] - Single value, breakpoint name, or list of breakpoint names to use. "auto" by default.
+/// @param {Number|Map} $map - Map of breakpoints and values or single value to use.
+@mixin -zf-breakpoint-value(
+  $name: auto,
+  $map: null
+) {
+  @if $name == auto and type-of($map) == 'map' {
+    // "auto"
+    @each $k, $v in $map {
+      @include breakpoint($k) {
+        @include -zf-breakpoint-value($v, $map) {
+          @content;
+        }
+      }
+    }
+  }
+  @else {
+    // breakpoint name
+    @if type-of($name) == 'string' {
+      $bp-value: -zf-get-bp-val($map, $name);
+      @if $bp-value != null {
+        $name: $bp-value;
+      }
+    }
+
+    // breakpoint value
+    $-zf-bp-value: $name !global;
+    @content;
+  }
+}
+
+@function fraction-to-percentage($fraction) {
+  @return $fraction * 100;
+}
+
+// Foundation for Sites
+// https://get.foundation
+// Licensed under MIT Open Source
+
+////
+/// @group grid
+////
+
+/// Calculates the width of a column based on a number of factors.
+///
+/// @param {Number|List} $columns
+///   Width of the column. Accepts multiple values:
+///   - A percentage value will make the column that exact size.
+///   - A single digit will make the column span that number of columns wide, taking into account the column count of the parent row.
+///   - A list of the format "x of y" (without quotes) will make a column that is *x* columns wide, assuming *y* total columns for the parent.
+///
+/// @returns {Number} A calculated percentage value.
+@function grid-column($columns) {
+  @return fraction-to-percentage($columns);
+}
+
+/// Creates a grid column.
+///
+/// @param {Mixed} $columns [$grid-column-count] - Width of the column. Refer to the `grid-column()` function to see possible values.
+/// @param {Mixed} $gutters [$grid-column-gutter] - Spacing between columns. Refer to the `grid-column-gutter()` function to see possible values.
+@mixin grid-column(
+  $columns: $grid-column-count,
+  $gutters: $grid-column-gutter
+) {
+  // Gutters
+  @include grid-column-gutter($gutters: $gutters);
+  // Position
+  @include grid-col-pos(auto);
+
+  @include grid-column-size($columns);
+}
+
+/// Creates a grid column row. This is the equivalent of adding `.row` and `.column` to the same element.
+///
+/// @param {Mixed} $gutters [$grid-column-gutter] - Width of the gutters on either side of the column row. Refer to the `grid-column-gutter()` function to see possible values.
+@mixin grid-column-row(
+  $gutters: $grid-column-gutter
+) {
+  @include grid-row;
+  @include grid-column($gutters: $gutters);
+
+  &,
+  &:last-child {
+    float: none;
+  }
+}
+
+/// Shorthand for `grid-column()`.
+/// @alias grid-column
+@function grid-col(
+  $columns: $grid-column-count
+) {
+  @return grid-column($columns);
+}
+
+/// Shorthand for `grid-column()`.
+/// @alias grid-column
+@mixin grid-col(
+  $columns: $grid-column-count,
+  $gutters: $grid-column-gutter
+) {
+  @include grid-column($columns, $gutters);
+}
+
+/// Shorthand for `grid-column-row()`.
+/// @alias grid-column-row
+@mixin grid-col-row(
+  $gutters: $grid-column-gutter
+) {
+  @include grid-column-row($gutters);
+}
+
+
+// Foundation for Sites
+// https://get.foundation
+// Licensed under MIT Open Source
+
+////
+/// @group grid
+////
+
+/// Reposition a column.
+///
+/// @param {Number|Keyword} $position - It can be:
+///   * A number: The column will move equal to the width of the column count
+///     specified. A positive number will push the column to the right, while
+///     a negative number will pull it to the left.
+///   * `center`: Column will be centered
+///   * `auto`: Column will be pushed to the left (or to the right for the last column).
+@mixin grid-column-position($position) {
+  // Auto positioning
+  @if $position == auto {
+    &, &:last-child:not(:first-child) {
+      clear: none;
+    }
+
+    // Last column alignment
+    @if $grid-column-align-edge {
+      &:last-child:not(:first-child) {
+      }
+    }
+  }
+
+  // Push/pull
+  @else if type-of($position) == 'number' {
+    $offset: percentage(divide($position, $grid-column-count));
+
+    position: relative;
+  }
+
+  // Center positioning
+  @else if $position == center {
+    &, &:last-child:not(:first-child) {
+      float: none;
+      clear: both;
+    }
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  @else {
+    @warn 'Wrong syntax for grid-column-position(). Enter a positive or negative number, "center" or "auto".';
+  }
+}
+
+/// Reset a position definition.
+@mixin grid-column-unposition {
+  @include grid-column-position(auto);
+  position: static;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/// Offsets a column to the right by `$n` columns.
+/// @param {Number|List} $n - Width to offset by. You can pass in any value accepted by the `grid-column()` mixin, such as `6`, `50%`, or `1 of 2`.
+@mixin grid-column-offset($n) {
+}
+
+/// Disable the default behavior of the last column in a row aligning to the opposite edge.
+@mixin grid-column-end {
+  // This extra specificity is required for the property to be applied
+  &:last-child:last-child {
+  }
+}
+
+/// Shorthand for `grid-column-position()`.
+/// @alias grid-column-position
+@mixin grid-col-pos($position) {
+  @include grid-column-position($position);
+}
+
+/// Shorthand for `grid-column-unposition()`.
+/// @alias grid-column-unposition
+@mixin grid-col-unpos {
+  @include grid-column-unposition;
+}
+
+/// Shorthand for `grid-column-offset()`.
+/// @alias grid-column-offset
+@mixin grid-col-off($n) {
+  @include grid-column-offset($n);
+}
+
+/// Shorthand for `grid-column-end()`.
+/// @alias grid-column-end
+@mixin grid-col-end {
+  @include grid-column-end;
+}
+
+/// Set the width of a grid column.
+///
+/// @param {Number|List} $width [$grid-column-count] - Width to make the column. You can pass in any value accepted by the `grid-column()` function, such as `6`, `50%`, or `1 of 2`.
+@mixin grid-column-size(
+  $columns: $grid-column-count
+) {
+  width: grid-column($columns);
+}
+
+/// Shorthand for `grid-column-size()`.
+/// @alias grid-column-size
+@mixin grid-col-size(
+  $columns: $grid-column-count
+) {
+  @include grid-column-size($columns);
+}

@@ -1,0 +1,6 @@
+{#
+    See hook_preprocess_paragraph__homepage_quotes
+#}
+{% embed "themes/custom/du_bootstrap/templates/misc/quotes.twig" %}
+    {% set slides = content.field_hpq_quotes|field_value %}
+{% endembed %}

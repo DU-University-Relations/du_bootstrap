@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: short_1356_x_250
+label: 'Short 1356 x 300'
+effects:
+  e5840fad-6ab5-4a86-87ff-035b88c6b234:
+    uuid: e5840fad-6ab5-4a86-87ff-035b88c6b234
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1356
+      height: 300
+      anchor: center-center

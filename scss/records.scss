@@ -1,0 +1,99 @@
+.records-view {
+  overflow: scroll;
+
+  .views-exposed-form {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    padding: 2.4rem 2.2rem 2.3rem 2.2rem;
+    @include media-breakpoint-up(xxl) {
+      padding: 2.4rem 0 2.3rem 0;
+      flex-flow: row !important;
+    }
+    @include media-breakpoint-up(md) {
+
+    }
+    @include flex-grid-row();
+
+    .form-item {
+      @include flex-grid-column(12);
+      @include media-breakpoint-up(md) {
+        @include flex-grid-column(6);
+      }
+      @include media-breakpoint-up(lg) {
+        @include flex-grid-column(3);
+      }
+    }
+    label {
+      font-size: 1.8rem;
+      font-weight: bold;
+      font-family: $primary-font;
+      margin-bottom: .3rem;
+    }
+  }
+
+  .form-actions {
+    flex: 0 0 14rem;
+    @include media-breakpoint-up(md) {
+      width: 11%;
+      flex: none;
+    }
+  }
+
+  .button {
+    margin: 0;
+    width: 100%;
+    margin-top: 5px;
+
+    @include media-breakpoint-up(xxl) {
+      margin-top: 0;
+    }
+  }
+
+  table {
+    max-width: 120rem;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    overflow: scroll;
+
+    @include media-breakpoint-down(md) {
+      font-size: 10px;
+    }
+
+    thead tr, tfoot tr {
+      background: black;
+    }
+  }
+
+  input {
+    @include media-breakpoint-up(md) {
+      margin-bottom: 0;
+    }
+  }
+  select {
+    height:4.1rem;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 0;
+    }
+  }
+
+  .form-item {
+    &.js-form-item-search {
+      max-width: 75%;
+      flex: 0 0 75%;
+      padding-left: 0;
+      padding-right: 0;
+      @include media-breakpoint-up(md) {
+        max-width: 22%;
+        flex: 0 0 22%;
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+      }
+    }
+    @include media-breakpoint-up(md) {
+      max-width: 22%;
+      flex: 0 0 22%;
+    }
+  }
+}

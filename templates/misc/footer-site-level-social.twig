@@ -1,0 +1,10 @@
+<div class="footer-site-level-social row">
+    <p class="col-sm-8 col-md-7 text-start">{{ text }}</p>
+    <div class="col-md-10 d-flex social-media">
+        {% for item in icons %}
+            <div class="flex-shrink-1">
+                {% include "themes/custom/du_bootstrap/templates/misc/icon.twig" with item %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

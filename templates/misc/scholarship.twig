@@ -1,0 +1,9 @@
+<div class="cards-list-module scholarship-list">
+    <div class="row js-filter-cards">
+        {% block scholarship %}
+            {% for row in rows %}
+                {% include "themes/custom/du_bootstrap/templates/misc/scholarship-item.twig" with row.content %}
+            {% endfor %}
+        {% endblock %}
+    </div>
+</div>

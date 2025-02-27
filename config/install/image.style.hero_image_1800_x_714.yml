@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: hero_image_1800_x_714
+label: 'Hero Image 1800 x 714'
+effects:
+  58b5d419-f807-45fc-afa3-4969e432b874:
+    uuid: 58b5d419-f807-45fc-afa3-4969e432b874
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 1800
+      height: 714
+      anchor: center-center

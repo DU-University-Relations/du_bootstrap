@@ -1,0 +1,9 @@
+<div class="cards-list-module activity-card-list">
+    <div class="row js-filter-cards">
+        {% block activitycardlist %}
+            {% for row in rows %}
+                {% include "themes/custom/du_bootstrap/templates/misc/activity-card-list-item.twig" with row.content %}
+            {% endfor %}
+        {% endblock %}
+    </div>
+</div>

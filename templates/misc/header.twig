@@ -1,0 +1,88 @@
+<header class="header {% if inline_site %}core-inline-site{% endif %} {% if hero_video %} hero-video{% endif %}{% if hero_url %} hero-image{% endif %}" role="banner">
+    {% block utility_nav %}
+        {% include "themes/custom/du_bootstrap/templates/misc/utility-nav.twig" %}
+    {% endblock %}
+    <div class="sticky-top">
+        <div id="top-bar-sticky-wrap" class="sticky-top">
+            {% if du_elevate_display_enabled %}
+                <div class="core-elevate-wrapper">
+                    {% include "themes/custom/du_bootstrap/templates/misc/_unit-elevate-cart.twig" %}
+                </div>
+            {% endif %}
+            <div class="top-bar">
+                <nav id="main-menu-wrap">
+                    <div class="row w-100">
+                        <div class="col-auto">
+                            <a href="{{ logo_url }}" class="logo {% if inline_site %}inline-site{% endif %}">
+                                {{ logo|raw }}
+                                <div class="site-identity">
+                                    <span class="site-prefix">{{ site_prefix }}</span>
+                                    <span class="site-name">{{ site_name }}</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <div id="main-menu">
+                                {% block mega_nav %}
+                                    {% include "themes/custom/du_bootstrap/templates/misc/mega-nav.twig" %}
+                                {% endblock %}
+
+                                {% block utility_nav_sm %}
+                                    {% set extra_class = 'd-block d-sm-none ' %}
+                                    {% include "themes/custom/du_bootstrap/templates/misc/utility-nav-sm.twig" %}
+                                {% endblock %}
+                            </div>
+                        </div>
+
+                        <div class="col-auto">
+                            <ul id="search-toggler" class="dropdown-menu">
+                                <li class="search mega-menu">
+                                    <a href="#">Search</a>
+                                    <ul id="search" class="menu">
+                                        <li>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="search-box">
+                                                        <label class="visually-hidden" for="site-search-input" aria-label="search-label">Search Input</label>
+                                                        <input name="search" id="site-search-input" class="form-control" placeholder="Search" type="text" required="required" tabindex="1">
+                                                        <button class="search-submit" type="button" title="Submit Search">
+                                                            <span class="icon-du-cust-search" aria-hidden="true"></span>
+                                                            <span class="visually-hidden">Submit Search</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                {% set current_url = url('<current>')|render|render %}
+                                {% if (node.bundle == 'elevate_course') or ('elevate/programs' in current_url) or ('/continuing-education' in current_url) %}
+                                <li class="core-elevate-button">
+                                    <a href="#utility-elevate-cart-popup" class="core-utility-menu__cart-button" aria-controls="#elevate-cart-popup">
+                                        <span class="toggle-icon">{% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with {"icon_name": "basket"} %}</span>
+                                        <span class="toggle-label">Cart</span>
+                                        <span class="items-in-cart">1</span>
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                            {% if menu_item_count > 0 %}
+                                <div id="unit-main-menu-toggler" class="text-end d-lg-none">
+                                    <button class="icon-du-cust-menu navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="visually-hidden">Toggle Menu</span>
+                                    </button>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    {% if not hide_hero %}
+        {% include "themes/custom/du_bootstrap/templates/misc/hero-media-unit.twig" %}
+    {% endif %}
+
+
+</header>

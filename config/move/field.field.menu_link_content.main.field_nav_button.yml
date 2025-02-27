@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.menu_link_content.field_nav_button
+    - system.menu.main
+  module:
+    - link
+id: menu_link_content.main.field_nav_button
+field_name: field_nav_button
+entity_type: menu_link_content
+bundle: main
+label: Button
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

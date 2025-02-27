@@ -1,0 +1,89 @@
+<nav class="unit-nav-group {% if hide_hero %}no-hero{% endif %}">
+    {% block alert %}
+        {{ du_alert }}
+    {% endblock %}
+
+    <div data-sticky-container>
+        <div id="top-bar-sticky-wrap" class="sticky-top" data-margin-top="0" data-top-anchor="1">
+            {% block utility_nav %}
+                {% include "themes/custom/du_bootstrap/templates/misc/unit-utility-nav.twig" %}
+            {% endblock %}
+
+            {# FIX THIS - When we get the search updated we can plug this in here #}
+            {# {% include "themes/custom/du_bootstrap/templates/misc/_unit-search-form.twig" %} #}
+            {% if du_elevate_display_enabled %}
+                {% include "themes/custom/du_bootstrap/templates/misc/_unit-elevate-cart.twig" %}
+            {% endif %}
+            {% block utility_flyouts %}
+                {% include "themes/custom/du_bootstrap/templates/misc/_unit-sites-list.twig" with { "site_links": site_links } %}
+                {% include "themes/custom/du_bootstrap/templates/misc/_unit-resources.twig" with { "resource_links": resource_links } %}
+                {% include "themes/custom/du_bootstrap/templates/misc/_unit-generic-flyout.twig" with { "flyout_id": "apply-flyout" } %}
+            {% endblock %}
+
+            <div class="top-bar">
+                <nav id="main-menu-wrap">
+                    <div class="container">
+                        <div class="row container-120 h-100">
+                            <div class="col-auto">
+                                {% if image_logo is empty %}
+                                    <a href="{{ logo_url }}" class="logo">
+                                        <div class="site-logo">
+                                            <img src="/{{ active_theme_path() }}/images/svg/university-of-denver-du-logo-unit.svg" width="80" alt="University of Denver">
+                                        </div>
+                                        <div class="site-identity">
+                                            <span class="site-prefix">{{ site_prefix }}</span>
+                                            {# FIX THIS - Temporary while we get this updated #}
+                                            <span class="site-name">{{ site_name }}Why DU</span>
+                                        </div>
+                                    </a>
+                                {% else %}
+                                    <a href="{{ logo_url }}" class="logo image">
+                                        {{ image_logo }}
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div class="col">
+                                <div id="main-menu" aria-expanded="false">
+                                    <div class="main-menu-contents pe-0 h-100 d-flex justify-content-end align-items-center">
+                                        {% block mega_nav %}
+                                            {% include "themes/custom/du_bootstrap/templates/misc/mega-nav.twig" %}
+                                        {% endblock %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-auto">
+                                {% if menu_item_count > 0 %}
+                                {% set current_url = url('<current>')|render|render %}
+                                    <div id="unit-main-menu-toggler" class="text-end d-lg-none {% if 'about/people/' in current_url %}display-none-toggle{% endif %}">
+                                        <button class="icon-du-cust-menu" type="button" aria-controls="main-menu">
+                                            <span class="visually-hidden">Toggle Menu</span></button>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            {% if du_elevate_display_enabled %}
+                                <div class="cart-item">
+                                    <a href="#utility-elevate-cart-popup" class="unit-utility-menu__cart-button" role="button" aria-controls="#utility-elevate-cart-popup">
+                                        <span class="toggle-icon"><span class="icon-du-basket" aria-hidden="true"></span></span>
+                                        <span class="toggle-label">Cart</span>
+                                        <span class="items-in-cart" style="display: inline;">1</span>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</nav>
+<header class="unit-header {% if hide_hero %}no-hero{% endif %}{% if hero_class == "content-card" %}content-card{% endif %}" role="banner">
+    {% if (hero_embed is not empty) and (hide_hero) %}
+        <div class="hero-media hero-image-empty hero-embed-wrapper">
+            <div class="hero-embed">{{ hero_embed|raw }}</div>
+        </div>
+    {% endif %}
+    {% if not hide_hero %}
+        {% include "themes/custom/du_bootstrap/templates/misc/hero-media-unit.twig" %}
+    {% endif %}
+</header>
