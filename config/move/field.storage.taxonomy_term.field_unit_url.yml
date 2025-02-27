@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   module:
-    - menu_link_content
-    - text
-id: menu_link_content.field_nav_description
-field_name: field_nav_description
-entity_type: menu_link_content
-type: text_long
+    - link
+    - taxonomy
+id: taxonomy_term.field_unit_url
+field_name: field_unit_url
+entity_type: taxonomy_term
+type: link
 settings: {  }
-module: text
+module: link
 locked: false
 cardinality: 1
 translatable: true

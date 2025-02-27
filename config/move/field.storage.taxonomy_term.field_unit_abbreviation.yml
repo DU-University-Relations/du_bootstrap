@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   module:
-    - menu_link_content
-id: menu_link_content.field_nav_headline
-field_name: field_nav_headline
-entity_type: menu_link_content
+    - taxonomy
+id: taxonomy_term.field_unit_abbreviation
+field_name: field_unit_abbreviation
+entity_type: taxonomy_term
 type: string
 settings:
   max_length: 255
