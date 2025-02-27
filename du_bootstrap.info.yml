@@ -1,7 +1,7 @@
 name: DU Bootstrap
 type: theme
 description: 'University of Denver theme based on custom Bootstrap 5 SASS'
-# version: VERSION
+version: 1.0
 core_version_requirement: ^10.3 || ^11
 base theme: bootstrap
 
@@ -10,6 +10,7 @@ libraries:
 regions:
   header: Header
   utility_nav: Utility Nav
+  utility_flyouts: Utility Flyouts
   audience_nav: Audience Nav
   mega_nav: Mega Nav
   content_top: Content Top

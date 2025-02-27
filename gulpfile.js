@@ -7,7 +7,6 @@ let gulp = require('gulp'),
   postcss = require('gulp-postcss'),
   autoprefixer = require('autoprefixer'),
   postcssInlineSvg = require('postcss-inline-svg'),
-  browserSync = require('browser-sync').create(),
   pxtorem = require('postcss-pxtorem'),
   postcssProcessors = [
     postcssInlineSvg({
@@ -77,33 +76,25 @@ function styles() {
     .pipe(gulp.dest(paths.scss.dest))
     .pipe(cleanCss())
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest(paths.scss.dest))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(paths.scss.dest));
 }
 
 // Move the javascript files into our js folder
 function js() {
   return gulp
     .src([paths.js.bootstrap, paths.js.popper, paths.js.base])
-    .pipe(gulp.dest(paths.js.dest))
-    .pipe(browserSync.stream());
+    .pipe(gulp.dest(paths.js.dest));
 }
 
-// Static Server + watching scss/html files
-function serve() {
-  browserSync.init({
-    proxy: 'https://www.drupal.org',
-  });
-
-  gulp
-    .watch([paths.scss.watch, paths.scss.bootstrap], styles)
-    .on('change', browserSync.reload);
+// Watch scss/js files
+function watch() {
+  gulp.watch([paths.scss.watch, paths.scss.bootstrap], styles);
+  gulp.watch([paths.js.bootstrap, paths.js.popper, paths.js.base], js);
 }
 
-const build = gulp.series(styles, gulp.parallel(js, serve));
+const build = gulp.series(styles, gulp.parallel(js, watch));
 
 exports.styles = styles;
 exports.js = js;
-exports.serve = serve;
-
+exports.watch = watch;
 exports.default = build;

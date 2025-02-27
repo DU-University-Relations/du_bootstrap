@@ -8,7 +8,7 @@
     margin-left: 5vw;
     margin-right: 5vw;
     @include media-breakpoint-up(lg) {
-      margin: auto;
+      margin: 0 auto;
     }
 
     .footer-site-level-logo {

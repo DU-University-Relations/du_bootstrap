@@ -105,7 +105,7 @@
     {% set author_name = content.field_article_byline_author.0['#taxonomy_term'].name.value %}
     {% set base_url = render_var(url('<front>'))  %}
     {% set node_path = path('entity.node.canonical', {'node': node.id }) %}
-    {% set logo = base_url|trim('/', 'right') ~ '/themes/custom/pl_unit/images/logo_shield_unit.png' %}
+    {% set logo = base_url|trim('/', 'right') ~ '/themes/custom/du_bootstrap/images/logo_shield_unit.png' %}
     {% set canonical = base_url|trim('/', 'right') ~ node_path %}
     {% set featured_media = feature_image %}
     {% set medium_image = node.field_article_medium_sized_image.entity %}

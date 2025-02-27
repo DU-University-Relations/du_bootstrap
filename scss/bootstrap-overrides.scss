@@ -1,0 +1,16 @@
+/**
+ * Bootstrap overrides for DU theme
+ */
+
+/* Dropdown hover functionality */
+@media (min-width: 992px) {
+  .navbar-nav .dropdown:hover > .dropdown-menu {
+    display: block;
+  }
+  .dropdown-menu {
+    margin-top: 0;
+  }
+  .dropdown .dropdown-toggle:active {
+    pointer-events: none;
+  }
+}

@@ -85,7 +85,7 @@
         <js-placeholder token="{{ placeholder_token }}">
 </head>
 
-<body {{ attributes.addClass(path) }}{{ attributes.addClass(subtheme_selection == 'micro' ? 'micro' : (subtheme_selection == 'unit' ? 'unit' : attributes)) }}>
+<body {{ attributes.addClass(path).addClass(subtheme_selection == 'micro' ? 'micro' : (subtheme_selection == 'unit' ? 'unit-site' : '')) }}>
     <p class="visually-hidden visually-hidden-focusable">
         <a href="#main-content">
             Skip to main content

@@ -444,8 +444,7 @@ function du_bootstrap_preprocess_page(&$variables) {
 
           if (!empty($hero_paragraph->get('field_hero_video')->entity)) {
             $video = $hero_paragraph->get('field_hero_video')->entity;
-            $variables['hero_video_url'] = file_create_url($video->get('uri')
-              ->getString());
+            $variables['hero_video_url'] = \Drupal::service('file_url_generator')->generateAbsoluteString($video->get('uri')->getString());
           }
 
           if ($node_type == 'home_page') {
@@ -540,8 +539,7 @@ function du_bootstrap_preprocess_page(&$variables) {
                       }
                       if (!empty($hero_paragraph->get('field_hero_video')->entity)) {
                         $video = $hero_paragraph->get('field_hero_video')->entity;
-                        $variables['hero_video_url'] = file_create_url($video->get('uri')
-                          ->getString());
+                        $variables['hero_video_url'] = \Drupal::service('file_url_generator')->generateAbsoluteString($video->get('uri')->getString());
                       }
                       if ($hero_paragraph->hasField('field_unit_hero_link')) {
                         if (!empty($hero_paragraph->get('field_unit_hero_link')->first())) {
@@ -1056,35 +1054,68 @@ function du_bootstrap_form_views_exposed_form_alter(&$form, FormStateInterface &
  * Implements hook_preprocess_menu().
  */
 function du_bootstrap_preprocess_menu(&$variables) {
+  \Drupal::logger('du_menu_debug')->notice('Processing menu: @name', ['@name' => $variables['menu_name']]);
+
   if (!empty($variables['items'])) {
-    $current_path = \Drupal::request()->getRequestUri();
-
-    // If we're on an inline unit menu, then process the tree like the main menu
-    // does through menu_item_extras.
-    $module_handler = \Drupal::moduleHandler();
-    if (
-      $module_handler->moduleExists('du_inline_unit')
-      && $module_handler->moduleExists('menu_item_extras')
-    ) {
-      if (
-        !empty($variables['menu_name'])
-        && du_inline_unit_is_inline_unit_menu($variables['menu_name'])
-      ) {
-        $variables['items'] = \Drupal::service('menu_item_extras.menu_link_tree_handler')
-          ->processMenuLinkTree($variables['items'], $variables['menu_name']);
-      }
-    }
-
     foreach ($variables['items'] as &$item) {
-      if ($item['in_active_trail']) {
-        if ($item['url']->toString() == $current_path) {
-          $item['is_active'] = TRUE;
-        }
-        elseif (count($item['below'])) {
-          _du_bootstrap_menu_process_submenu($item['below'], $current_path);
+      try {
+        // Get the menu link entity
+        if (!empty($item['original_link'])) {
+          $plugin_id = $item['original_link']->getPluginId();
+
+          if (strpos($plugin_id, 'menu_link_content:') === 0) {
+            $uuid = str_replace('menu_link_content:', '', $plugin_id);
+            $menu_link_content = \Drupal::service('entity.repository')
+              ->loadEntityByUuid('menu_link_content', $uuid);
+
+            if ($menu_link_content) {
+              // Force expansion state
+              $item['is_expanded'] = TRUE;
+              $item['below'] = [];
+
+              // Load child items
+              $storage = \Drupal::entityTypeManager()->getStorage('menu_link_content');
+              $child_ids = $storage->getQuery()
+                ->accessCheck(FALSE)
+                ->condition('parent', $menu_link_content->getPluginId())
+                ->condition('enabled', 1)
+                ->sort('weight')
+                ->execute();
+
+              if (!empty($child_ids)) {
+                $children = $storage->loadMultiple($child_ids);
+                foreach ($children as $child) {
+                  $child_url = $child->link->first()->uri;
+                  $item['below'][] = [
+                    'title' => $child->label(),
+                    'url' => Url::fromUri($child_url),
+                    'attributes' => new \Drupal\Core\Template\Attribute(),
+                  ];
+                }
+
+                \Drupal::logger('du_menu_debug')->notice('Added @count children to @title', [
+                  '@count' => count($children),
+                  '@title' => $item['title'],
+                ]);
+              }
+            }
+          }
         }
       }
+      catch (\Exception $e) {
+        \Drupal::logger('du_menu_debug')->error('Error processing menu item @title: @error', [
+          '@title' => $item['title'],
+          '@error' => $e->getMessage()
+        ]);
+      }
     }
+  }
+
+  // Set the current site type/subtheme as a theme variable
+  $config = \Drupal::config('du_bootstrap.settings');
+  $subtheme_selection = $config->get('subtheme_selection');
+  if (!empty($config->get('subtheme_selection'))) {
+    $variables['subtheme_selection'] = $subtheme_selection;
   }
 }
 

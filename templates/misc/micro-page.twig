@@ -5,7 +5,7 @@
         {% endblock %}
     </div>
     {% block page_head %}
-        {% embed "themes/custom/du_bootstrap/templates/micro/micro-header.twig" with { "hero_media": hero_media, "hide_hero": hide_hero, "logo": logo, "image_logo": image_logo } %}
+        {% embed "themes/custom/du_bootstrap/templates/misc/micro-header.twig" with { "hero_media": hero_media, "hide_hero": hide_hero, "logo": logo, "image_logo": image_logo } %}
             {% block mega_nav %}
                 {% include "themes/custom/du_bootstrap/templates/misc/mega-nav.twig" with {nav:nav} only %}
             {% endblock %}

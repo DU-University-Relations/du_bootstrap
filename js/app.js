@@ -124,8 +124,7 @@
 
                   $grid.one('arrangeComplete', function () {
                       if (typeof(e.isTrigger) == 'undefined') {
-                          // FIX THIS - Restructure to Bootstrap Collapse or Offcanvas
-                          // $('#academic-filter-toggler').foundation('toggleMenu');
+                          $('#academic-filter-toggler').foundation('toggleMenu');
                           $('#academic-filter-toggler > a.open').removeClass('open');
                           $('.btn--academic-filter[data-filter]').removeClass('active');
                           $btnFilter.addClass('active');
@@ -510,12 +509,10 @@
 
         if ($concModal.length) {
           $concModal.foundation('open');
-          //console.log("should be opening");
         }
 
         $('.reveal-overlay').on('click', '.select-concentration', function(){
             var $name = $(this).attr('name');
-            //console.log($name);
             select_program("concentration", $name);
             $('#concModal').foundation('close');
         });
@@ -559,22 +556,11 @@
         $(window).resize(recalculate_dropdown_positions);
 
           function recalculate_dropdown_positions() {
-              // Force simple dropdown menus not to overflow past the rightmost main navigation item.
-              $main_menu.find('.mega-flyout.mega-menu--dropdown').each(function () {
-                  var $dropdown = $(this);
-                  var header_width = $header.innerWidth();
-                  //console.log($main_menu.css('padding-right'));
-                  var main_menu_pos = $main_menu.offset();
-                  var main_menu_rightmost_edge = main_menu_pos.left + $main_menu.innerWidth() - parseInt($main_menu.css('padding-right'), 10);
-                  var dropdown_pos = $dropdown.offset();
-                  var dropdown_rightmost_edge = dropdown_pos.left + $dropdown.innerWidth();
-
-                  if (dropdown_rightmost_edge > main_menu_rightmost_edge) {
-                      // jQuery can't set css with !important...
-                      this.style.setProperty('right', (header_width - main_menu_rightmost_edge) + 'px', 'important');
-                  } else {
-                      this.style.setProperty('right', 'auto', 'important');
-                  }
+              $('.menu-dropdown').each(function() {
+                  var $parent = $(this).parent();
+                  var parent_offset = $parent.offset();
+                  var parent_width = $parent.width();
+                  $(this).css('left', parent_offset.left);
               });
           }
         }
@@ -2074,10 +2060,12 @@ function reCalcSticky() {
   $('#sub-menu-toggler > a:first-of-type, #sub-menu-toggler').on('click', function(e) {
     $('#sub-menu-toggler > a').toggleClass('open');
     $('#sub-menu').toggleClass('is-active');
-    if ($('#sub-menu').attr('style').toLowerCase() != "display: none;") {
-      $('#sub-menu').attr({'style': 'display: "none"'});
-    } else if ($('#sub-menu').attr('style').toLowerCase() == "display: none;") {
-      $('#sub-menu').attr('style', '');
+    if ($('#sub-menu')) {
+        if ($('#sub-menu').attr('style').toLowerCase() != "display: none;") {
+        $('#sub-menu').attr({'style': 'display: "none"'});
+        } else if ($('#sub-menu').attr('style').toLowerCase() == "display: none;") {
+        $('#sub-menu').attr('style', '');
+        }
     }
   });
   // Related stories slider
@@ -2643,5 +2631,28 @@ function reCalcSticky() {
             });
         }
     }
+
+    Drupal.behaviors.menuPositioning = {
+      attach: function (context, settings) {
+        function recalculateDropdownPositions() {
+          $('.menu-dropdown').each(function() {
+            var $parent = $(this).closest('.menu-item--expanded');
+            if ($parent.length) {
+              var parentOffset = $parent.offset();
+              var parentWidth = $parent.width();
+              $(this).css('left', parentOffset.left);
+            }
+          });
+        }
+
+        // Run on page load
+        recalculateDropdownPositions();
+
+        // Run on window resize
+        $(window).on('resize', function() {
+          recalculateDropdownPositions();
+        });
+      }
+    };
 
 })(jQuery);

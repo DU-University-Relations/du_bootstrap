@@ -225,8 +225,6 @@
               text-align: center;
               border-color: transparent;
               text-decoration: none;
-              white-space: pre-wrap;
-              //center nav anchors vertically
               vertical-align: middle;
               display: flex;
               align-items: center;
@@ -236,13 +234,6 @@
                 background-color: $neutral-color-6;
                 @include media-breakpoint-up(lg) {
                   border-bottom: .8rem solid $primary-color-3;
-
-                  //.unit-theme-teal & {border-bottom-color: $unit-accent-color-teal;}
-                  //.unit-theme-purple & {border-bottom-color: $unit-accent-color-purple;}
-                  //.unit-theme-green & {border-bottom-color: $unit-accent-color-green}
-                  //.unit-theme-gold & {border-bottom-color: $unit-accent-color-gold;}
-                  //.unit-theme-grey & {border-bottom-color: $unit-accent-color-grey;}
-                  //.unit-theme-red & {border-bottom-color: $unit-accent-color-red;}
                 }
               }
             }
@@ -280,13 +271,6 @@
             }
           }
         }//end .main-menu-contents > ul
-        ul:not(.menu-level-0)  {   // prevents list item issues on ie edge---  could be removed after spring 2020 when edge is chromium
-          li {
-            overflow: hidden;
-            > a  {display: inline-flex;}
-          }
-        }
-
 
         @include media-breakpoint-down(md) {
           display: none;

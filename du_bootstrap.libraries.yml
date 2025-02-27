@@ -1,10 +1,11 @@
 global-styling:
-  version: 1.0
+  version: VERSION
   js:
     node_modules/foundation-sites/dist/js/foundation.min.js: {}
     node_modules/isotope-layout/dist/isotope.pkgd.min.js: {}
     node_modules/slick-carousel/slick/slick.min.js: {}
     node_modules/motion-ui/dist/motion-ui.min.js: {}
+    js/jquery.min.js: { weight: -50 }
     js/popper.min.js: { weight: -49 }
     js/bootstrap.min.js: { weight: -48 }
     js/base.js: {}
@@ -13,14 +14,8 @@ global-styling:
   css:
     component:
       css/style.css: {}
-      # node_modules/foundation-sites/dist/css/foundation-float.css: {}
-      # node_modules/foundation-sites/dist/css/foundation-rtl.css: {}
-      # node_modules/foundation-sites/dist/css/foundation.min.css: {}
-      # node_modules/foundation-sites/dist/css/foundation-prototype.css: {}
-      # css/style.css: {}
-      # js/foundation-sites/dist/css/foundation-float.css: {}
-      # node_modules/foundation-sites/dist/css/foundation.css: {}
   dependencies:
     - core/jquery
     - core/drupal
     - core/once
+    - core/popperjs

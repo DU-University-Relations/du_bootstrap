@@ -68,7 +68,7 @@
     {% embed ( subtheme_selection == 'unit'
         ? "themes/custom/du_bootstrap/templates/misc/header-unit.twig"
         : ( subtheme_selection == 'micro'
-            ? "themes/custom/du_bootstrap/templates/micro/micro-header.twig"
+            ? "themes/custom/du_bootstrap/templates/misc/micro-header.twig"
             : "themes/custom/du_bootstrap/templates/misc/header.twig"
           )
       ) %}
@@ -116,20 +116,11 @@
     {# Main Content Section #}
     <main class="content {{ page_class }}">
       {{ page.content_top }}
-      {# FIX THIS - COMMENTING OUT ALL page.content FOR NOW #}
-      {# {{ page.content }} #}
+      {{ page.content }}
     </main>
 
     {# Footer Section #}
-    {% if subtheme_selection == 'unit' %}
-          {{ page.footer }}
-    {% else %}
-      {% embed "themes/custom/du_bootstrap/templates/misc/footer.twig" %}
-        {% block footer_content %}
-          {{ page.footer }}
-        {% endblock %}
-      {% endembed %}
-    {% endif %}
+    {{ page.footer }}
 
   </div>
 {% endif %}

@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 {# First column - Logo #}
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 align-self-start">
                     {% if logo is defined and logo is not null %}
                         <div class="footer-site-level-logo">
                             {% include "themes/custom/du_bootstrap/templates/misc/logo.twig" with logo %}
@@ -12,7 +12,7 @@
                 </div>
 
                 {# Second column - Info and Address #}
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 align-self-start">
                     {% if info is defined and info is not null %}
                         {% include "themes/custom/du_bootstrap/templates/misc/footer-site-level-info.twig" with info %}
                     {% endif %}
@@ -23,7 +23,7 @@
                 </div>
 
                 {# Third column - Social and Links #}
-                <div class="col-lg-4">
+                <div class="col-lg-4 align-self-start">
                     {% if social is defined and social is not null %}
                         {% include "themes/custom/du_bootstrap/templates/misc/footer-site-level-social.twig" with social %}
                     {% endif %}

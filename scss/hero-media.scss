@@ -85,12 +85,12 @@ header {
     @include media-breakpoint-up(xl) {
       bottom: 14.0rem;
     }
-    .columns {
+    .col {
       padding-left: 0;
       padding-right: 0;
     }
     .hero-media__caption__text {
-      transition: background-color 1s ease;
+      transition: background-color 1s ease, width 0.3s ease;
       position: relative;
       float: right;
       right: 0;
@@ -123,48 +123,60 @@ header {
         position: absolute;
         bottom: .8rem;
         right: 1.1rem;
-        .icon-du-minus,
-        .du-icon-minus {
+
+        // Initial state
+        .icon-du-minus {
           display: none;
         }
-        [class*="icon-du"],
-        [class*="du-icon"] {
+        .icon-du-plus {
+          display: block;
+        }
+
+        [class*="icon-du"] {
           font-size: 2.4rem;
           color: white;
         }
       }
     }
-    &.caption-expanded {
-      @include media-breakpoint-down(md) {
-        width: auto;
-        left: 2.0rem;
-      }
+    &.show {
+      display: block;
+      height: auto;
+
       .hero-media__caption__text {
         background-color: rgba(24, 23, 30, 0.9);
         width: auto;
         left: 0;
         margin-left: -5.4rem;
+
         @include media-breakpoint-down(lg) {
           margin-left: 2.0rem;
         }
         @include media-breakpoint-down(md) {
           margin-left: 0;
         }
+
         p {
           opacity: 1;
           white-space: normal;
         }
-      }
-      .hero-media__caption__toggler {
-        .icon-du-plus,
-        .du-icon-plus {
-          display: none;
+
+        .hero-media__caption__toggler {
+          .icon-du-plus {
+            display: none !important; // Force override
+          }
+          .icon-du-minus {
+            display: block !important; // Force override
+          }
         }
-        .icon-du-minus,
-        .du-icon-minus {
-          display: block;
-        }
       }
+    }
+    &.collapse {
+      display: block;
+    }
+    &.collapsing {
+      display: block;
+      height: auto !important; // Override Bootstrap's height animation
+      transition: none;
     }
   }
 

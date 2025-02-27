@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: hero_image_450_x_430
+label: 'Hero Image 450 x 430'
+effects:
+  5a2f9ef6-2761-4a18-b100-004f6a9eceb6:
+    uuid: 5a2f9ef6-2761-4a18-b100-004f6a9eceb6
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 450
+      height: 430
+      anchor: center-center

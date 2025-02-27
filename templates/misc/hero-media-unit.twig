@@ -30,14 +30,21 @@
     {% endif %}
   </div>
   {% if not hide_hero_caption %}
-    <div class="hero-media__caption {{ hero_class }}" id="hero-media__caption"{% if not is_home %} data-toggler=".caption-expanded"{% endif %}>
+    <div class="hero-media__caption" id="hero-media__caption">
       <div class="row">
         {% if hero_caption %}
-          <div class="col-12 offset-lg-4 col-lg-8">
+          <div class="col-12 offset-lg-4 col-lg-8 row-mw-120 justify-content-end">
             <div class="hero-media__caption__text">
-              <a data-toggle="hero-media__caption">
+              <a data-bs-toggle="collapse"
+                 href="#hero-media__caption"
+                 aria-expanded="false"
+                 aria-controls="hero-media__caption">
                 <p>{{ hero_caption|raw }}</p>
-                <p class="hero-media__caption__toggler"><span class="visually-hidden">Toggle Caption</span><span class="icon-du-plus"></span><span class="icon-du-minus"></span></p>
+                <p class="hero-media__caption__toggler">
+                  <span class="visually-hidden">Toggle Caption</span>
+                  <span class="icon-du-plus"></span>
+                  <span class="icon-du-minus"></span>
+                </p>
               </a>
             </div>
           </div>
@@ -65,7 +72,7 @@
       {% if hero_image %}
         {{ hero_image }}
         {% else %}
-          <img src="/themes/custom/pl_drupal/images/hero-image.jpg" />
+          <img src="/themes/custom/du_bootstrap/images/hero-image.jpg" />
       {% endif %}
       {% if hero_embed %}
         <div class="hero-embed">{{ hero_embed|raw }}</div>
@@ -76,7 +83,7 @@
     {% if hero_background %}<div class="hero-background{% if hero_image %} hero-overlay{% endif %}"></div>{% endif %}
   </div>
   {% if not hide_hero_caption %}
-    <div class="hero-media__caption {{ hero_class }}" id="hero-media__caption"{% if not is_home %} data-toggler=".caption-expanded"{% endif %}>
+    <div class="hero-media__caption" id="hero-media__caption">
       <div class="row">
         <div class="col-12">
           {% if headline %}
@@ -111,7 +118,7 @@
         {% if hero_image %}
           {{ hero_image }}
         {% else %}
-          <img src="/themes/custom/pl_drupal/images/hero-image.jpg" />
+          <img src="/themes/custom/du_bootstrap/images/hero-image.jpg" />
         {% endif %}
       </div>
       <div class="col-12 col-md-12 col-lg-3">
