@@ -1,5 +1,5 @@
 <div class="footer-site-level-links">
-    <div class="large-10 medium-8 footer-links">
+    <div class="col-md-8 col-lg-10 footer-links">
         {% for item in footerlinks %}
             <a href="{{ item.href }}"
                 {% if item.alt_text %}title="{{ item.alt_text|e('html_attr') }}"{% endif %}

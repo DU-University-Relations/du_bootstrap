@@ -1003,6 +1003,15 @@ function du_bootstrap_theme_suggestions_block_alter(array &$suggestions, array $
     $bundle = $variables['elements']['content']['#block_content']->bundle();
     array_splice($suggestions, 1, 0, 'block__bundle__' . $bundle);
   }
+
+  // Add region-specific block templates
+  if (!empty($variables['elements']['#id'])) {
+    $block = Block::load($variables['elements']['#id']);
+    if ($block) {
+      $region = $block->getRegion();
+      $suggestions[] = 'block__system_menu_block__' . $region;
+    }
+  }
 }
 
 /**
@@ -1283,4 +1292,30 @@ function du_bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
     $config->set('subtheme_selection', $selected_value);
     $config->save();
   }
+}
+
+/**
+ * Implements hook_preprocess_region__utility_nav().
+ */
+function du_bootstrap_preprocess_region__utility_nav(&$variables) {
+  // Load the utility menu
+  $menu_tree = \Drupal::menuTree();
+  $menu_name = 'utility'; // or whatever your menu machine name is
+
+  // Load the menu tree
+  $parameters = $menu_tree->getCurrentRouteMenuTreeParameters($menu_name);
+  $tree = $menu_tree->load($menu_name, $parameters);
+  $manipulators = [
+    ['callable' => 'menu.default_tree_manipulators:checkAccess'],
+    ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
+  ];
+  $tree = $menu_tree->transform($tree, $manipulators);
+
+  // Add the menu items to the variables
+  $variables['items'] = $menu_tree->build($tree);
+
+  // Add other necessary variables
+  $variables['utility_resource_for_menu_display'] = false;
+  $variables['flyout_menu_title'] = 'Resources For';
+  $variables['du_elevate_display_active'] = false;
 }
