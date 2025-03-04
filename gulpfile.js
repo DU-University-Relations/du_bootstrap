@@ -36,8 +36,11 @@ const paths = {
   js: {
     bootstrap: './node_modules/bootstrap/dist/js/bootstrap.min.js',
     popper: './node_modules/@popperjs/core/dist/umd/popper.min.js',
-    base: '../../contrib/bootstrap/js/base.js',
-    dest: './js',
+    foundation: './node_modules/foundation-sites/dist/js/foundation.min.js',
+    isotope: './node_modules/isotope-layout/dist/isotope.pkgd.min.js',
+    slick: './node_modules/slick-carousel/slick/slick.min.js',
+    motionui: './node_modules/motion-ui/dist/motion-ui.min.js',
+    dest: './js/vendor',
   },
 };
 
@@ -82,14 +85,21 @@ function styles() {
 // Move the javascript files into our js folder
 function js() {
   return gulp
-    .src([paths.js.bootstrap, paths.js.popper, paths.js.base])
+    .src([
+      paths.js.bootstrap,
+      paths.js.popper,
+      paths.js.foundation,
+      paths.js.isotope,
+      paths.js.slick,
+      paths.js.motionui
+    ])
     .pipe(gulp.dest(paths.js.dest));
 }
 
 // Watch scss/js files
 function watch() {
   gulp.watch([paths.scss.watch, paths.scss.bootstrap], styles);
-  gulp.watch([paths.js.bootstrap, paths.js.popper, paths.js.base], js);
+  gulp.watch([paths.js.bootstrap, paths.js.popper, paths.js.foundation], js);
 }
 
 const build = gulp.series(styles, gulp.parallel(js, watch));
