@@ -1,13 +1,13 @@
 global-styling:
   version: VERSION
   js:
-    node_modules/foundation-sites/dist/js/foundation.min.js: {}
-    node_modules/isotope-layout/dist/isotope.pkgd.min.js: {}
-    node_modules/slick-carousel/slick/slick.min.js: {}
-    node_modules/motion-ui/dist/motion-ui.min.js: {}
+    js/vendor/foundation.min.js: {}
+    js/vendor/isotope.pkgd.min.js: {}
+    js/vendor/slick.min.js: {}
+    js/vendor/motion-ui.min.js: {}
     js/jquery.min.js: { weight: -50 }
-    js/popper.min.js: { weight: -49 }
-    js/bootstrap.min.js: { weight: -48 }
+    js/vendor/popper.min.js: { weight: -49 }
+    js/vendor/bootstrap.min.js: { weight: -48 }
     js/base.js: {}
     js/custom.js: {}
     js/app.js: {}
