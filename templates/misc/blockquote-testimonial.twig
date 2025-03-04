@@ -3,7 +3,7 @@
         <div class="row">
             <div class="{{ blockquote_class }}">
                 <blockquote>
-                    {% include "themes/custom/du_bootstrap/templates/misc/paragraph-raw.twig" %}
+                    {% include "@du_bootstrap/misc/paragraph-raw.twig" %}
                     {% if full_name %}
                         <cite>
                             {{ full_name }}{% if type %}, {{ type }}{% endif %}{% if cite_caption %}, {{ cite_caption }}{% endif %}

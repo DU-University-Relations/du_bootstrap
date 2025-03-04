@@ -1,4 +1,4 @@
-{% embed "themes/custom/du_bootstrap/templates/misc/article-news-stories.twig" %}
+{% embed "@du_bootstrap/misc/article-news-stories.twig" %}
 
     {% set articles = content.field_news_stories_ref|field_value %}
     {% if articles|length < 3 %}

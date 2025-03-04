@@ -3,11 +3,11 @@
         {{ page_info }}
     </div>
     {% if form is not empty %}
-        {# <button data-toggle="GenericFilter1">{% include "themes/custom/du_bootstrap/templates/misc/icon.twig" with {icon_class: "check"}%} Filter</button> #}
+        {# <button data-toggle="GenericFilter1">{% include "@du_bootstrap/misc/icon.twig" with {icon_class: "check"}%} Filter</button> #}
         <div class="filter-button-wrapper columns shrink" data-filter-id="{{ filter_id }}" aria-controls="{{ filter_id }}">
-            {% include "themes/custom/du_bootstrap/templates/misc/filter-button.twig" %}
+            {% include "@du_bootstrap/misc/filter-button.twig" %}
         </div>
-        {% embed "themes/custom/du_bootstrap/templates/misc/listing-filters.twig" %}
+        {% embed "@du_bootstrap/misc/listing-filters.twig" %}
             {% set filter_id = filter_id %}
             {% block filter_form %}
                 {{ form }}
@@ -28,13 +28,13 @@
         {% block results %}
             {% for result_item in results %}
                 <div class="results-item">
-                    {% include "themes/custom/du_bootstrap/templates/misc/generic-teaser.twig" with result_item %}
+                    {% include "@du_bootstrap/misc/generic-teaser.twig" with result_item %}
                 </div>
             {% endfor %}
         {% endblock %}
     </div>
     {% block pager %}
-        {% include "themes/custom/du_bootstrap/templates/misc/pager.twig" %}
+        {% include "@du_bootstrap/misc/pager.twig" %}
     {% endblock %}
 
 </div>

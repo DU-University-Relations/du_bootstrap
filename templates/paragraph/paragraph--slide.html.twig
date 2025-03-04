@@ -1,5 +1,5 @@
 {% set catch_cache = content.field_carousel_image|render %}
-{% embed "themes/custom/du_bootstrap/templates/misc/slide.twig" %}
+{% embed "@du_bootstrap/misc/slide.twig" %}
     {% set slide_image = content.field_carousel_image %}
     {% set caption = content.field_carousel_caption|field_value %}
 {% endembed %}

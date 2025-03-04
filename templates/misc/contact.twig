@@ -1,11 +1,11 @@
 <div class="columns">
     <div class="contacts-module__content" data-equalizer-watch="contacts-module__content">
-        {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with contact %}
+        {% include "@du_bootstrap/navigation/headline.twig" with contact %}
         <div class="contacts-module__hidden-on-small">
             {% if not contact.text %}
                 &nbsp;
             {% else %}
-                {% include "themes/custom/du_bootstrap/templates/paragraph/paragraph.twig" with contact %}
+                {% include "@du_bootstrap/paragraph/paragraph.twig" with contact %}
             {% endif %}
             <ul class="contact-list">
                 {% if contact.email %}

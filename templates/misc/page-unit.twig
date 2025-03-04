@@ -1,4 +1,4 @@
-{% include "themes/custom/du_bootstrap/templates/misc/push-menu.twig" %}
+{% include "@du_bootstrap/misc/push-menu.twig" %}
 <div class="off-canvas-content{% if is_utility_page %} utility-page{% endif %} {{ site_name|lower|replace({' &': '', ' and': '', ' the': '', ' ': '-', ',': '', '\'': '' }) }}" id="off-canvas-content" data-off-canvas-content>
     <div class="content-top">
         {# Universal admin tools like local task tabs, messages, etc can go here. #}
@@ -6,18 +6,18 @@
         {% endblock %}
     </div>
     {% block page_head %}
-        {% embed "themes/custom/du_bootstrap/templates/misc/header-unit.twig" with { "hero_media": hero_media, "hide_hero": hide_hero, "logo": logo, "image_logo": image_logo } %}
+        {% embed "@du_bootstrap/misc/header-unit.twig" with { "hero_media": hero_media, "hide_hero": hide_hero, "logo": logo, "image_logo": image_logo } %}
             {% block mega_nav %}
-                {% include "themes/custom/du_bootstrap/templates/misc/mega-nav.twig" with nav only %}
+                {% include "@du_bootstrap/misc/mega-nav.twig" with nav only %}
             {% endblock %}
         {% endembed %}
     {% endblock %}
     {% block content %}
-        {% embed "themes/custom/du_bootstrap/templates/misc/node.twig" %}
+        {% embed "@du_bootstrap/misc/node.twig" %}
         {% endembed %}
     {% endblock %}
     {% block footer %}
-        {% include "themes/custom/du_bootstrap/templates/misc/footer-site-level.twig" %}
+        {% include "@du_bootstrap/misc/footer-site-level.twig" %}
     {% endblock %}
     <span id="du-loader" aria-hidden="true">
         <span class="icon-du-spin3 animate-spin"></span>

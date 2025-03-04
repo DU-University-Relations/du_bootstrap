@@ -1,12 +1,12 @@
 <header class="header {% if inline_site %}core-inline-site{% endif %} {% if hero_video %} hero-video{% endif %}{% if hero_url %} hero-image{% endif %}" role="banner">
     {% block utility_nav %}
-        {% include "themes/custom/du_bootstrap/templates/misc/utility-nav.twig" %}
+        {% include "@du_bootstrap/misc/utility-nav.twig" %}
     {% endblock %}
     <div class="sticky-top">
         <div id="top-bar-sticky-wrap" class="sticky-top">
             {% if du_elevate_display_enabled %}
                 <div class="core-elevate-wrapper">
-                    {% include "themes/custom/du_bootstrap/templates/misc/_unit-elevate-cart.twig" %}
+                    {% include "@du_bootstrap/misc/_unit-elevate-cart.twig" %}
                 </div>
             {% endif %}
             <div class="top-bar">
@@ -24,12 +24,12 @@
                         <div class="col">
                             <div id="main-menu">
                                 {% block mega_nav %}
-                                    {% include "themes/custom/du_bootstrap/templates/misc/mega-nav.twig" %}
+                                    {% include "@du_bootstrap/misc/mega-nav.twig" %}
                                 {% endblock %}
 
                                 {% block utility_nav_sm %}
                                     {% set extra_class = 'd-block d-sm-none ' %}
-                                    {% include "themes/custom/du_bootstrap/templates/misc/utility-nav-sm.twig" %}
+                                    {% include "@du_bootstrap/misc/utility-nav-sm.twig" %}
                                 {% endblock %}
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                 {% if (node.bundle == 'elevate_course') or ('elevate/programs' in current_url) or ('/continuing-education' in current_url) %}
                                 <li class="core-elevate-button">
                                     <a href="#utility-elevate-cart-popup" class="core-utility-menu__cart-button" aria-controls="#elevate-cart-popup">
-                                        <span class="toggle-icon">{% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with {"icon_name": "basket"} %}</span>
+                                        <span class="toggle-icon">{% include "@du_bootstrap/misc/_du-icon.twig" with {"icon_name": "basket"} %}</span>
                                         <span class="toggle-label">Cart</span>
                                         <span class="items-in-cart">1</span>
                                     </a>
@@ -81,7 +81,7 @@
     </div>
 
     {% if not hide_hero %}
-        {% include "themes/custom/du_bootstrap/templates/misc/hero-media-unit.twig" %}
+        {% include "@du_bootstrap/misc/hero-media-unit.twig" %}
     {% endif %}
 
 

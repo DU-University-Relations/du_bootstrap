@@ -2,7 +2,7 @@
 	<div class="row">
         <div class="columns large-offset-2 large-8 pull-up page-title-band">
             {% block page_title %}
-                {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : title, 'type' : 'h1'} %}
+                {% include "@du_bootstrap/navigation/headline.twig" with {'title' : title, 'type' : 'h1'} %}
             {% endblock %}
         </div>
 	</div>
@@ -17,10 +17,10 @@
                   {{ host_by|raw }}
                 </h2>
               {% endif %}
-              {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with activity_type_headline %}
+              {% include "@du_bootstrap/navigation/headline.twig" with activity_type_headline %}
             </div>
             <div class="more-description">
-              {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with flyout_headline %}
+              {% include "@du_bootstrap/navigation/headline.twig" with flyout_headline %}
               {{ description }}
               {% if start_date %}
                 <div class="activity-date">

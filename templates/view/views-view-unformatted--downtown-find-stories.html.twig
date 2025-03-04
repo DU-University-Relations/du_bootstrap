@@ -17,7 +17,7 @@
  * @ingroup themeable
  */
 #}
-{% embed "themes/custom/du_bootstrap/templates/misc/newsroom-find-stories.twig" %}
+{% embed "@du_bootstrap/misc/newsroom-find-stories.twig" %}
   {% block newsroom_find_stories %}
     {% for item in rows %}
         <div class="columns small-12 medium-6 large-3{% if loop.index > 4 %} show-for-large{% endif %}">

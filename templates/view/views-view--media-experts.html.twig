@@ -38,7 +38,7 @@
     ]
 %}
 <div{{ attributes.addClass(classes) }}>
-    {% embed "themes/custom/du_bootstrap/templates/misc/listing.twig" %}
+    {% embed "@du_bootstrap/misc/listing.twig" %}
         {% set prefix = custom.expert_types %}
         {% set page_info = header %}
         {% set filter_id = "expert-list" ~ random(999999999) %}

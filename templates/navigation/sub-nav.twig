@@ -22,18 +22,18 @@
                 {% endblock %}
             {% endif %}
             {% if has_sub_menu_search %}
-                {% include "themes/custom/du_bootstrap/templates/misc/search-box.twig" %}
+                {% include "@du_bootstrap/misc/search-box.twig" %}
             {% endif %}
             {% block sub_nav_menu %}
                 <ul>
                     {% for item in items %}
                         <li{% if item.is_active %} class="active"{% endif %}>
-                            {% include "themes/custom/du_bootstrap/templates/misc/link.twig" with item %}
+                            {% include "@du_bootstrap/misc/link.twig" with item %}
                             {% if item.third_level %}
                                 <ul>
                                     {% for child in item.third_level.items %}
                                         <li{% if is_active %} class="active"{% endif %}>
-                                            {% include "themes/custom/du_bootstrap/templates/misc/link.twig" with child %}
+                                            {% include "@du_bootstrap/misc/link.twig" with child %}
                                         </li>
                                     {% endfor %}
                                 </ul>

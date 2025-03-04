@@ -1,7 +1,7 @@
 {% if (col_header.title and layout == "three_col") %}
     <div class="row row-mw-120">
         <div class="col">
-            {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with col_header %}
+            {% include "@du_bootstrap/navigation/headline.twig" with col_header %}
         </div>
     </div>
 {% endif %}
@@ -11,13 +11,13 @@
         {% if layout == "two_col" %}
             <div class="col-12 col-lg-4">
                 <div class="cards-module__content h-100">
-                    {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with col_header %}
+                    {% include "@du_bootstrap/navigation/headline.twig" with col_header %}
                 </div>
             </div>
         {% endif %}
         {% block cards %}
             {% for card in cards %}
-                {% include "themes/custom/du_bootstrap/templates/misc/card.twig" with card %}
+                {% include "@du_bootstrap/misc/card.twig" with card %}
             {% endfor %}
         {% endblock %}
     </div>

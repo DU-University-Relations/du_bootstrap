@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="du-news-title">
-            {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : label, 'type' : 'h6'} %}
+            {% include "@du_bootstrap/navigation/headline.twig" with {'title' : label, 'type' : 'h6'} %}
         </div>
         {% if author %}
             <div class="du-news-author">{{ author }}</div>

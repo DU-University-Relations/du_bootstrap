@@ -15,7 +15,7 @@
         <div class="small-12 small-order-2 medium-order-2 medium-12 large-4 large-order-1 columns">
             {% for button in buttons %}
                 <div class="cta">
-                    {% embed "themes/custom/du_bootstrap/templates/misc/button.twig" %}
+                    {% embed "@du_bootstrap/misc/button.twig" %}
                         {% set title = button['#title'] %}
                         {% set url = button['#url'] %}
                         {% set target = button['#options']['attributes']['target'] %}

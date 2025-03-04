@@ -2,7 +2,7 @@
     <div class="row component-header">
         <div class="columns small-12">
             {% if headline %}
-            {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with col_header %}
+            {% include "@du_bootstrap/navigation/headline.twig" with col_header %}
             <div class="divider">&nbsp;</div>
             {% endif %}
         </div>
@@ -10,7 +10,7 @@
     {% if profile_list_url %}
         {% if headline %}
         <div class="view-all-profiles">
-             {% include "themes/custom/du_bootstrap/templates/misc/link.twig" with profile_list_url %}
+             {% include "@du_bootstrap/misc/link.twig" with profile_list_url %}
         </div>
         {% endif %}
     {% endif %}

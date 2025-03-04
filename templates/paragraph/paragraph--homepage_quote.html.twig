@@ -1,7 +1,7 @@
 {#
     See hook_preprocess_paragraph__homepage_quote
 #}
-{% embed "themes/custom/du_bootstrap/templates/misc/quote.twig" %}
+{% embed "@du_bootstrap/misc/quote.twig" %}
     {% set text = content.field_hpq_title|field_value %}
     {% set image = content.field_hpq_image|field_value %}
     {% set cite_name = content.field_hpq_name|field_value %}

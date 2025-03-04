@@ -1,4 +1,4 @@
-{% embed "themes/custom/du_bootstrap/templates/misc/3-col-quick-stats.twig" %}
+{% embed "@du_bootstrap/misc/3-col-quick-stats.twig" %}
     {% set specific_id = "threeColFacts" ~ random(999999999) %} {# TODO: find a more sane way to ensure each 3-col-facts gets a unique ID #}
     {% set cols = content.columns %}
 {% endembed %}

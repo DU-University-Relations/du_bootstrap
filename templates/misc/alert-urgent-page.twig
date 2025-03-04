@@ -1,8 +1,8 @@
 {% block alert %}
-    {% include "themes/custom/du_bootstrap/templates/misc/alert.twig" %}
+    {% include "@du_bootstrap/misc/alert.twig" %}
 {% endblock %}
 {% block audience_nav %}
-    {% include "themes/custom/du_bootstrap/templates/misc/push-menu.twig" %}
+    {% include "@du_bootstrap/misc/push-menu.twig" %}
 {% endblock %}
 <div class="{{ page_class }}" id="off-canvas-content" data-off-canvas-content>
     <div class="content-top">
@@ -11,18 +11,18 @@
         {% endblock %}
     </div>
     {% block page_head %}
-        {% embed "themes/custom/du_bootstrap/templates/misc/header.twig" %}
+        {% embed "@du_bootstrap/misc/header.twig" %}
             {% block mega_nav %}
-                {% include "themes/custom/du_bootstrap/templates/misc/mega-nav.twig" %}
+                {% include "@du_bootstrap/misc/mega-nav.twig" %}
             {% endblock %}
         {% endembed %}
     {% endblock %}
     {% block content %}
-        {% include "themes/custom/du_bootstrap/templates/misc/node.twig" %}
-        {% include "themes/custom/du_bootstrap/templates/misc/cards.twig" %}
+        {% include "@du_bootstrap/misc/node.twig" %}
+        {% include "@du_bootstrap/misc/cards.twig" %}
     {% endblock %}
     {% block footer %}
-        {% include "themes/custom/du_bootstrap/templates/misc/footer.twig" %}
+        {% include "@du_bootstrap/misc/footer.twig" %}
     {% endblock %}
     <span id="du-loader" aria-hidden="true">
         <span class="icon-du-spin3 animate-spin"></span>

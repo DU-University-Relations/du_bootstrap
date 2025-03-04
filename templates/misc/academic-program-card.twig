@@ -43,12 +43,12 @@
             <div class="flyout-content__holder row">
                 <div class="columns small-12 medium-8">
                     <div class="more-description">
-                        {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with card_flyout_headline %}
+                        {% include "@du_bootstrap/navigation/headline.twig" with card_flyout_headline %}
                         {{ description1 }}
                         {{ description2 }}
 
                         {% if concentrations %}
-                            {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title': 'Available Concentrations', 'type': 'h4', 'cssClass':''} %}
+                            {% include "@du_bootstrap/navigation/headline.twig" with {'title': 'Available Concentrations', 'type': 'h4', 'cssClass':''} %}
                             {{ concentrations }}
                         {% endif %}
                     </div>

@@ -3,13 +3,13 @@
         <li class="{% if loop.index == 1%}active{% endif %} mega-menu">
             <a href="http://www.example.com">{{ item.title }}</a>
             {% if item.flyout == "small" %}
-                {% include "themes/custom/du_bootstrap/templates/misc/mega-flyout-small.twig" %}
+                {% include "@du_bootstrap/misc/mega-flyout-small.twig" %}
             {% endif %}
             {% if item.flyout == "large" %}
-                {% include "themes/custom/du_bootstrap/templates/misc/mega-flyout-large.twig" %}
+                {% include "@du_bootstrap/misc/mega-flyout-large.twig" %}
             {% endif %}
             {% if item.flyout == "dropdown" %}
-                {% include "themes/custom/du_bootstrap/templates/misc/mega-flyout-dropdown.twig" %}
+                {% include "@du_bootstrap/misc/mega-flyout-dropdown.twig" %}
             {% endif %}
         </li>
     {% endfor %}

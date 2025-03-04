@@ -4,7 +4,7 @@
              <div class="small-12 medium-7 large-8 columns">
                 <div class="event-filter-dropdown-holder">
                     <div class="small-12 medium-10 large-10 columns event-keyword-holder">
-                        {% include "themes/custom/du_bootstrap/templates/misc/search-box.twig" with {
+                        {% include "@du_bootstrap/misc/search-box.twig" with {
                             "search_box": {
                                 "placeholder": "Search Keywords",
                                 "altClass": "search-box--events",
@@ -48,12 +48,12 @@
                 <div class="row" id="month-nav">
                     <div class="columns order-1 medium-order-2 expand row month-range">
                         {% if calendar_month %}
-                            {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with calendar_month %}
+                            {% include "@du_bootstrap/navigation/headline.twig" with calendar_month %}
                         {% endif %}
                     </div>
                     <div class="columns order-2 medium-order-1 shrink .active-filter" id="byMonth">
-                        {% if url_prev|raw != '#' %}<a href="{{ url_prev|raw }}#events-listing-date-filter-anchor">{% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with {icon_name:"left-arrow"} %}<span class="visually-hidden">Previous Month</span></a>{% endif %}
-                      {% if url_next|raw != '#' %}<a href="{{ url_next|raw }}#events-listing-date-filter-anchor">{% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with {icon_name:"right-arrow"} %}<span class="visually-hidden">Next Month</span></a>{% endif %}
+                        {% if url_prev|raw != '#' %}<a href="{{ url_prev|raw }}#events-listing-date-filter-anchor">{% include "@du_bootstrap/misc/_du-icon.twig" with {icon_name:"left-arrow"} %}<span class="visually-hidden">Previous Month</span></a>{% endif %}
+                      {% if url_next|raw != '#' %}<a href="{{ url_next|raw }}#events-listing-date-filter-anchor">{% include "@du_bootstrap/misc/_du-icon.twig" with {icon_name:"right-arrow"} %}<span class="visually-hidden">Next Month</span></a>{% endif %}
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
         {% block calendar %}
             <div id="events-listing" class="events-listing__items row">
                 {% if events %}
-                    {% include "themes/custom/du_bootstrap/templates/misc/events-listing.twig" with {"icon_name" : "clock"} %}
+                    {% include "@du_bootstrap/misc/events-listing.twig" with {"icon_name" : "clock"} %}
                 {% endif %}
             </div>
         {% endblock %}

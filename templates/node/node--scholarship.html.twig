@@ -71,7 +71,7 @@
  */
 #}
 
-{% embed "themes/custom/du_bootstrap/templates/misc/scholarship-content.twig" %}
+{% embed "@du_bootstrap/misc/scholarship-content.twig" %}
     {% set title = label %}
     {% set gpa = content.field_scholarship_minimum_gpa|field_value %}
     {% set description = content.field_scholarship_description|field_value %}

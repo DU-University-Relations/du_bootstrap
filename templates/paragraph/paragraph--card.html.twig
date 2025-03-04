@@ -1,5 +1,5 @@
 {% set catch_cache = content.field_link|render %}
-{% embed "themes/custom/du_bootstrap/templates/misc/card.twig" %}
+{% embed "@du_bootstrap/misc/card.twig" %}
     {% set card_plus_minus_css = '' %}
     {% if content.field_paragraph_ref|field_value is not empty %}
         {% set card_plus_minus_css = 'has-plus-minus' %}

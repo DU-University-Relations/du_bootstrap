@@ -6,7 +6,7 @@
                 <div class="col-md-6 col-lg-4 align-self-start">
                     {% if logo is defined and logo is not null %}
                         <div class="footer-site-level-logo">
-                            {% include "themes/custom/du_bootstrap/templates/misc/logo.twig" with logo %}
+                            {% include "@du_bootstrap/misc/logo.twig" with logo %}
                         </div>
                     {% endif %}
                 </div>
@@ -14,26 +14,26 @@
                 {# Second column - Info and Address #}
                 <div class="col-md-6 col-lg-4 align-self-start">
                     {% if info is defined and info is not null %}
-                        {% include "themes/custom/du_bootstrap/templates/misc/footer-site-level-info.twig" with info %}
+                        {% include "@du_bootstrap/misc/footer-site-level-info.twig" with info %}
                     {% endif %}
 
                     {% if address is defined and address is not null %}
-                        {% include "themes/custom/du_bootstrap/templates/misc/footer-site-level-address.twig" with address %}
+                        {% include "@du_bootstrap/misc/footer-site-level-address.twig" with address %}
                     {% endif %}
                 </div>
 
                 {# Third column - Social and Links #}
                 <div class="col-lg-4 align-self-start">
                     {% if social is defined and social is not null %}
-                        {% include "themes/custom/du_bootstrap/templates/misc/footer-site-level-social.twig" with social %}
+                        {% include "@du_bootstrap/misc/footer-site-level-social.twig" with social %}
                     {% endif %}
 
                     {% if footerlinks is defined and footerlinks is not null %}
-                        {% include "themes/custom/du_bootstrap/templates/misc/footer-site-level-links.twig" with footerlinks %}
+                        {% include "@du_bootstrap/misc/footer-site-level-links.twig" with footerlinks %}
                     {% endif %}
                 </div>
             </div>
         </div>
     </div>
-    {% include "themes/custom/du_bootstrap/templates/misc/_unit-copyright.twig" %}
+    {% include "@du_bootstrap/misc/_unit-copyright.twig" %}
 </footer>

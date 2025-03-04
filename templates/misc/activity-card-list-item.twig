@@ -24,7 +24,7 @@
             <div class="flyout-content__holder row">
                 <div class="columns small-12 medium-8">
                     <div class="more-description">
-                        {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title': flyout_title, 'type': 'h3', 'cssClass':''} %}
+                        {% include "@du_bootstrap/navigation/headline.twig" with {'title': flyout_title, 'type': 'h3', 'cssClass':''} %}
                         {{ description }}
                         {% if start_date %}
                           <div class="activity-date">

@@ -1,7 +1,7 @@
 <div class="wide-carousel__wrapper row{% if alt_layout %} wide-carousel__wrapper--alt{% endif %}">
 	<div class="columns small-12{% if not alt_layout %} medium-offset-7{% endif %} medium-5">
 		{% if headline %}
-			{% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {
+			{% include "@du_bootstrap/navigation/headline.twig" with {
 				type:"h3",
 				cssClass:"top-divider" ~ ((alt_layout) ? " text-right"),
 				title:headline

@@ -1,4 +1,4 @@
-{% embed "themes/custom/du_bootstrap/templates/misc/expanding-list.twig" %}
+{% embed "@du_bootstrap/misc/expanding-list.twig" %}
     {% set expanding_list = [] %}
     {% if content.field_exp_list_item|field_target_entity[1] %}
         {% for field in content.field_exp_list_item|field_target_entity %}

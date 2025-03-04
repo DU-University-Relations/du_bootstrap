@@ -1,7 +1,7 @@
 {% if header %}
     <div class="row">
         <div class="columns small-12">
-            {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with header %}
+            {% include "@du_bootstrap/navigation/headline.twig" with header %}
         </div>
     </div>
 {% endif %}
@@ -11,7 +11,7 @@
             <ul class="featured-article-slider">
                 {% block articles %}
                     {% for article in articles %}
-                    {% include "themes/custom/du_bootstrap/templates/misc/featured-article.twig" with article %}
+                    {% include "@du_bootstrap/misc/featured-article.twig" with article %}
                     {% endfor %}
                 {% endblock %}
             </ul>

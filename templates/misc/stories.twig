@@ -2,7 +2,7 @@
   {% if col_header.title|length %}
     <div class="row">
         <div class="columns small-12">
-            {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with col_header %}
+            {% include "@du_bootstrap/navigation/headline.twig" with col_header %}
         </div>
     </div>
   {% endif %}
@@ -12,14 +12,14 @@
         {% if layout == 'two_col' %}
             <div class="columns small-12 medium-4">
               {% if col_header.title|length %}
-                {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with col_header %}
+                {% include "@du_bootstrap/navigation/headline.twig" with col_header %}
               {% endif %}
             </div>
         {% endif %}
 
         {% block stories %}
             {% for story in stories %}
-                {% include "themes/custom/du_bootstrap/templates/misc/story.twig" with story %}
+                {% include "@du_bootstrap/misc/story.twig" with story %}
             {% endfor %}
         {% endblock %}
     </div>

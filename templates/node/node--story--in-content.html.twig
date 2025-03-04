@@ -1,4 +1,4 @@
-{% embed "themes/custom/du_bootstrap/templates/misc/story.twig" %}
+{% embed "@du_bootstrap/misc/story.twig" %}
     {# need to "render" to reload cache on change #}
     {% set catch_cache = content.field_story_image|render %}
     {% set catch_cache = content.field_link|render %}

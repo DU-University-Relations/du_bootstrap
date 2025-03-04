@@ -66,10 +66,10 @@
 
     {# Header Section #}
     {% embed ( subtheme_selection == 'unit'
-        ? "themes/custom/du_bootstrap/templates/misc/header-unit.twig"
+        ? "@du_bootstrap/misc/header-unit.twig"
         : ( subtheme_selection == 'micro'
-            ? "themes/custom/du_bootstrap/templates/misc/micro-header.twig"
-            : "themes/custom/du_bootstrap/templates/misc/header.twig"
+            ? "@du_bootstrap/misc/micro-header.twig"
+            : "@du_bootstrap/misc/header.twig"
           )
       ) %}
 
@@ -77,8 +77,8 @@
       {% block utility_nav %}
         {% if subtheme_selection != 'micro' %}
           {% embed ( subtheme_selection == 'unit'
-              ? "themes/custom/du_bootstrap/templates/misc/unit-utility-nav.twig"
-              : "themes/custom/du_bootstrap/templates/misc/utility-nav.twig"
+              ? "@du_bootstrap/misc/unit-utility-nav.twig"
+              : "@du_bootstrap/misc/utility-nav.twig"
             ) %}
             {% block utility_menu %}
               {{ page.utility_nav }}
@@ -90,8 +90,8 @@
       {% block utility_nav_sm %}
         {% if subtheme_selection != 'micro' %}
           {% embed ( subtheme_selection == 'unit'
-              ? "themes/custom/du_bootstrap/templates/misc/unit-utility-nav.twig"
-              : "themes/custom/du_bootstrap/templates/misc/utility-nav-sm.twig"
+              ? "@du_bootstrap/misc/unit-utility-nav.twig"
+              : "@du_bootstrap/misc/utility-nav-sm.twig"
            ) %}
             {% block utility_menu %}
               {{ page.utility_nav }}

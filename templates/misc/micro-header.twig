@@ -24,7 +24,7 @@
                                 <div id="main-menu" aria-expanded="false">
                                     <div class="main-menu-contents pe-0 h-100 d-flex justify-content-end align-items-center">
                                         {% block mega_nav %}
-                                            {% include "themes/custom/du_bootstrap/templates/misc/mega-nav.twig" %}
+                                            {% include "@du_bootstrap/misc/mega-nav.twig" %}
                                         {% endblock %}
                                     </div>
                                 </div>
@@ -45,6 +45,6 @@
 </nav>
 <header class="header micro-header {% if hide_hero %}no-hero{% endif %}{% if hero_class == "content-card" %} content-card{% endif %}" role="banner">
     {% if not hide_hero %}
-        {% include "themes/custom/du_bootstrap/templates/misc/hero-media-unit.twig" %}
+        {% include "@du_bootstrap/misc/hero-media-unit.twig" %}
     {% endif %}
 </header>

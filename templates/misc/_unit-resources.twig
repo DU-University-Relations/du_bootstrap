@@ -1,11 +1,11 @@
 <div class="unit-resources-for" id="utility-resources-for" aria-expanded="false">
     <div class="unit-resources-for-wrapper">
-    {% include "themes/custom/du_bootstrap/templates/misc/_unit-nav-back.twig" with {controls: "#sites-list"} %}
+    {% include "@du_bootstrap/misc/_unit-nav-back.twig" with {controls: "#sites-list"} %}
         <ul>
             {% for link in resource_links %}
                 <li>{{ link|raw }}</li>
             {% endfor %}
         </ul>
     </div>
-    {% include "themes/custom/du_bootstrap/templates/misc/_unit-nav-close.twig" with {controls: "#sites-list"} %}
+    {% include "@du_bootstrap/misc/_unit-nav-close.twig" with {controls: "#sites-list"} %}
 </div>

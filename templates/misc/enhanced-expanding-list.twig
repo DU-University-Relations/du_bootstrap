@@ -1,7 +1,7 @@
 {% if col_header %}
     <div class="row">
         <div class="columns">
-            {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with col_header %}
+            {% include "@du_bootstrap/navigation/headline.twig" with col_header %}
         </div>
     </div>
 {% endif %}
@@ -37,7 +37,7 @@
                                     <div class="small-12 small-order-2 medium-order-2 medium-12 large-4 large-order-1 columns">
                                         {% if item.button.title %}
                                             <div class="cta">
-                                                {% include "themes/custom/du_bootstrap/templates/misc/button.twig" with item.button %}
+                                                {% include "@du_bootstrap/misc/button.twig" with item.button %}
                                             </div>
                                         {% endif %}
                                     </div>
