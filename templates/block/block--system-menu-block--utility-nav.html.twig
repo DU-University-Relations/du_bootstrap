@@ -1,0 +1,79 @@
+{# Import menu macros if needed #}
+{% import _self as menus %}
+
+{# Set utility menu options #}
+{% set utility_menu_options = {
+    "hide_resource_for_menu": utility_resource_for_menu_display,
+    "flyout_title": flyout_menu_title,
+    "du_elevate_display_active": du_elevate_display_active ?? false
+} %}
+
+<nav aria-labelledby="{{ heading_id }}" id="{{ attributes.id }}" class="d-flex align-items-center">
+  {{ title_prefix }}
+  {% if label %}
+    <p{{ title_attributes.addClass('visually-hidden') }} id="{{ heading_id }}">{{ label }}</p>
+  {% endif %}
+  {{ title_suffix }}
+
+  {# Main menu items #}
+  {% block content %}
+    {% if content %}
+      <ul class="menu nav utility-links">
+        <div class="menu-toggle-utility d-flex align-items-center">
+          <span class="menu-toggle-utility__title">Explore</span>
+          {% for item in content['#items'] %}
+            <li class="nav-item">
+              {{ link(item.title, item.url, {'class': ['nav-link']}) }}
+              {% if item.below %}
+                <ul class="nav">
+                  {% for subitem in item.below %}
+                    <li class="nav-item">
+                      {{ link(subitem.title, subitem.url, {'class': ['nav-link']}) }}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </div>
+      </ul>
+
+      {# Meta navigation section #}
+      <div id="unit-meta-navigation-wrapper" class="unit-meta-navigation-wrapper">
+        <ul class="menu meta-navigation nav">
+          {% if not utility_menu_options.hide_resource_for_menu %}
+            <li class="nav-item">
+              <a href="#utility-resources-for" class="unit-utility-menu__audience-button nav-link d-flex align-items-center">
+                <span class="toggle-icon z-1">{% include "@du_bootstrap/misc/_du-icon.twig" with {"icon_name": "user", "bold":true} %}</span>
+                <span class="toggle-label z-1">{{ utility_menu_options.flyout_title ? utility_menu_options.flyout_title : "Resources For" }}</span>
+                <span class="icon-du-down-dir z-1"></span>
+              </a>
+            </li>
+          {% endif %}
+          <li class="nav-item">
+            <a href="#utility-sites-list" class="unit-utility-menu__sites-button nav-link d-flex align-items-center">
+              <span class="toggle-icon">{% include "@du_bootstrap/misc/_du-icon.twig" with {"icon_name": "main-logo"} %}</span>
+              <span class="toggle-label z-1">DU Websites</span>
+              <span class="icon-du-down-dir ms-1"></span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#utility-main-search" class="unit-utility-menu__search-button nav-link d-flex align-items-center">
+              <span class="toggle-icon">{% include "@du_bootstrap/misc/_du-icon.twig" with {"icon_name": "cust-search"} %}</span>
+              <span class="toggle-label">Search</span>
+            </a>
+          </li>
+          {% if utility_menu_options.du_elevate_display_active %}
+            <li class="nav-item">
+              <a href="#utility-elevate-cart-popup" class="unit-utility-menu__cart-button nav-link d-flex align-items-center">
+                <span class="toggle-icon">{% include "@du_bootstrap/misc/_du-icon.twig" with {"icon_name": "basket"} %}</span>
+                <span class="toggle-label">Cart</span>
+                <span class="items-in-cart badge bg-primary ms-1">6</span>
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endblock %}
+</nav>
