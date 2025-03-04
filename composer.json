@@ -6,6 +6,7 @@
   "license": "GPL-2.0-or-later",
   "homepage": "https://github.com/University-of-Denver/du_bootstrap",
   "require": {
-    "twbs/bootstrap": "^5.0.0"
+    "twbs/bootstrap": "^5.0.0",
+    "drupal/bootstrap":"^5.0"
   }
 }
