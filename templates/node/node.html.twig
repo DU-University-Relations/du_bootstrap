@@ -71,12 +71,12 @@
  */
 #}
 
-{% embed "themes/custom/du_bootstrap/templates/node/node.twig" %}
+{% embed "@du_bootstrap/node/node.twig" %}
   {% block page_title %}
       {% if node.field_alternative_h1.0 is not empty %}
         <h1>{{ content.field_alternative_h1 }}</h1>
       {% else %}
-      {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : label, 'type' : 'h1'} %}
+      {% include "@du_bootstrap/navigation/headline.twig" with {'title' : label, 'type' : 'h1'} %}
       {% endif %}
   {% endblock %}
 
@@ -85,7 +85,7 @@
   {% endblock %}
 
   {% block sub_nav_block %}
-    {% embed "themes/custom/du_bootstrap/templates/navigation/sub-nav.twig" %}
+    {% embed "@du_bootstrap/navigation/sub-nav.twig" %}
       {% block back_to_parent %}
         {{ subnav.parentlevelnav }}
       {% endblock %}
