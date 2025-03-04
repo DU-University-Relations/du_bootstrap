@@ -1,12 +1,12 @@
 <div class="hero-media">
     {%  block hero_video %}
         {% if hero_video %}
-            {% include "themes/custom/du_bootstrap/templates/misc/video.twig" with hero_video %}
+            {% include "@du_bootstrap/misc/video.twig" with hero_video %}
         {% endif %}
     {%  endblock %}
     {%  block hero_image %}
 		{% if hero_image %}
-			{% include "themes/custom/du_bootstrap/templates/misc/image.twig" with hero_image %}
+			{% include "@du_bootstrap/misc/image.twig" with hero_image %}
 		{% endif %}
 	{%  endblock %}
     {% if hero_background %}<div class="hero-background{% if hero_image %} hero-overlay{% endif %}"></div>{% endif %}
@@ -27,7 +27,7 @@
 		{% if is_home %}
 			<div class="col-12">
 				{% if headline %}
-					{% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with headline %}
+					{% include "@du_bootstrap/navigation/headline.twig" with headline %}
 				{% endif %}
 			</div>
 		{% endif %}
@@ -35,8 +35,8 @@
 </div>
 {% endif %}
 {% if hero_title %}
-    {% include "themes/custom/du_bootstrap/templates/misc/hero-media-title.twig" %}
+    {% include "@du_bootstrap/misc/hero-media-title.twig" %}
 {% endif %}
 {% if hero_items %}
-	{% include "themes/custom/du_bootstrap/templates/misc/hero-media-items.twig" with hero_items %}
+	{% include "@du_bootstrap/misc/hero-media-items.twig" with hero_items %}
 {% endif %}

@@ -2,7 +2,7 @@
 
 
 
-{% embed "themes/custom/du_bootstrap/templates/misc/social-media-bar.twig" %}
+{% embed "@du_bootstrap/misc/social-media-bar.twig" %}
     {% set data = {
         "header" : content.field_heading|field_value,
         "view_all" : content.field_social_page_link|field_raw('title'),

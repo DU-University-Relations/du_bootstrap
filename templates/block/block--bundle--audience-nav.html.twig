@@ -8,13 +8,13 @@
     {% set sm_buttons = {0:sm_buttons } %}
 {% endif %}
 
-{% embed "themes/custom/du_bootstrap/templates/misc/push-menu.twig" %}
+{% embed "@du_bootstrap/misc/push-menu.twig" %}
 
     {% for button in big_buttons %}
         {% block big_buttons %}
             {% for button in big_buttons %}
                 <div class="columns small-12 medium-6">
-                    {% include "themes/custom/du_bootstrap/templates/misc/button-with-image.twig" with {
+                    {% include "@du_bootstrap/misc/button-with-image.twig" with {
                         'url':url_from_uri(button.field_link.uri),
                         'title': button.field_link.title,
                         'alt_text':button.field_link.options['attributes']['title'],
@@ -31,7 +31,7 @@
     {% block small_buttons %}
         {% for button in sm_buttons %}
             <div class="columns small-12 medium-6">
-                {% include "themes/custom/du_bootstrap/templates/misc/button.twig" with {
+                {% include "@du_bootstrap/misc/button.twig" with {
                     'url':url_from_uri(button.field_link.uri),
                     'type':'dark-red',
                     'styleModifier':'display-block',

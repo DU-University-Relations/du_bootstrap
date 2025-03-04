@@ -71,10 +71,10 @@
  */
 #}
 
-{% embed "themes/custom/du_bootstrap/templates/misc/article.twig" %}
+{% embed "@du_bootstrap/misc/article.twig" %}
     {% set createdDate = node.getCreatedTime|date('Y-m-d\TH:i:sO') %}
     {% block page_title %}
-        {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : label, 'type' : 'h1'} %}
+        {% include "@du_bootstrap/navigation/headline.twig" with {'title' : label, 'type' : 'h1'} %}
     {% endblock %}
     {% set author_list = content.field_article_byline_author|field_value %}
     {% set author_title = "Author(s)" %}
@@ -85,7 +85,7 @@
     {% endblock %}
     {% set subhead = {"title": content.field_article_subhead|field_value} %}
     {% block page_subtitle %}
-        {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with subhead %}
+        {% include "@du_bootstrap/navigation/headline.twig" with subhead %}
     {% endblock %}
     {% set article_type = content.field_article_type|field_value %}
     {% set publish_date = content.field_article_publish_date|field_value %}

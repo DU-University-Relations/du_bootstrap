@@ -1,5 +1,5 @@
 {% if view_mode == "full" %}
-    {% embed "themes/custom/du_bootstrap/templates/misc/profile-full.twig" %}
+    {% embed "@du_bootstrap/misc/profile-full.twig" %}
         {% set title = node.getTitle %}
         {% set full_name = content.field_profile_first_name.0['#context'].value ~ ' ' ~ content.field_profile_last_name.0['#context'].value %}
         {% set preferred_name = content.field_preferred_name|field_value %}
@@ -79,7 +79,7 @@
 
 {% if view_mode == "related" %}
 
-    {% embed "themes/custom/du_bootstrap/templates/misc/key-faculty-profile.twig" %}
+    {% embed "@du_bootstrap/misc/key-faculty-profile.twig" %}
         {% set display =  {
             "type": "h4",
             "full_name": node.label,
@@ -98,7 +98,7 @@
 {% endif %}
 
 {% if view_mode == "teaser" %}
-    {% embed "themes/custom/du_bootstrap/templates/misc/profile-teaser.twig" %}
+    {% embed "@du_bootstrap/misc/profile-teaser.twig" %}
         {% set display = {
             "type": "h4",
             "full_name": node.label,

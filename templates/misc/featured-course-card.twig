@@ -18,7 +18,7 @@
 			<div class="flyout-content__holder row">
 				<div class="columns small-12 {{ additional_info_col_css }}">
 					<div class="more-description">
-						{% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title': 'About this Course', 'type': 'h3', 'cssClass':''} %}
+						{% include "@du_bootstrap/navigation/headline.twig" with {'title': 'About this Course', 'type': 'h3', 'cssClass':''} %}
 						{{ course_desc }}
 					</div>
 				</div>
@@ -29,9 +29,9 @@
 					<div class="row">
 						<div class="columns {% if course_info_2.title is not empty %}show-right-border{% endif %}">
 							<div class="course-info__rightside--has-icons">
-								{% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : course_info_1.title,  'type' : 'h4'} %}
+								{% include "@du_bootstrap/navigation/headline.twig" with {'title' : course_info_1.title,  'type' : 'h4'} %}
 								<div class="img-wrapper" {% if course_info_1.image %} style="background-image: url('{{ course_info_1.image }}')" {% endif %}>
-									<div class="info-text">{% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : course_info_1.text,  'type' : 'h2', "cssClass": "other-info-color"} %}</div>
+									<div class="info-text">{% include "@du_bootstrap/navigation/headline.twig" with {'title' : course_info_1.text,  'type' : 'h2', "cssClass": "other-info-color"} %}</div>
 								</div>
 							</div>
 						</div>
@@ -39,9 +39,9 @@
 						{% if course_info_2.title is not empty %}
 						<div class="columns {% if course_info_3.title is not empty %}{% endif %}">
 							<div class="course-info__rightside--has-icons">
-								{% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : course_info_2.title,  'type' : 'h4'} %}
+								{% include "@du_bootstrap/navigation/headline.twig" with {'title' : course_info_2.title,  'type' : 'h4'} %}
 								<div class="img-wrapper" {% if course_info_2.image %} style="background-image: url('{{ course_info_2.image }}')" {% endif %}>
-									<div class="info-text">{% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : course_info_2.text,  'type' : 'h2', "cssClass": "other-info-color"} %}</div>
+									<div class="info-text">{% include "@du_bootstrap/navigation/headline.twig" with {'title' : course_info_2.text,  'type' : 'h2', "cssClass": "other-info-color"} %}</div>
 								</div>
 							</div>
 						</div>
@@ -50,9 +50,9 @@
 						{% if course_info_3.title is not empty %}
 						<div class="columns {% if course_info_4.title is not empty %}show-top-right-border{% else %}show-top-border{% endif %}">
 							<div class="course-info__rightside--has-icons">
-								{% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : course_info_3.title,  'type' : 'h4'} %}
+								{% include "@du_bootstrap/navigation/headline.twig" with {'title' : course_info_3.title,  'type' : 'h4'} %}
 								<div class="img-wrapper" {% if course_info_3.image %} style="background-image: url('{{ course_info_3.image }}')" {% endif %}>
-									<div class="info-text">{% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : course_info_3.text,  'type' : 'h2', "cssClass": "other-info-color"} %}</div>
+									<div class="info-text">{% include "@du_bootstrap/navigation/headline.twig" with {'title' : course_info_3.text,  'type' : 'h2', "cssClass": "other-info-color"} %}</div>
 								</div>
 							</div>
 						</div>
@@ -61,9 +61,9 @@
 						{% if course_info_4.title is not empty %}
 						<div class="columns show-top-border">
 							<div class="course-info__rightside--has-icons">
-								{% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : course_info_4.title,  'type' : 'h4'} %}
+								{% include "@du_bootstrap/navigation/headline.twig" with {'title' : course_info_4.title,  'type' : 'h4'} %}
 								<div class="img-wrapper" {% if course_info_4.image %} style="background-image: url('{{ course_info_4.image }}')" {% endif %}>
-									<div class="info-text">{% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : course_info_4.text,  'type' : 'h2', "cssClass": "other-info-color"} %}</div>
+									<div class="info-text">{% include "@du_bootstrap/navigation/headline.twig" with {'title' : course_info_4.text,  'type' : 'h2', "cssClass": "other-info-color"} %}</div>
 								</div>
 							</div>
 						</div>

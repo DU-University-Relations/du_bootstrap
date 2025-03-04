@@ -5,18 +5,18 @@
         {% endblock %}
     </div>
     {% block page_head %}
-        {% embed "themes/custom/du_bootstrap/templates/misc/micro-header.twig" with { "hero_media": hero_media, "hide_hero": hide_hero, "logo": logo, "image_logo": image_logo } %}
+        {% embed "@du_bootstrap/misc/micro-header.twig" with { "hero_media": hero_media, "hide_hero": hide_hero, "logo": logo, "image_logo": image_logo } %}
             {% block mega_nav %}
-                {% include "themes/custom/du_bootstrap/templates/misc/mega-nav.twig" with {nav:nav} only %}
+                {% include "@du_bootstrap/misc/mega-nav.twig" with {nav:nav} only %}
             {% endblock %}
         {% endembed %}
     {% endblock %}
     {% block content %}
-        {% embed "themes/custom/du_bootstrap/templates/misc/node.twig" %}
+        {% embed "@du_bootstrap/misc/node.twig" %}
         {% endembed %}
     {% endblock %}
     {% block footer %}
-        {% include "themes/custom/du_bootstrap/templates/misc/footer.twig" %}
+        {% include "@du_bootstrap/misc/footer.twig" %}
     {% endblock %}
     <span id="du-loader" aria-hidden="true">
         <span class="icon-du-spin3 animate-spin"></span>

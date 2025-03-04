@@ -3,10 +3,10 @@
         {{ page_info }}
     </div>
     <div class="filter-button-wrapper columns shrink" data-filter-id="{{ filter_id }}" aria-controls="{{ filter_id }}">
-        {% include "themes/custom/du_bootstrap/templates/misc/filter-button.twig" %}
+        {% include "@du_bootstrap/misc/filter-button.twig" %}
     </div>
     {% if exposed %}
-        {% embed "themes/custom/du_bootstrap/templates/misc/listing-filters.twig" %}
+        {% embed "@du_bootstrap/misc/listing-filters.twig" %}
             {% block filter_form %}
                 {{ exposed }}
             {% endblock %}

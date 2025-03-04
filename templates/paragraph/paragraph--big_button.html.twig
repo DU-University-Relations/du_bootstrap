@@ -1,5 +1,5 @@
 
-{% embed "themes/custom/du_bootstrap/templates/misc/big-btn.twig" %}
+{% embed "@du_bootstrap/misc/big-btn.twig" %}
     {# For future use- we can look at the parent bundle and set the size of the button accordingly #}
     {% if(paragraph.getParentEntity().bundle() == 'cta_group') %}
         {% set size_class = "medium-4" %}

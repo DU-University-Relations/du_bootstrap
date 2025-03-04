@@ -8,7 +8,7 @@
 
     {%  block hero_video %}
       {% if hero_video %}
-        {% include "themes/custom/du_bootstrap/templates/misc/video.twig" with hero_video %}
+        {% include "@du_bootstrap/misc/video.twig" with hero_video %}
       {% endif %}
     {%  endblock %}
     {%  block hero_image %}
@@ -51,11 +51,11 @@
         {% endif %}
         <div class="col-12">
           {% if headline %}
-            {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with headline %}
+            {% include "@du_bootstrap/navigation/headline.twig" with headline %}
           {% endif %}
           {% if hero_link['0'].title is not empty %}
             {% for item in hero_link %}
-                {% include "themes/custom/du_bootstrap/templates/misc/link.twig" with item %}
+                {% include "@du_bootstrap/misc/link.twig" with item %}
             {% endfor %}
           {% endif %}
         </div>
@@ -67,7 +67,7 @@
 {% if is_home and not (hero_class == "content-card") %}
   <div class="hero-media unit-hero-media {% if hero_image is empty %}hero-image-empty {% endif %}{% if hero_embed is not empty %}hero-embed-wrapper{% endif %}{% if unit_hero_embed is not empty %}hero-embed-wrapper{% endif %}">
       {% if hero_video %}
-        {% include "themes/custom/du_bootstrap/templates/misc/video.twig" with hero_video %}
+        {% include "@du_bootstrap/misc/video.twig" with hero_video %}
       {% endif %}
       {% if hero_image %}
         {{ hero_image }}
@@ -87,11 +87,11 @@
       <div class="row">
         <div class="col-12">
           {% if headline %}
-            {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with headline %}
+            {% include "@du_bootstrap/navigation/headline.twig" with headline %}
           {% endif %}
           {% if hero_link['0'].title is not empty %}
             {% for item in hero_link %}
-                {% include "themes/custom/du_bootstrap/templates/misc/link.twig" with item %}
+                {% include "@du_bootstrap/misc/link.twig" with item %}
             {% endfor %}
           {% endif %}
         </div>
@@ -108,7 +108,7 @@
         {% if hero_video == true %}
           <div {{attributes.addClass('has-video')}}>
             {% if hero_video %}
-              {% include "themes/custom/du_bootstrap/templates/misc/video.twig" with hero_video %}
+              {% include "@du_bootstrap/misc/video.twig" with hero_video %}
             {% endif %}
           </div>
         {% endif %}
@@ -124,14 +124,14 @@
       <div class="col-12 col-md-12 col-lg-3">
         <div class="content-wrapper">
           {% if headline %}
-            {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with headline %}
+            {% include "@du_bootstrap/navigation/headline.twig" with headline %}
           {% endif %}
           {% if hero_caption %}
             <p>{{ hero_caption }}</p>
           {% endif %}
           {% if hero_link['0'].title is not empty %}
             {% for item in hero_link %}
-                {% include "themes/custom/du_bootstrap/templates/misc/link.twig" with item %}
+                {% include "@du_bootstrap/misc/link.twig" with item %}
             {% endfor %}
           {% endif %}
         </div>
@@ -142,8 +142,8 @@
 {% endif %}
 
 {% if hero_title %}
-    {% include "themes/custom/du_bootstrap/templates/misc/hero-media-title-unit.twig" %}
+    {% include "@du_bootstrap/misc/hero-media-title-unit.twig" %}
 {% endif %}
 {% if hero_items %}
-  {% include "themes/custom/du_bootstrap/templates/misc/hero-media-items.twig" with hero_items %}
+  {% include "@du_bootstrap/misc/hero-media-items.twig" with hero_items %}
 {% endif %}

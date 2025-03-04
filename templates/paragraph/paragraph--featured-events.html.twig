@@ -1,4 +1,4 @@
-{% embed "themes/custom/du_bootstrap/templates/misc/featured-events-new.twig" %}
+{% embed "@du_bootstrap/misc/featured-events-new.twig" %}
     {% set slide_count = content.field_featured_events_slides|field_value|length %}
     {% block slides %}
         {{ content.field_featured_events_slides|field_value }}

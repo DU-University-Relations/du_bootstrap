@@ -3,7 +3,7 @@
 		<div class="related-stories-image">{{ story.src }}</div>
 		<div class="related-stories-module__story__content">
 			<a href="{{ story.story_url }}" target="{{ story.link_target|raw|e('html_attr') }}" title="{{ story.link_title|raw|e('html_attr') }}" onClick="{{ story.link_onclick|raw|e('html_attr') }}">
-				{% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with story %}
+				{% include "@du_bootstrap/navigation/headline.twig" with story %}
 				{{ story.text|raw }}
 				<p class="read-more">{{ story.read_more|raw }}</p>
 			</a>

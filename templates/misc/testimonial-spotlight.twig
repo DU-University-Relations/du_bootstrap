@@ -1,16 +1,16 @@
 {% if tmode == "large_image_left" %}
     <div class="feature-video-module no-popup buffer-on-inner-row testimonial-blockquote">
         {% if blockquote %}
-            {% include "themes/custom/du_bootstrap/templates/misc/blockquote-testimonial.twig" with blockquote %}
+            {% include "@du_bootstrap/misc/blockquote-testimonial.twig" with blockquote %}
         {% endif %}
         <div class="row media">
             <div class="columns small-12 medium-12 large-8">
                 <div class="feature-video-module__video-wrapper media-wrapper">
                     {% if is_image %}
-                        {% include "themes/custom/du_bootstrap/templates/misc/image.twig" with image %}
+                        {% include "@du_bootstrap/misc/image.twig" with image %}
                     {% else %}
                     {% if is_youtube %}
-                        {% embed "themes/custom/du_bootstrap/templates/misc/YouTube.twig" %}
+                        {% embed "@du_bootstrap/misc/YouTube.twig" %}
                             {% block youtube_embed %}
                                 {{ youtube_embed }}
                             {% endblock %}
@@ -20,12 +20,12 @@
                                 <span class="video-toggle__text">
                                     <span class="visually-hidden">Play/Pause Video</span>
                                     {% for icon in play_pause_icons %}
-                                        {% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with icon %}
+                                        {% include "@du_bootstrap/misc/_du-icon.twig" with icon %}
                                     {% endfor %}
                                     {{ play_label }}
                                 </span>
                             </a>
-                            {% include "themes/custom/du_bootstrap/templates/misc/video.twig" with video_upload %}
+                            {% include "@du_bootstrap/misc/video.twig" with video_upload %}
                         {% endif %}
                     {% endif %}
                 </div>
@@ -37,16 +37,16 @@
 {% if tmode == "small_image_left" %}
     <div class="feature-video-module no-popup buffer-on-inner-row testimonial-blockquote">
         {% if blockquote %}
-            {% include "themes/custom/du_bootstrap/templates/misc/blockquote-testimonial.twig" with blockquote %}
+            {% include "@du_bootstrap/misc/blockquote-testimonial.twig" with blockquote %}
         {% endif %}
         <div class="row media">
             <div class="columns small-12 medium-12 large-4">
                 <div class="feature-video-module__video-wrapper media-wrapper small">
                     {% if is_image %}
-                        {% include "themes/custom/du_bootstrap/templates/misc/image.twig" with image %}
+                        {% include "@du_bootstrap/misc/image.twig" with image %}
                     {% else %}
                         {% if is_youtube %}
-                            {% embed "themes/custom/du_bootstrap/templates/misc/YouTube.twig" %}
+                            {% embed "@du_bootstrap/misc/YouTube.twig" %}
                                 {% block youtube_embed %}
                                     {{ youtube_embed }}
                                 {% endblock %}
@@ -56,12 +56,12 @@
                         <span class="video-toggle__text">
                             <span class="visually-hidden">Play/Pause Video</span>
                             {% for icon in play_pause_icons %}
-                                {% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with icon %}
+                                {% include "@du_bootstrap/misc/_du-icon.twig" with icon %}
                             {% endfor %}
                             {{ play_label }}
                         </span>
                             </a>
-                            {% include "themes/custom/du_bootstrap/templates/misc/video.twig" with video_upload %}
+                            {% include "@du_bootstrap/misc/video.twig" with video_upload %}
                         {% endif %}
                     {% endif %}
                 </div>
@@ -73,16 +73,16 @@
 {% if tmode == "small_image_right" %}
     <div class="feature-video-module no-popup buffer-on-inner-row testimonial-blockquote">
         {% if blockquote %}
-                {% include "themes/custom/du_bootstrap/templates/misc/blockquote-testimonial.twig" with blockquote %}
+                {% include "@du_bootstrap/misc/blockquote-testimonial.twig" with blockquote %}
         {% endif %}
         <div class="row media">
             <div class="columns small-12 medium-12 large-4 large-offset-8">
                 <div class="feature-video-module__video-wrapper media-wrapper small-right">
                     {% if is_image %}
-                        {% include "themes/custom/du_bootstrap/templates/misc/image.twig" with image %}
+                        {% include "@du_bootstrap/misc/image.twig" with image %}
                     {% else %}
                         {% if is_youtube %}
-                            {% embed "themes/custom/du_bootstrap/templates/misc/YouTube.twig" %}
+                            {% embed "@du_bootstrap/misc/YouTube.twig" %}
                                 {% block youtube_embed %}
                                     {{ youtube_embed }}
                                 {% endblock %}
@@ -92,12 +92,12 @@
                         <span class="video-toggle__text">
                             <span class="visually-hidden">Play/Pause Video</span>
                             {% for icon in play_pause_icons %}
-                                {% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with icon %}
+                                {% include "@du_bootstrap/misc/_du-icon.twig" with icon %}
                             {% endfor %}
                             {{ play_label }}
                         </span>
                             </a>
-                            {% include "themes/custom/du_bootstrap/templates/misc/video.twig" with video_upload %}
+                            {% include "@du_bootstrap/misc/video.twig" with video_upload %}
                         {% endif %}
                     {% endif %}
                 </div>
@@ -109,16 +109,16 @@
 {% if tmode == "large_image_right" %}
     <div class="feature-video-module no-popup buffer-on-inner-row testimonial-blockquote">
         {% if blockquote %}
-            {% include "themes/custom/du_bootstrap/templates/misc/blockquote-testimonial.twig" with blockquote %}
+            {% include "@du_bootstrap/misc/blockquote-testimonial.twig" with blockquote %}
         {% endif %}
         <div class="row media">
             <div class="columns small-12 medium-12 large-7 large-offset-5">
                 <div class="feature-video-module__video-wrapper media-wrapper large-right">
                     {% if is_image %}
-                        {% include "themes/custom/du_bootstrap/templates/misc/image.twig" with image %}
+                        {% include "@du_bootstrap/misc/image.twig" with image %}
                     {% else %}
                         {% if is_youtube %}
-                            {% embed "themes/custom/du_bootstrap/templates/misc/YouTube.twig" %}
+                            {% embed "@du_bootstrap/misc/YouTube.twig" %}
                                 {% block youtube_embed %}
                                     {{ youtube_embed }}
                                 {% endblock %}
@@ -128,12 +128,12 @@
                         <span class="video-toggle__text">
                             <span class="visually-hidden">Play/Pause Video</span>
                             {% for icon in play_pause_icons %}
-                                {% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with icon %}
+                                {% include "@du_bootstrap/misc/_du-icon.twig" with icon %}
                             {% endfor %}
                             {{ play_label }}
                         </span>
                             </a>
-                            {% include "themes/custom/du_bootstrap/templates/misc/video.twig" with video_upload %}
+                            {% include "@du_bootstrap/misc/video.twig" with video_upload %}
                         {% endif %}
                     {% endif %}
                 </div>
@@ -145,7 +145,7 @@
 {% if tmode == "no_image_indent" or tmode == "no_image" %}
     <div class="feature-video-module buffer-on-inner-row testimonial-blockquote no-image-indent">
         {% if blockquote %}
-            {% include "themes/custom/du_bootstrap/templates/misc/blockquote-testimonial.twig" with blockquote %}
+            {% include "@du_bootstrap/misc/blockquote-testimonial.twig" with blockquote %}
         {% endif %}
     </div>
 {% endif %}

@@ -1,24 +1,24 @@
-{% embed "themes/custom/du_bootstrap/templates/misc/page-unit.twig" %}
+{% embed "@du_bootstrap/misc/page-unit.twig" %}
     {% block content %}
-        {% embed "themes/custom/du_bootstrap/templates/misc/node.twig" %}
+        {% embed "@du_bootstrap/misc/node.twig" %}
             {% block page_title %}
-                {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {"title": page_name, "type": "h1"} %}
+                {% include "@du_bootstrap/navigation/headline.twig" with {"title": page_name, "type": "h1"} %}
             {% endblock %}
             {% block page_overview %}
-                {% include "themes/custom/du_bootstrap/templates/misc/_unit_sample_overview.twig" %}
+                {% include "@du_bootstrap/misc/_unit_sample_overview.twig" %}
             {% endblock %}
             {% block page_content %}
                 {% if show_content.mini_event_feed %}
-                    {% include "themes/custom/du_bootstrap/templates/misc/mini-event-feed.twig" %}
+                    {% include "@du_bootstrap/misc/mini-event-feed.twig" %}
                 {% endif %}
                 {% if show_content.generic_listing %}
-                    {% include "themes/custom/du_bootstrap/templates/misc/listing.twig" %}
+                    {% include "@du_bootstrap/misc/listing.twig" %}
                 {% endif %}
                 {% if show_content.unit_carousel %}
-                    {% include "themes/custom/du_bootstrap/templates/misc/unit-carousel.twig" %}
+                    {% include "@du_bootstrap/misc/unit-carousel.twig" %}
                 {% endif %}
                 {% if show_content.unit_carousel_single %}
-                    {% include "themes/custom/du_bootstrap/templates/misc/unit-carousel.twig" with {
+                    {% include "@du_bootstrap/misc/unit-carousel.twig" with {
                         "slide_count": 1,
                         "slides": [
                             {

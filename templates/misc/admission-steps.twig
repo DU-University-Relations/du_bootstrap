@@ -9,7 +9,7 @@
     <div class="row">
         <div class="columns small-12 large-8 large-offset-4">
             {% if h2 %}
-                {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with h2 %}
+                {% include "@du_bootstrap/navigation/headline.twig" with h2 %}
             {% endif %}
         </div>
     </div>
@@ -51,10 +51,10 @@
                                 {% endif %}
                                 <div class="tabs-panel sub-step-content{% if panel.sub_panel_is_active %} is-active{% endif %}" id="{{ panel.sub_steps_panel_id }}" data-toggler=".is-active">
                                     {% if panel.headline %}
-                                        {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with panel.headline %}
+                                        {% include "@du_bootstrap/navigation/headline.twig" with panel.headline %}
                                     {% endif %}
                                     {% for paragraph in panel.paragraphs %}
-                                        {% include "themes/custom/du_bootstrap/templates/misc/paragraph-raw.twig" with paragraph %}
+                                        {% include "@du_bootstrap/misc/paragraph-raw.twig" with paragraph %}
                                     {% endfor %}
                                 </div>
                             {% endfor %}

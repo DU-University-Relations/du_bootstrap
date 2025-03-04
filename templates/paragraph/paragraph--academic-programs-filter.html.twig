@@ -5,7 +5,7 @@
     {% endif %}
     {% set filters = filters ~ ".filter-" ~ filter %}
 {% endfor %}
-{% include "themes/custom/du_bootstrap/templates/misc/button.twig" with {
+{% include "@du_bootstrap/misc/button.twig" with {
     "title": content.field_program_filter_label|field_value,
     "type": "academic-filter",
     "data": {

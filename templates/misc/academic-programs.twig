@@ -1,6 +1,6 @@
 <div class="row">
     <div class="columns small-12 academic-filter">
-        {% include "themes/custom/du_bootstrap/templates/misc/search-box.twig" with {
+        {% include "@du_bootstrap/misc/search-box.twig" with {
             "search_box": {
                 "placeholder": "Search Keywords",
                 "altClass": "search-box--neutral",
@@ -20,11 +20,11 @@
                 <div class="filter-box">
                     {% block filter_buttons %}
                         {% for button_item in button %}
-                            {% include "themes/custom/du_bootstrap/templates/misc/button.twig" with button_item %}
+                            {% include "@du_bootstrap/misc/button.twig" with button_item %}
                         {% endfor %}
                     {% endblock %}
                   {% if hide_legend == 0 %}
-                    {% include "themes/custom/du_bootstrap/templates/misc/button.twig" with {
+                    {% include "@du_bootstrap/misc/button.twig" with {
                         "title": "",
                         "type": "academic-filter",
                         "altClass": "info icon-du-info-circled",
@@ -80,7 +80,7 @@
                 {% endif %}
               <div class="row align-middle">
                     <div class="columns">
-                        {% include "themes/custom/du_bootstrap/templates/misc/alphabet-filter.twig" %}
+                        {% include "@du_bootstrap/misc/alphabet-filter.twig" %}
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@
     <div class="academic-cards-module cards-list-module">
         <div class="row js-filter-cards">
             {% for card in academic_program_card %}
-                {% include "themes/custom/du_bootstrap/templates/misc/academic-program-card.twig" with card %}
+                {% include "@du_bootstrap/misc/academic-program-card.twig" with card %}
             {% endfor %}
         </div>
     </div>

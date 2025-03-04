@@ -26,7 +26,7 @@
  */
 #}
 <div{{ attributes }}>
-    {% embed "themes/custom/du_bootstrap/templates/misc/author.twig" %}
+    {% embed "@du_bootstrap/misc/author.twig" %}
         {% set name = name['#object'].getName() %}
         {% set title = content.field_author_title|field_value %}
         {% set email = content.field_author_email|field_value %}

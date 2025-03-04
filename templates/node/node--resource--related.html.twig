@@ -71,9 +71,9 @@
  */
 #}
 
-{% embed "themes/custom/du_bootstrap/templates/misc/related-resources.twig" %}
+{% embed "@du_bootstrap/misc/related-resources.twig" %}
     {% block page_title %}
-        {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : label, 'type' : 'h1'} %}
+        {% include "@du_bootstrap/navigation/headline.twig" with {'title' : label, 'type' : 'h1'} %}
     {% endblock %}
 
     {% set title = node.title %}

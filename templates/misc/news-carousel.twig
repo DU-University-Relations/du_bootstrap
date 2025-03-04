@@ -6,7 +6,7 @@
     <div class="slider-container">
       {% block news_content %}
         {% for news_item in news_content %}
-          {% include "themes/custom/du_bootstrap/templates/misc/news-carousel-item.twig" with news_item %}
+          {% include "@du_bootstrap/misc/news-carousel-item.twig" with news_item %}
         {% endfor %}
       {% endblock %}
     </div>

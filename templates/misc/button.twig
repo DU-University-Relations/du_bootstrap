@@ -15,12 +15,12 @@
 
         {% if icon is iterable %}
             {% if icon.before %}
-                {% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with icon only %}
+                {% include "@du_bootstrap/misc/_du-icon.twig" with icon only %}
             {% endif %}
         {% endif %} {{ title|raw }}
         {% if icon is iterable %}
             {% if not icon.before %}
-                {% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with icon only %}
+                {% include "@du_bootstrap/misc/_du-icon.twig" with icon only %}
             {% endif %}
         {% endif %}
 </a>

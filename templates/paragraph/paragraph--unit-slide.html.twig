@@ -1,5 +1,5 @@
 {% set catch_cache = content.field_unit_slide_image|render %}
-{% embed "themes/custom/du_bootstrap/templates/misc/unit-carousel-slide.twig" %}
+{% embed "@du_bootstrap/misc/unit-carousel-slide.twig" %}
     {% set image =  content.field_unit_slide_image|field_value %}
     {% set caption = content.field_unit_slide_caption|field_value %}
 {% endembed %}

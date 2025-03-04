@@ -1,4 +1,4 @@
-{% embed "themes/custom/du_bootstrap/templates/misc/list.twig" %}
+{% embed "@du_bootstrap/misc/list.twig" %}
     {% set items = [] %}
     {% for listItem in content.field_list_of_links|field_value %}
         {% set items = items|merge([{"title" : listItem}]) %}

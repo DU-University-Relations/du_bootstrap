@@ -71,7 +71,7 @@
           {% if not utility_menu_options.hide_resource_for_menu %}
             <li class="nav-item">
               <a href="#utility-resources-for" class="unit-utility-menu__audience-button nav-link d-flex align-items-center">
-                <span class="toggle-icon z-1">{% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with {"icon_name": "user", "bold":true} %}</span>
+                <span class="toggle-icon z-1">{% include "@du_bootstrap/misc/_du-icon.twig" with {"icon_name": "user", "bold":true} %}</span>
                 <span class="toggle-label z-1">{{ utility_menu_options.flyout_title ? utility_menu_options.flyout_title : "Resources For" }}</span>
                 <span class="icon-du-down-dir z-1"></span>
               </a>
@@ -79,21 +79,21 @@
           {% endif %}
           <li class="nav-item">
             <a href="#utility-sites-list" class="unit-utility-menu__sites-button nav-link d-flex align-items-center">
-              <span class="toggle-icon">{% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with {"icon_name": "main-logo"} %}</span>
+              <span class="toggle-icon">{% include "@du_bootstrap/misc/_du-icon.twig" with {"icon_name": "main-logo"} %}</span>
               <span class="toggle-label z-1">DU Websites</span>
               <span class="icon-du-down-dir ms-1"></span>
             </a>
           </li>
           <li class="nav-item">
             <a href="#utility-main-search" class="unit-utility-menu__search-button nav-link d-flex align-items-center">
-              <span class="toggle-icon">{% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with {"icon_name": "cust-search"} %}</span>
+              <span class="toggle-icon">{% include "@du_bootstrap/misc/_du-icon.twig" with {"icon_name": "cust-search"} %}</span>
               <span class="toggle-label">Search</span>
             </a>
           </li>
           {% if utility_menu_options.du_elevate_display_active %}
             <li class="nav-item">
               <a href="#utility-elevate-cart-popup" class="unit-utility-menu__cart-button nav-link d-flex align-items-center">
-                <span class="toggle-icon">{% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with {"icon_name": "basket"} %}</span>
+                <span class="toggle-icon">{% include "@du_bootstrap/misc/_du-icon.twig" with {"icon_name": "basket"} %}</span>
                 <span class="toggle-label">Cart</span>
                 <span class="items-in-cart badge bg-primary ms-1">6</span>
               </a>

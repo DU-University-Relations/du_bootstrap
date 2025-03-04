@@ -7,19 +7,19 @@
                     <h2>Section Heading</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur alit, sed do eiusmod tempor incididunt ut labore et.</p>
                     <div class="flyout-button">
-                        {% include "themes/custom/du_bootstrap/templates/misc/button.twig" with {"title": "Button Action Text", "styleModifier": "display-block"} %}
+                        {% include "@du_bootstrap/misc/button.twig" with {"title": "Button Action Text", "styleModifier": "display-block"} %}
                     </div>
                 </div>
                 <div class="columns small-12 medium-5 ">
                     <h2>Email Directory</h2>
                     <p>To find email contact information for a DU student or employee, search our directory.</p>
                     <div class="flyout-button">
-                        {% include "themes/custom/du_bootstrap/templates/misc/button.twig" with {"title": "DU Directory", "styleModifier": "display-block"} %}
+                        {% include "@du_bootstrap/misc/button.twig" with {"title": "DU Directory", "styleModifier": "display-block"} %}
                     </div>
                 </div>
             </div>
         {% endblock %}
     </div>
-    {% include "themes/custom/du_bootstrap/templates/misc/_unit-nav-close.twig" with {controls: "#" ~ flyout_id} %}
-    {% include "themes/custom/du_bootstrap/templates/misc/_unit-nav-back.twig" with {controls: "#" ~ flyout_id} %}
+    {% include "@du_bootstrap/misc/_unit-nav-close.twig" with {controls: "#" ~ flyout_id} %}
+    {% include "@du_bootstrap/misc/_unit-nav-back.twig" with {controls: "#" ~ flyout_id} %}
 </div>

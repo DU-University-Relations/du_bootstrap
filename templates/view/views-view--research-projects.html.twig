@@ -41,7 +41,7 @@
 ]
 %}
 <div{{ attributes.addClass(classes) }}>
-    {% embed "themes/custom/du_bootstrap/templates/misc/listing.twig" %}
+    {% embed "@du_bootstrap/misc/listing.twig" %}
         {% set filter_form = exposed %}
         {% set page_info = header %}
         {% set filter_id = "ResearchListing" ~ random(999999999) %}

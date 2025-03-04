@@ -1,4 +1,4 @@
-{% embed "themes/custom/du_bootstrap/templates/misc/unit-carousel.twig" %}
+{% embed "@du_bootstrap/misc/unit-carousel.twig" %}
     {% set slides = content.field_unit_carousel_slide|field_value %}
     {% set slide_count = slides|length %}
     {% block slides %}

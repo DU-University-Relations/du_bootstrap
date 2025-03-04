@@ -10,7 +10,7 @@
                 <div class="slider-container">
                     {% block slides %}
                         {% for slide_item in slides %}
-                          {% include "themes/custom/du_bootstrap/templates/misc/featured-event-slide.twig" with slide_item %}
+                          {% include "@du_bootstrap/misc/featured-event-slide.twig" with slide_item %}
                         {% endfor %}
                     {% endblock %}
                 </div>

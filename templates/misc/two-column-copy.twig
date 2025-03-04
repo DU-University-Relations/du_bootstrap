@@ -12,31 +12,31 @@
         {% endif %}
         {% block column_1 %}
             {% if col_1.h2 %}
-                {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with col_1.h2 %}
+                {% include "@du_bootstrap/navigation/headline.twig" with col_1.h2 %}
             {% endif %}
 
             {% if col_1.image %}
-                {% include "themes/custom/du_bootstrap/templates/misc/image.twig" with col_1.image %}
+                {% include "@du_bootstrap/misc/image.twig" with col_1.image %}
             {% endif %}
 
             {% if not col_1.hide_paragraph %}
-                {% include "themes/custom/du_bootstrap/templates/paragraph/paragraph.twig" %}
+                {% include "@du_bootstrap/paragraph/paragraph.twig" %}
             {% endif %}
 
             {% if col_1.h3 %}
-                {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with col_1.h3 %}
+                {% include "@du_bootstrap/navigation/headline.twig" with col_1.h3 %}
             {% endif %}
 
             {% if col_1.two_col_list %}
-                {% include "themes/custom/du_bootstrap/templates/misc/list.twig" with col_1.two_col_list %}
+                {% include "@du_bootstrap/misc/list.twig" with col_1.two_col_list %}
             {% endif %}
 
             {% if col_1.button %}
-                <p>{% include "themes/custom/du_bootstrap/templates/misc/button.twig" %}</p>
+                <p>{% include "@du_bootstrap/misc/button.twig" %}</p>
             {% endif %}
 
             {% if col_1.expanding_list %}
-                {% include "themes/custom/du_bootstrap/templates/misc/expanding-list.twig" %}
+                {% include "@du_bootstrap/misc/expanding-list.twig" %}
             {% endif %}
         {% endblock %}
     </div>
@@ -46,31 +46,31 @@
         {% endif %}
         {% block column_2 %}
             {% if col_2.h2 %}
-                {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with col_2.h2 %}
+                {% include "@du_bootstrap/navigation/headline.twig" with col_2.h2 %}
             {% endif %}
 
             {% if col_2.image %}
-                {% include "themes/custom/du_bootstrap/templates/misc/image.twig" with col_2.image %}
+                {% include "@du_bootstrap/misc/image.twig" with col_2.image %}
             {% endif %}
 
             {% if not col_2.hide_paragraph %}
-                {% include "themes/custom/du_bootstrap/templates/paragraph/paragraph.twig" %}
+                {% include "@du_bootstrap/paragraph/paragraph.twig" %}
             {% endif %}
 
             {% if col_2.h3 %}
-                {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with col_2.h3 %}
+                {% include "@du_bootstrap/navigation/headline.twig" with col_2.h3 %}
             {% endif %}
 
             {% if col_2.two_col_list %}
-                {% include "themes/custom/du_bootstrap/templates/misc/list.twig" with col_2.two_col_list %}
+                {% include "@du_bootstrap/misc/list.twig" with col_2.two_col_list %}
             {% endif %}
 
             {% if col_2.button %}
-                <p>{% include "themes/custom/du_bootstrap/templates/misc/button.twig" %}</p>
+                <p>{% include "@du_bootstrap/misc/button.twig" %}</p>
             {% endif %}
 
             {% if col_2.expanding_list %}
-                {% include "themes/custom/du_bootstrap/templates/misc/expanding-list.twig" %}
+                {% include "@du_bootstrap/misc/expanding-list.twig" %}
             {% endif %}
         {% endblock %}
     </div>

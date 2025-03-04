@@ -15,11 +15,11 @@
             </ul>
             <div class="orbit-controls">
                 {% if slideshow_prev %}
-                    <button class="orbit-previous"><span class="visually-hidden">Previous Slide</span>{% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with slideshow_prev %}</button>
+                    <button class="orbit-previous"><span class="visually-hidden">Previous Slide</span>{% include "@du_bootstrap/misc/_du-icon.twig" with slideshow_prev %}</button>
                 {% endif %}
                 <div class="slide-number"></div>
                 {% if slideshow_next %}
-                    <button class="orbit-next"><span class="visually-hidden">Next Slide</span>{% include "themes/custom/du_bootstrap/templates/misc/_du-icon.twig" with slideshow_next %}</button>
+                    <button class="orbit-next"><span class="visually-hidden">Next Slide</span>{% include "@du_bootstrap/misc/_du-icon.twig" with slideshow_next %}</button>
                 {% endif %}
             </div>
         </div>

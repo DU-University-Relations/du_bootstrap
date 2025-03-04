@@ -1,4 +1,4 @@
-{% embed "themes/custom/du_bootstrap/templates/misc/feature-video.twig" %}
+{% embed "@du_bootstrap/misc/feature-video.twig" %}
     {% if paragraph.field_featured_vid_ogg.value or paragraph.field_featured_vid_mp4.value %}
         {% set video_upload = {
             "ogg_url": content.field_featured_vid_ogg|field_value[0]['#markup'],

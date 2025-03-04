@@ -42,7 +42,7 @@
 ]
 %}
 <div id="resource-list">
-    {% embed "themes/custom/du_bootstrap/templates/misc/resource-listing.twig" %}
+    {% embed "@du_bootstrap/misc/resource-listing.twig" %}
         {% set filter_form = exposed %}
         {% set page_info = header %}
         {% set filter_id = "resource-list-filter" ~ random(999999999) %}

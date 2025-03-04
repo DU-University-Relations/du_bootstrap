@@ -23,7 +23,7 @@
         {% if contacts %}
             {% block contacts %}
                 {% for contact in contacts %}
-                    {% include "themes/custom/du_bootstrap/templates/misc/contact.twig" with contact %}
+                    {% include "@du_bootstrap/misc/contact.twig" with contact %}
                 {% endfor %}
             {% endblock %}
         {% endif %}

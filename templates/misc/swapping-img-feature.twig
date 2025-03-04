@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="columns small-12{% if not alt_layout %} medium-4  medium-offset-1{% endif %}">
 		{% if headline %}
-			{% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {
+			{% include "@du_bootstrap/navigation/headline.twig" with {
 				"title": headline,
 				"type": (alt_layout ? "h2" : "h3"),
 				"cssClass": (alt_layout ? "btm-divider text-center" : "top-divider text-right")
@@ -16,7 +16,7 @@
 				{{ statement }}
 				{{ button }}
 				{% if list %}
-                	{% include "themes/custom/du_bootstrap/templates/misc/list.twig" %}
+                	{% include "@du_bootstrap/misc/list.twig" %}
 				{% endif %}
 			</div>
 		</div>
@@ -46,7 +46,7 @@
 				{{ statement }}
 				{{ button }}
 				{% if list %}
-					{% include "themes/custom/du_bootstrap/templates/misc/list.twig" %}
+					{% include "@du_bootstrap/misc/list.twig" %}
 				{% endif %}
 			</div>
 		</div>

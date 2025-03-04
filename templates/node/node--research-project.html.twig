@@ -1,4 +1,4 @@
-{% embed "themes/custom/du_bootstrap/templates/misc/research-project.twig" %}
+{% embed "@du_bootstrap/misc/research-project.twig" %}
 
     {% if content.field_back_link_text|render|trim is not empty %}
       {% set back_to_parent = {"link": research_project_list_location, "target": "/research-project-listing","title": content.field_back_link_text|field_value } %}
@@ -52,7 +52,7 @@
     {% endif %}
 
     {% block page_title %}
-        {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : label, 'type' : 'h1'} %}
+        {% include "@du_bootstrap/navigation/headline.twig" with {'title' : label, 'type' : 'h1'} %}
     {% endblock %}
 
     {% set faculty_member_list = content.field_faculty_proj_member|field_value %}

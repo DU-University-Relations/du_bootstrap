@@ -1,4 +1,4 @@
-{% embed "themes/custom/du_bootstrap/templates/misc/news-carousel.twig" %}
+{% embed "@du_bootstrap/misc/news-carousel.twig" %}
     {% set title = content.field_title|field_value %}
     {% block news_content %}
         {{ content.field_news_content|field_value }}

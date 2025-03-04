@@ -10,14 +10,14 @@
     {% if (related_material_list|length > 2) %}
       <div class="row">
         <div class="columns small-12 medium-4">
-          {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with project.related.header %}
+          {% include "@du_bootstrap/navigation/headline.twig" with project.related.header %}
         </div>
       </div>
     {% endif %}
     <div class="row">
       {% if (related_material_list|length < 3) %}
         <div class="columns small-12 medium-4">
-          {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with project.related.header %}
+          {% include "@du_bootstrap/navigation/headline.twig" with project.related.header %}
         </div>
       {% endif %}
       {% for related_material in related_material_list %}
@@ -65,9 +65,9 @@
             "target": link_target
           } %}
           <h3 class="related-title title">
-            {% include "themes/custom/du_bootstrap/templates/misc/link.twig" with link_text_url %}
+            {% include "@du_bootstrap/misc/link.twig" with link_text_url %}
           </h3>
-          {% include "themes/custom/du_bootstrap/templates/misc/button.twig" with button %}
+          {% include "@du_bootstrap/misc/button.twig" with button %}
         </div>
       {% endfor %}
     </div>

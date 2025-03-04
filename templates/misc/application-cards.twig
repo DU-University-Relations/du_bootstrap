@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="columns small-12 {{ deadline_data_css }}">
 		<div class="application-cards__description">
-		{% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with application_card_info %}
+		{% include "@du_bootstrap/navigation/headline.twig" with application_card_info %}
 			{{ application_card_info.body_text }}
 		</div>
 	</div>
@@ -23,7 +23,7 @@
   <div class="row">
 	{% block cards %}
 		{% for card in cards %}
-			{% include "themes/custom/du_bootstrap/templates/misc/application-card.twig" with card %}
+			{% include "@du_bootstrap/misc/application-card.twig" with card %}
 		{% endfor %}
 	{% endblock %}
   </div>

@@ -11,13 +11,13 @@
     <div class="author-info">
         {% if email %}
             <div class="row">
-                {% include "themes/custom/du_bootstrap/templates/misc/icon.twig" with { "icon_class": "mail-alt", "url": email_url } %}
+                {% include "@du_bootstrap/misc/icon.twig" with { "icon_class": "mail-alt", "url": email_url } %}
                 <p>{{ email }}</p>
             </div>
         {% endif %}
         {% if phone %}
             <div class="row">
-                {% include "themes/custom/du_bootstrap/templates/misc/icon.twig" with { "icon_class": "phone", "url": phone_url } %}
+                {% include "@du_bootstrap/misc/icon.twig" with { "icon_class": "phone", "url": phone_url } %}
                 <p>{{ phone }}</p>
             </div>
         {% endif %}
@@ -25,17 +25,17 @@
     <div class="row author-social">
         {% if facebook %}
         <div class="columns shrink">
-            {% include "themes/custom/du_bootstrap/templates/misc/icon.twig" with facebook %}
+            {% include "@du_bootstrap/misc/icon.twig" with facebook %}
         </div>
         {% endif %}
         {% if twitter %}
         <div class="columns shrink">
-            {% include "themes/custom/du_bootstrap/templates/misc/icon.twig" with twitter %}
+            {% include "@du_bootstrap/misc/icon.twig" with twitter %}
         </div>
         {% endif %}
         {% if linkedin %}
         <div class="columns">
-            {% include "themes/custom/du_bootstrap/templates/misc/icon.twig" with linkedin %}
+            {% include "@du_bootstrap/misc/icon.twig" with linkedin %}
         </div>
         {% endif %}
     </div>

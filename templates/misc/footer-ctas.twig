@@ -2,7 +2,7 @@
     <div class="row">
         {% block ctas %}
             {% for button in buttons %}
-                {% include "themes/custom/du_bootstrap/templates/misc/big-btn.twig" with button %}
+                {% include "@du_bootstrap/misc/big-btn.twig" with button %}
             {% endfor %}
         {% endblock %}
     </div>

@@ -1,4 +1,4 @@
-{% embed "themes/custom/du_bootstrap/templates/misc/stories.twig" %}
+{% embed "@du_bootstrap/misc/stories.twig" %}
 
     {% set stories = content.field_story_item|field_value %}
     {% if stories|length < 3 %}

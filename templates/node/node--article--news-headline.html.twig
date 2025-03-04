@@ -71,11 +71,11 @@
  */
 #}
 
-{% embed "themes/custom/du_bootstrap/templates/misc/article-news-headline.twig" %}
+{% embed "@du_bootstrap/misc/article-news-headline.twig" %}
 {# This node twig is used by several variants and so some fields that may seem redundant may not be #}
 
     {% block page_title %}
-        {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with {'title' : label, 'type' : 'h1'} %}
+        {% include "@du_bootstrap/navigation/headline.twig" with {'title' : label, 'type' : 'h1'} %}
     {% endblock %}
     {% set title = node.label %}
     {% set id = node.id %}
@@ -90,7 +90,7 @@
 
     {% set subhead = {"title": content.field_article_subhead|field_value, "type": "h2"} %}
     {% block page_subtitle %}
-        {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with subhead %}
+        {% include "@du_bootstrap/navigation/headline.twig" with subhead %}
     {% endblock %}
 
     {% set teaser = content.field_article_teaser|field_value %}

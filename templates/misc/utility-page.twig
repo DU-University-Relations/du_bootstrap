@@ -5,7 +5,7 @@
                 <h1>{{ content.field_alternative_h1 }}</h1>
             {% else %}
                 {% block page_title %}
-                    {% include "themes/custom/du_bootstrap/templates/navigation/headline.twig" with title_info %}
+                    {% include "@du_bootstrap/navigation/headline.twig" with title_info %}
                 {% endblock %}
             {% endif %}
         </div>
