@@ -13,16 +13,17 @@
  */
 #}
 
+{# Handle both top level and sub-level menu items #}
+{% if content.children or content.is_expanded %}
+  <div class="menu_link_content menu-dropdown menu-dropdown--links-only menu-dropdown-{{ content['#menu_level'] }} menu-type-default">
+    <div class="menu-dropdown__sub-links">
+      {{ content.children }}
+    </div>
+  </div>
+{% endif %}
+
 {% if content['#menu_level'] == 0 %}
   {# Top level menu items #}
-  {% if content.children or content.is_expanded %}
-    <div class="menu_link_content menu-dropdown menu-dropdown--links-only menu-dropdown-0 menu-type-default">
-      <div class="menu-dropdown__sub-links">
-        {{ content.children }}
-      </div>
-    </div>
-  {% endif %}
-
   {% if content.field_nav_image.0 or content.field_nav_headline.0 or content.field_nav_description.0 or content.field_nav_button.0 %}
     <div class="menu_link_content menu-dropdown menu-type-default mega-menu">
       <div class="row">

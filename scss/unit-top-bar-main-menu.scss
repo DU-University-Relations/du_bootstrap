@@ -180,7 +180,6 @@
         overflow: auto;
         .main-menu-contents {
           padding: 0 2.0rem 0 0;
-          margin: 0 auto;
         }
 
         .main-menu-contents > ul, .main-menu-contents > nav > ul {
@@ -469,11 +468,6 @@
   li.is-dropdown-submenu-parent:last-of-type .mega-flyout.mega-menu--dropdown {
     margin-left: -12%;
   }
-}
-
-// Logged in adjustment of navigation
-body.adminimal-admin-toolbar.unit-site {
-  padding-top: 19.0rem !important;
 }
 
 //Sturm College of Law -- specific adjustments to have site name on one line
