@@ -12,6 +12,26 @@
   {{ page.content }}
 {% else %}
   <div class="page-wrapper">
+    {# Render tabs #}
+    <div class="content-top">
+      {# Only logged_in users for now but this should be done in permissions if possible#}
+      {% if logged_in %}
+        <div class="row">
+          <nav class="tabs" role="navigation" aria-label="Tabs">
+            <h2 id="primary-tabs-title" class="visually-hidden">Primary tabs</h2>
+            <nav class="position-relative" aria-labelledby="primary-tabs-title">
+              <button class="d-md-none btn btn-link tabs-trigger" type="button" data-bs-toggle="collapse" data-bs-target="#primaryTabs" aria-expanded="false" aria-controls="primaryTabs">
+                <span aria-hidden="true">•••</span>
+                <span class="visually-hidden">Primary tabs display toggle</span>
+              </button>
+              <ul class="nav nav-tabs border-0 collapse d-md-flex" id="primaryTabs">
+                {{ drupal_block('local_tasks_block') }}
+              </ul>
+            </nav>
+          </nav>
+        </div>
+      {% endif %}
+    </div>
 
     {# Set up hero variables based on conditions #}
     {% if hero_video_url %}
@@ -112,6 +132,7 @@
       {% endblock %}
 
     {% endembed %}
+
 
     {# Main Content Section #}
     <main class="content {{ page_class }}">

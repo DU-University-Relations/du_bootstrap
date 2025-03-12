@@ -327,6 +327,34 @@ function du_bootstrap_preprocess(&$variables, $hook, $info) {
  * Implements hook_preprocess_page().
  */
 function du_bootstrap_preprocess_page(&$variables) {
+  // Check if we're on a node page
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node) {
+    // Let Drupal handle building the tabs
+    $variables['tabs'] = [
+      '#theme' => 'menu_local_tasks',
+      '#primary' => [],
+      '#secondary' => [],
+      '#attached' => [
+        'library' => ['du_bootstrap/global-styling'],
+      ],
+    ];
+  }
+
+  if (\Drupal::service('router.admin_context')->isAdminRoute()) {
+    return;
+  }
+
+  /** @var \Drupal\Core\Menu\LocalTaskManagerInterface $local_tasks */
+  $local_tasks = \Drupal::service('plugin.manager.menu.local_task');
+  $route_name = \Drupal::routeMatch()->getRouteName();
+
+  $variables['tabs'] = [
+    '#theme' => 'menu_local_tasks',
+    '#primary' => $local_tasks->getLocalTasks($route_name, 0),
+    '#secondary' => $local_tasks->getLocalTasks($route_name, 1),
+  ];
+
   global $base_url;
 
   // FIX THIS
@@ -491,74 +519,6 @@ function du_bootstrap_preprocess_page(&$variables) {
       // Remove Footer CTA Bar if this functionality and field is set and is true for removing it from display.
       unset($variables['page']['footer']['defaultfooterctas']);
       unset($variables['page']['footer']['footerctas']);
-    }
-  }
-
-  // Fix for Preview Link (on Core) - Passing in Custom Node Fields.
-  if (empty($variables['node']) || !isset($variables['node'])) {
-    if (isset($variables['page'])) {
-      if (isset($variables['page']['#cache'])) {
-        if (isset($variables['page']['#cache']['contexts'])) {
-          $context_arr = $variables['page']['#cache']['contexts'];
-          for ($i = 0; $i < count($context_arr); $i++) {
-            if ($context_arr[$i] == "preview_link_route") {
-              $routeParameters = \Drupal::routeMatch()->getParameters();
-              if ($routeParameters->count() > 0) {
-                // We use the first parameter as dynamic indicator for the entity type to load (node,user,commerce_product, ...)
-                $entityTypeIndicator = \Drupal::routeMatch()
-                  ->getParameters()
-                  ->keys()[0];
-                $entity = \Drupal::routeMatch()
-                  ->getParameter($entityTypeIndicator);
-                if (is_object($entity) && $entity instanceof ContentEntityInterface) {
-                  if (($entity->hasField('field_hero_media_header') && !empty($entity->get('field_hero_media_header'))) || ($entity->hasField('field_program_hero_image') && !empty($entity->get('field_program_hero_image')))) {
-                    if ($entity->hasField('field_hero_media_header')) {
-                      $hero_paragraph = $entity->get('field_hero_media_header')->entity;
-                    }
-                    else {
-                      $hero_paragraph = NULL;
-                    }
-                    if ($entity->hasField('field_program_hero_image')) {
-                      $hero_program_field = $entity->get('field_program_hero_image')->entity;
-                    }
-                    else {
-                      $hero_program_field = NULL;
-                    }
-                    if ($hero_paragraph) {
-                      if (!empty($hero_paragraph->get('field_hero_image')->entity)) {
-                        $image = $hero_paragraph->get('field_hero_image')->entity;
-                        $variables['hero_url'] = $image->get('uri')
-                          ->getString();
-                        $image_value = $hero_paragraph->get('field_hero_image')
-                          ->first()
-                          ->getValue();
-                        $variables['hero_alt'] = $image_value['alt'];
-                      }
-                      else {
-                        $variables['hero_alt'] = 'hero image';
-                      }
-                      if (!empty($hero_paragraph->get('field_hero_video')->entity)) {
-                        $video = $hero_paragraph->get('field_hero_video')->entity;
-                        $variables['hero_video_url'] = \Drupal::service('file_url_generator')->generateAbsoluteString($video->get('uri')->getString());
-                      }
-                      if ($hero_paragraph->hasField('field_unit_hero_link')) {
-                        if (!empty($hero_paragraph->get('field_unit_hero_link')->first())) {
-                          $variables['hero_link'][0]['href'] = $hero_paragraph->get('field_unit_hero_link')
-                            ->first()
-                            ->getUrl();
-                        }
-                      }
-                    }
-                    elseif (!empty($hero_program_field)) {
-                      $variables['hero_url'] = $hero_program_field->get('uri')->getString();
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
     }
   }
 
@@ -959,10 +919,9 @@ function du_bootstrap_add_regions_to_node($allowed_regions, &$variables) {
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ * Implements hook_theme_suggestions_menu_alter().
  */
-// FIX THIS
-function du_bootstrap_theme_suggestions_menu_alter(array &$suggestions, array &$variables) {
+function du_bootstrap_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
   $key = '';
   $module_handler = \Drupal::moduleHandler();
   if ($module_handler->moduleExists('du_inline_unit') && !empty($variables['menu_name'])) {
@@ -991,6 +950,13 @@ function du_bootstrap_theme_suggestions_menu_alter(array &$suggestions, array &$
     $config = \Drupal::service('config.factory')->getEditable('du_site.settings');
     $menu_name = $config->get($variables['menu_name']);
     $variables['flyout_menu_title'] = $menu_name ? $menu_name : "Resources For";
+  }
+
+  // Add suggestion for main menu in mega nav region
+  if (isset($variables['menu_name']) && $variables['menu_name'] == 'main') {
+    if (isset($variables['attributes']['region']) && $variables['attributes']['region'] == 'mega_nav') {
+      $suggestions[] = 'menu__extras';
+    }
   }
 }
 
