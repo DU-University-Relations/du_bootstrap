@@ -20,3 +20,5 @@ regions:
   footer: Footer
   hidden: Hidden
 
+dependencies:
+  - video_embed_field
