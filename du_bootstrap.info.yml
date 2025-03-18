@@ -22,3 +22,4 @@ regions:
 
 dependencies:
   - video_embed_field
+  - menu_item_extras
