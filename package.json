@@ -1,6 +1,6 @@
 {
   "name": "du_bootstrap",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Custom Bootstrap SASS implementation for the University of Denver",
   "main": "index.js",
   "scripts": {
