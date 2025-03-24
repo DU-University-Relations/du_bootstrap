@@ -29,6 +29,12 @@ jobs:
           ddev config --project-type=drupal10 --docroot=web --create-docroot
           ddev start
 
+      - name: Install Composer Dependencies
+        run: |
+          ddev composer require drush/drush
+          ddev composer require drupal/core-recommended:^10
+          ddev composer require drupal/core-composer-scaffold:^10
+
       - name: Install site
         run: |
           ddev drush si ducore -y
