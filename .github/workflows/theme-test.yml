@@ -86,7 +86,7 @@ jobs:
           # Install all found modules
           for MODULE in $MODULES
           do
-            if [ -n "$MODULE" ]; then
+            if [ -n "$MODULE" ] && [ "$MODULE" != "drupal/config_update" ]; then
               echo "Installing module: $MODULE"
               ddev composer require --no-update "$MODULE" || true
             fi
