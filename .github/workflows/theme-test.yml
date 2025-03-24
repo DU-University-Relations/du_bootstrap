@@ -55,19 +55,34 @@ jobs:
           ddev composer require --no-update drupal/bootstrap:^5.0
           ddev composer update
 
-      - name: Copy theme
+      - name: Setup Drupal with DU Core dependencies
         working-directory: drupal-test
         run: |
-          mkdir -p web/themes/custom
-          cp -r ../theme web/themes/custom/du_bootstrap
+          # Clone the main repository to get composer.json
+          git clone https://github.com/University-of-Denver/drupal-composer-managed.git /tmp/drupal-composer-managed
+
+          # Copy the composer.json and composer.lock files
+          cp /tmp/drupal-composer-managed/composer.json ./composer.json
+          cp /tmp/drupal-composer-managed/composer.lock ./composer.lock || true
+
+          # Configure composer
+          ddev composer config minimum-stability dev
+          ddev composer config prefer-stable true
+          ddev composer config allow-plugins.drupal/core-composer-scaffold true
+          ddev composer config allow-plugins.composer/installers true
+          ddev composer config allow-plugins.drupal/core-project-message true
+
+          # Install dependencies from the main repo's composer.json
+          ddev composer install
+
+          # Clean up
+          rm -rf /tmp/drupal-composer-managed
 
       - name: Setup DU Core Profile
         working-directory: drupal-test
         run: |
           ddev exec mkdir -p web/profiles/custom
-          ddev exec git clone https://github.com/University-of-Denver/drupal-composer-managed.git /tmp/drupal-composer-managed
           ddev exec cp -r /tmp/drupal-composer-managed/web/profiles/custom/ducore web/profiles/custom/
-          ddev exec rm -rf /tmp/drupal-composer-managed
 
       - name: Setup Drupal
         working-directory: drupal-test
