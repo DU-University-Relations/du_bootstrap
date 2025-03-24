@@ -58,6 +58,7 @@ jobs:
       - name: Copy theme
         working-directory: drupal-test
         run: |
+          mkdir -p web/themes/custom
           cp -r ../theme web/themes/custom/du_bootstrap
 
       - name: Setup DU Core Profile
