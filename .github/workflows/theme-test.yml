@@ -124,6 +124,9 @@ jobs:
           # Verify installation
           ddev exec drush status
 
+          # Enable required modules first
+          ddev exec drush pm:enable video_embed_field menu_item_extras -y
+
           # Enable theme
           ddev exec drush theme:enable du_bootstrap
           ddev exec drush config-set system.theme default du_bootstrap -y
