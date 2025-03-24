@@ -13,69 +13,79 @@ jobs:
     steps:
       - name: Checkout theme
         uses: actions/checkout@v4
+        with:
+          path: theme
+
+      - name: Create test directory
+        run: |
+          mkdir drupal-test
+          cd drupal-test
 
       - name: Install DDEV
+        working-directory: drupal-test
         run: |
           curl -fsSL https://ddev.com/install.sh | bash
           ddev --version
 
       - name: Setup Docker
+        working-directory: drupal-test
         run: |
           docker --version
           docker compose version
 
       - name: Configure and start DDEV
+        working-directory: drupal-test
         run: |
           ddev config --project-type=drupal10 --docroot=web --create-docroot
           ddev start
 
-      - name: Configure Composer
+      - name: Create Drupal Project
+        working-directory: drupal-test
         run: |
+          ddev composer create --no-install drupal/recommended-project:^10
           ddev composer config repositories.drupal composer https://packages.drupal.org/8
           ddev composer config minimum-stability dev
           ddev composer config prefer-stable true
-          # Allow required plugins
           ddev composer config allow-plugins.drupal/core-composer-scaffold true
           ddev composer config allow-plugins.composer/installers true
           ddev composer config allow-plugins.drupal/core-project-message true
-
-      - name: Create Drupal Project
-        run: |
-          ddev composer create --no-install drupal/recommended-project:^10
           ddev composer require --no-update drupal/core-recommended:^10
           ddev composer require --no-update drupal/core-composer-scaffold:^10
           ddev composer require --no-update drush/drush
           ddev composer require --no-update drupal/bootstrap:^5.0
           ddev composer update
 
-      - name: Setup DU Core Profile
+      - name: Copy theme
+        working-directory: drupal-test
         run: |
-          # Create profiles directory if it doesn't exist
+          cp -r ../theme web/themes/custom/du_bootstrap
+
+      - name: Setup DU Core Profile
+        working-directory: drupal-test
+        run: |
           ddev exec mkdir -p web/profiles/custom
-          # Clone DU Core profile
           ddev exec git clone https://github.com/University-of-Denver/drupal-composer-managed.git /tmp/drupal-composer-managed
           ddev exec cp -r /tmp/drupal-composer-managed/web/profiles/custom/ducore web/profiles/custom/
-          # Clean up
           ddev exec rm -rf /tmp/drupal-composer-managed
 
       - name: Setup Drupal
+        working-directory: drupal-test
         run: |
-          # Create settings.php
           ddev exec mkdir -p web/sites/default/files
           ddev exec chmod 777 web/sites/default/files
           ddev exec cp web/sites/default/default.settings.php web/sites/default/settings.php
           ddev exec chmod 777 web/sites/default/settings.php
-          # Add database configuration
           ddev exec echo "\$databases['default']['default'] = ['driver' => 'mysql','database' => 'db','username' => 'db','password' => 'db','host' => 'db','port' => '3306'];" >> web/sites/default/settings.php
 
       - name: Install site
+        working-directory: drupal-test
         run: |
           ddev exec drush site:install ducore --db-url=mysql://db:db@db:3306/db -y
           ddev drush status
-          # Capture any errors in the watchdog
           ddev drush wd-show
 
       - name: Check theme
+        working-directory: drupal-test
         run: |
           ddev drush theme:enable du_bootstrap
           ddev drush config-get system.theme default
