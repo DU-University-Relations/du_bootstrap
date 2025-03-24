@@ -65,7 +65,6 @@ jobs:
           ddev composer require --no-update drupal/paragraphs
           ddev composer require --no-update drupal/video_embed_field
           ddev composer require --no-update drupal/menu_item_extras
-          ddev composer require --no-update drupal/content_moderation
           ddev composer require --no-update drupal/entity_browser
           ddev composer require --no-update drupal/link_attributes
           ddev composer require --no-update drupal/svg_image
