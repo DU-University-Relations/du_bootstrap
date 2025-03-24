@@ -1,0 +1,43 @@
+name: DU Bootstrap Theme Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout theme
+        uses: actions/checkout@v4
+
+      - name: Setup DDEV Drupal Contrib
+        run: |
+          curl -LO https://raw.githubusercontent.com/ddev/ddev-drupal-contrib/main/install.sh
+          bash install.sh
+
+      - name: Configure project
+        run: |
+          # We might need to adjust composer config here
+          # but let's first verify what's actually needed
+          ddev composer config --list
+
+      - name: Start DDEV
+        run: |
+          ddev start
+          ddev auth ssh
+
+      - name: Install site
+        run: |
+          ddev drush si ducore -y
+          ddev drush status
+          # Capture any errors in the watchdog
+          ddev drush wd-show
+
+      - name: Check theme
+        run: |
+          ddev drush theme:enable du_bootstrap
+          ddev drush config-get system.theme default
