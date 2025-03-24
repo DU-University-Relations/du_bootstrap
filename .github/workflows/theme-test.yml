@@ -39,8 +39,9 @@ jobs:
           ddev composer config allow-plugins.composer/installers true
           ddev composer config allow-plugins.drupal/core-project-message true
 
-      - name: Install Composer Dependencies
+      - name: Create Drupal Project
         run: |
+          ddev composer create --no-install drupal/recommended-project:^10
           ddev composer require --no-update drupal/core-recommended:^10
           ddev composer require --no-update drupal/core-composer-scaffold:^10
           ddev composer require --no-update drush/drush
