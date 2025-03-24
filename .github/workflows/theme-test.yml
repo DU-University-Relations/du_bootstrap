@@ -70,33 +70,46 @@ jobs:
           mkdir -p web/themes/custom
           cp -r ../theme web/themes/custom/du_bootstrap
 
+      - name: Setup Database and Settings
+        working-directory: drupal-test
+        run: |
+          # Create settings file
+          ddev exec mkdir -p web/sites/default/files
+          ddev exec chmod 777 web/sites/default/files
+          ddev exec cp web/sites/default/default.settings.php web/sites/default/settings.php
+          ddev exec chmod 777 web/sites/default/settings.php
+
+          # Add database settings
+          ddev exec echo '<?php
+          $databases["default"]["default"] = [
+            "database" => "db",
+            "username" => "db",
+            "password" => "db",
+            "host" => "db",
+            "port" => "3306",
+            "driver" => "mysql",
+            "prefix" => "",
+          ];' > web/sites/default/settings.local.php
+
+          ddev exec echo 'include $app_root . "/" . $site_path . "/settings.local.php";' >> web/sites/default/settings.php
+
+          # Verify database connection
+          ddev mysql -e "SHOW DATABASES;"
+
       - name: Install site
         working-directory: drupal-test
         run: |
-          # Debug: List available installation profiles
-          ddev drush pm:list --type=profile
-
-          # Debug: Check Drupal status
-          ddev drush status
-
-          # Debug: List directory contents
-          ddev exec ls -la web/core/profiles
-          ddev exec ls -la web/profiles || true
-
-          # Try installation with explicit DB URL and profile path
-          ddev drush si standard \
-            --db-url=mysql://db:db@db:3306/db \
-            --site-name="Test Site" \
+          # Install Drupal using standard profile
+          ddev exec drush site:install standard \
             --account-name=admin \
             --account-pass=admin \
-            --root=/var/www/html/web \
-            -y
+            --site-name="Test Site" \
+            --yes
 
-          # If successful, enable theme
-          if [ $? -eq 0 ]; then
-            ddev drush theme:enable du_bootstrap
-            ddev drush config-set system.theme default du_bootstrap -y
-            ddev drush cr
-            ddev drush status
-            ddev drush wd-show
-          fi
+          # Verify installation
+          ddev exec drush status
+
+          # Enable theme
+          ddev exec drush theme:enable du_bootstrap
+          ddev exec drush config-set system.theme default du_bootstrap -y
+          ddev exec drush cr
