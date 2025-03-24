@@ -62,18 +62,20 @@ jobs:
           # Clone ducore temporarily to read info file
           git clone https://github.com/University-of-Denver/drupal-composer-managed.git ../temp
 
-          # Parse ducore.info.yml and install required modules
-          echo "Extracting modules from ducore.info.yml..."
-          CORE_MODULES=$(grep -E '^  - ' ../temp/web/profiles/custom/ducore/ducore.info.yml | \
+          # Parse ducore.info.yml for both regular modules and dependencies
+          echo "Extracting modules and dependencies from ducore.info.yml..."
+          MODULES=$(cat ../temp/web/profiles/custom/ducore/ducore.info.yml | \
+            grep -E '^  - |^dependencies:' | \
             grep -v '^  - system\|^  - user\|^  - node\|^  - block\|^  - field\|^  - file\|^  - filter\|^  - image\|^  - text\|^  - views\|^  - taxonomy\|^  - path\|^  - datetime\|^  - options\|^  - menu_link_content\|^  - dblog\|^  - block_content\|^  - media\|^  - content_moderation\|^  - field_ui\|^  - ckeditor5\|^  - du_bootstrap\|^  - du_widen\|^  - du_site\|^  - du_paragraphs\|^  - responsive_image\|^  - claro' | \
-            sed 's/^  - /drupal\//' | tr '\n' ' ')
+            sed -e 's/^  - /drupal\//' -e 's/^dependencies://' | \
+            tr '\n' ' ')
 
-          echo "Found modules: $CORE_MODULES"
+          echo "Found modules and dependencies: $MODULES"
 
           # Force specific versions for known modules matching upstream
           ddev composer require --no-update "drupal/config_update:^2.0@alpha"
 
-          for MODULE in $CORE_MODULES
+          for MODULE in $MODULES
           do
             if [ "$MODULE" != "drupal/content_moderation" ] && \
                [ "$MODULE" != "drupal/field_ui" ] && \
