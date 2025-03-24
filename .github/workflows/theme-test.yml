@@ -65,7 +65,7 @@ jobs:
           # Parse ducore.info.yml and install required modules
           echo "Extracting modules from ducore.info.yml..."
           CORE_MODULES=$(grep -E '^  - ' ../temp/web/profiles/custom/ducore/ducore.info.yml | \
-            grep -v '^  - system\|^  - user\|^  - node\|^  - block\|^  - field\|^  - file\|^  - filter\|^  - image\|^  - text\|^  - views\|^  - taxonomy\|^  - path\|^  - datetime\|^  - options\|^  - menu_link_content\|^  - dblog\|^  - block_content\|^  - media\|^  - content_moderation\|^  - field_ui\|^  - ckeditor5\|^  - du_bootstrap\|^  - du_widen\|^  - du_site\|^  - du_paragraphs\|^  - responsive_image' | \
+            grep -v '^  - system\|^  - user\|^  - node\|^  - block\|^  - field\|^  - file\|^  - filter\|^  - image\|^  - text\|^  - views\|^  - taxonomy\|^  - path\|^  - datetime\|^  - options\|^  - menu_link_content\|^  - dblog\|^  - block_content\|^  - media\|^  - content_moderation\|^  - field_ui\|^  - ckeditor5\|^  - du_bootstrap\|^  - du_widen\|^  - du_site\|^  - du_paragraphs\|^  - responsive_image\|^  - claro' | \
             sed 's/^  - /drupal\//' | tr '\n' ' ')
 
           echo "Found modules: $CORE_MODULES"
@@ -83,7 +83,8 @@ jobs:
                [ "$MODULE" != "drupal/config_update" ] && \
                [ "$MODULE" != "drupal/responsive_image" ] && \
                [ "$MODULE" != "drupal/du_widen" ] && \
-               [ "$MODULE" != "drupal/du_paragraphs" ]; then
+               [ "$MODULE" != "drupal/du_paragraphs" ] && \
+               [ "$MODULE" != "drupal/claro" ]; then
               echo "Installing module: $MODULE"
               ddev composer require --no-update $MODULE || true
             else
