@@ -7,6 +7,8 @@
   "homepage": "https://github.com/University-of-Denver/du_bootstrap",
   "require": {
     "twbs/bootstrap": "^5.0.0",
-    "drupal/bootstrap":"^5.0"
+    "drupal/bootstrap":"^5.0",
+    "drupal/video_embed_field": "^1.0",
+    "drupal/menu_item_extras": "^1.0"
   }
 }

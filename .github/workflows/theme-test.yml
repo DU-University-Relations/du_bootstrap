@@ -13,31 +13,73 @@ jobs:
     steps:
       - name: Checkout theme
         uses: actions/checkout@v4
+        with:
+          path: theme
 
-      - name: Setup DDEV Drupal Contrib
-        run: |
-          curl -LO https://raw.githubusercontent.com/ddev/ddev-drupal-contrib/main/install.sh
-          bash install.sh
+      - name: Create test directory
+        run: mkdir drupal-test
 
-      - name: Configure project
+      - name: Install DDEV
+        working-directory: drupal-test
         run: |
-          # We might need to adjust composer config here
-          # but let's first verify what's actually needed
-          ddev composer config --list
+          curl -fsSL https://ddev.com/install.sh | bash
+          ddev --version
 
-      - name: Start DDEV
+      - name: Configure and start DDEV
+        working-directory: drupal-test
         run: |
+          ddev config --project-type=drupal10 --docroot=web --create-docroot
           ddev start
-          ddev auth ssh
+
+      - name: Install Drupal with Profile
+        working-directory: drupal-test
+        run: |
+          # Backup and clear directory
+          mv .ddev ../ddev-backup
+          rm -rf *
+
+          # Clone and setup repository
+          git clone https://github.com/University-of-Denver/drupal-composer-managed.git .
+          rm -rf .ddev
+          mv ../ddev-backup .ddev
+
+          # Install dependencies and copy theme
+          ddev composer install
+          mkdir -p web/themes/custom
+          cp -r ../theme web/themes/custom/du_bootstrap
+
+      - name: Setup Database
+        working-directory: drupal-test
+        run: |
+          mkdir -p web/sites/default/files
+          chmod 777 web/sites/default/files
+
+          cat << 'EOSETTINGS' > web/sites/default/settings.local.php
+          <?php
+          $databases['default']['default'] = [
+            'database' => 'db',
+            'username' => 'db',
+            'password' => 'db',
+            'host' => 'db',
+            'port' => '3306',
+            'driver' => 'mysql',
+            'prefix' => '',
+          ];
+          $settings['hash_salt'] = 'test';
+          EOSETTINGS
+
+          cp web/sites/default/default.settings.php web/sites/default/settings.php
+          echo "include \$app_root . '/' . \$site_path . '/settings.local.php';" >> web/sites/default/settings.php
 
       - name: Install site
+        working-directory: drupal-test
         run: |
-          ddev drush si ducore -y
-          ddev drush status
-          # Capture any errors in the watchdog
-          ddev drush wd-show
+          ddev exec drush site:install ducore \
+            --account-name=admin \
+            --account-pass=admin \
+            --site-name="Test Site" \
+            --yes
 
-      - name: Check theme
-        run: |
-          ddev drush theme:enable du_bootstrap
-          ddev drush config-get system.theme default
+          ddev exec drush theme:enable du_bootstrap
+          ddev exec drush config-set system.theme default du_bootstrap -y
+          ddev exec drush cr
