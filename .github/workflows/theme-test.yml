@@ -59,7 +59,7 @@ jobs:
           ddev composer require --no-update "drupal/core-project-message:~10.3.2"
           ddev composer require --no-update "drush/drush:^12"
 
-          # Install contributed modules
+          # Install theme and its direct dependencies
           ddev composer require --no-update drupal/bootstrap:^5.0
           ddev composer require --no-update drupal/admin_toolbar
           ddev composer require --no-update drupal/paragraphs
@@ -70,6 +70,54 @@ jobs:
           ddev composer require --no-update drupal/svg_image
           ddev composer require --no-update drupal/entity_reference_revisions
           ddev composer require --no-update drupal/allowed_formats
+
+          # Install ducore profile required modules
+          ddev composer require --no-update drupal/components
+          ddev composer require --no-update drupal/config_filter
+          ddev composer require --no-update drupal/config_ignore
+          ddev composer require --no-update drupal/config_profile
+          ddev composer require --no-update drupal/config_split
+          ddev composer require --no-update drupal/config_update
+          ddev composer require --no-update drupal/content_lock
+          ddev composer require --no-update drupal/ctools
+          ddev composer require --no-update drupal/diff
+          ddev composer require --no-update drupal/entity
+          ddev composer require --no-update drupal/entity_block
+          ddev composer require --no-update drupal/entity_browser_block
+          ddev composer require --no-update drupal/entity_clone
+          ddev composer require --no-update drupal/entity_embed
+          ddev composer require --no-update drupal/environment_indicator
+          ddev composer require --no-update drupal/field_group
+          ddev composer require --no-update drupal/honeypot
+          ddev composer require --no-update drupal/libraries
+          ddev composer require --no-update drupal/linkit
+          ddev composer require --no-update drupal/metatag
+          ddev composer require --no-update drupal/pantheon_advanced_page_cache
+          ddev composer require --no-update drupal/pantheon_autopilot_toolbar
+          ddev composer require --no-update drupal/pathauto
+          ddev composer require --no-update drupal/rabbit_hole
+          ddev composer require --no-update drupal/redirect
+          ddev composer require --no-update drupal/simple_sitemap
+          ddev composer require --no-update drupal/twig_field_value
+          ddev composer require --no-update drupal/twig_tweak
+          ddev composer require --no-update drupal/url_redirect
+          ddev composer require --no-update drupal/webform
+          ddev composer require --no-update drupal/simplesamlphp_auth
+          ddev composer require --no-update drupal/dropzonejs
+          ddev composer require --no-update drupal/ebrsww
+          ddev composer require --no-update drupal/file_browser
+          ddev composer require --no-update drupal/ds
+          ddev composer require --no-update drupal/node_revision_delete
+          ddev composer require --no-update drupal/key
+          ddev composer require --no-update drupal/pantheon_secrets
+          ddev composer require --no-update drupal/blazy
+          ddev composer require --no-update drupal/slick
+          ddev composer require --no-update drupal/token_filter
+          ddev composer require --no-update drupal/quick_node_clone
+          ddev composer require --no-update drupal/views_json_source
+          ddev composer require --no-update drupal/editoria11y
+          ddev composer require --no-update drupal/simplesamlphp_custom_attributes
+          ddev composer require --no-update drupal/role_expire
 
           # Update everything
           ddev composer update --with-all-dependencies
