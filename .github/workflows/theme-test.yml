@@ -14,21 +14,20 @@ jobs:
       - name: Checkout theme
         uses: actions/checkout@v4
 
-      - name: Setup DDEV Drupal Contrib
+      - name: Install DDEV
         run: |
-          curl -LO https://raw.githubusercontent.com/ddev/ddev-drupal-contrib/main/install.sh
-          bash install.sh
+          curl -fsSL https://ddev.com/install.sh | bash
+          ddev --version
 
-      - name: Configure project
+      - name: Setup Docker
         run: |
-          # We might need to adjust composer config here
-          # but let's first verify what's actually needed
-          ddev composer config --list
+          docker --version
+          docker-compose --version
 
-      - name: Start DDEV
+      - name: Configure and start DDEV
         run: |
+          ddev config --project-type=drupal10 --docroot=web --create-docroot
           ddev start
-          ddev auth ssh
 
       - name: Install site
         run: |
