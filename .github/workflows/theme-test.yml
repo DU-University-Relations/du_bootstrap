@@ -73,9 +73,30 @@ jobs:
       - name: Install site
         working-directory: drupal-test
         run: |
-          ddev drush site:install standard --site-name="Test Site" --account-name=admin --account-pass=admin -y
-          ddev drush theme:enable du_bootstrap
-          ddev drush config-set system.theme default du_bootstrap -y
-          ddev drush cr
+          # Debug: List available installation profiles
+          ddev drush pm:list --type=profile
+
+          # Debug: Check Drupal status
           ddev drush status
-          ddev drush wd-show
+
+          # Debug: List directory contents
+          ddev exec ls -la web/core/profiles
+          ddev exec ls -la web/profiles || true
+
+          # Try installation with explicit DB URL and profile path
+          ddev drush si standard \
+            --db-url=mysql://db:db@db:3306/db \
+            --site-name="Test Site" \
+            --account-name=admin \
+            --account-pass=admin \
+            --root=/var/www/html/web \
+            -y
+
+          # If successful, enable theme
+          if [ $? -eq 0 ]; then
+            ddev drush theme:enable du_bootstrap
+            ddev drush config-set system.theme default du_bootstrap -y
+            ddev drush cr
+            ddev drush status
+            ddev drush wd-show
+          fi
