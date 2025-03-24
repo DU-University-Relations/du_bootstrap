@@ -29,11 +29,19 @@ jobs:
           ddev config --project-type=drupal10 --docroot=web --create-docroot
           ddev start
 
+      - name: Configure Composer
+        run: |
+          ddev composer config repositories.drupal composer https://packages.drupal.org/8
+          ddev composer config minimum-stability dev
+          ddev composer config prefer-stable true
+
       - name: Install Composer Dependencies
         run: |
-          ddev composer require drush/drush
-          ddev composer require drupal/core-recommended:^10
-          ddev composer require drupal/core-composer-scaffold:^10
+          ddev composer require --no-update drupal/core-recommended:^10
+          ddev composer require --no-update drupal/core-composer-scaffold:^10
+          ddev composer require --no-update drush/drush
+          ddev composer require --no-update drupal/bootstrap:^5.0
+          ddev composer update
 
       - name: Install site
         run: |
