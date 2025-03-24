@@ -79,19 +79,23 @@ jobs:
           ddev exec cp web/sites/default/default.settings.php web/sites/default/settings.php
           ddev exec chmod 777 web/sites/default/settings.php
 
-          # Add database settings
-          ddev exec echo '<?php
-          $databases["default"]["default"] = [
-            "database" => "db",
-            "username" => "db",
-            "password" => "db",
-            "host" => "db",
-            "port" => "3306",
-            "driver" => "mysql",
-            "prefix" => "",
-          ];' > web/sites/default/settings.local.php
+          # Create settings.local.php with database configuration
+          cat << 'EOSETTINGS' > settings.local.php
+          <?php
+          $databases['default']['default'] = [
+            'database' => 'db',
+            'username' => 'db',
+            'password' => 'db',
+            'host' => 'db',
+            'port' => '3306',
+            'driver' => 'mysql',
+            'prefix' => '',
+          ];
+          EOSETTINGS
 
-          ddev exec echo 'include $app_root . "/" . $site_path . "/settings.local.php";' >> web/sites/default/settings.php
+          # Copy settings file into container
+          ddev exec cp settings.local.php web/sites/default/settings.local.php
+          ddev exec echo "include \$app_root . '/' . \$site_path . '/settings.local.php';" >> web/sites/default/settings.php
 
           # Verify database connection
           ddev mysql -e "SHOW DATABASES;"
