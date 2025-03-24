@@ -104,20 +104,10 @@ jobs:
           mkdir -p web/profiles/custom
           cp -r ../temp/web/profiles/custom/ducore web/profiles/custom/
           rm -rf ../temp
+
       - name: Install site
         working-directory: drupal-test
         run: |
-          # Install Drupal using ducore profile
-          ddev exec drush site:install ducore \
-            --account-name=admin \
-            --account-pass=admin \
-            --site-name="Test Site" \
-            --yes
-
-          # Enable theme
-          ddev exec drush theme:enable du_bootstrap
-          ddev exec drush config-set system.theme default du_bootstrap -y
-          ddev exec drush cr
           # Install Drupal using ducore profile
           ddev exec drush site:install ducore \
             --account-name=admin \
