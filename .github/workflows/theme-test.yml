@@ -70,7 +70,6 @@ jobs:
           ddev composer require --no-update drupal/svg_image
           ddev composer require --no-update drupal/entity_reference_revisions
           ddev composer require --no-update drupal/allowed_formats
-          ddev composer require --no-update drupal/responsive_image
 
           # Update everything
           ddev composer update --with-all-dependencies
