@@ -39,66 +39,18 @@ jobs:
           ddev config --project-type=drupal10 --docroot=web --create-docroot
           ddev start
 
-      - name: Install Drupal
+      - name: Install Drupal with Profile
         working-directory: drupal-test
         run: |
-          # Create fresh Drupal project
-          ddev composer create --no-install "drupal/recommended-project:^10"
+          # Clone the main repository
+          git clone https://github.com/University-of-Denver/drupal-composer-managed.git .
 
-          # Configure Composer
-          ddev composer config minimum-stability dev
-          ddev composer config prefer-stable true
+          # Start with a fresh composer.json from the profile
+          ddev composer install
 
-          # Allow plugins
-          ddev composer config allow-plugins true --no-plugins
-
-          # Install core and required modules
-          ddev composer require --no-update "drupal/core:^10"
-          ddev composer require --no-update "drupal/core-recommended:^10"
-          ddev composer require --no-update "drupal/core-composer-scaffold:^10"
-          ddev composer require --no-update "drupal/core-project-message:~10.3.2"
-          ddev composer require --no-update "drush/drush:^12"
-
-          # Clone ducore temporarily to read info file
-          git clone https://github.com/University-of-Denver/drupal-composer-managed.git ../temp
-
-          # Debug: Show the full info file content
-          echo "Full ducore.info.yml content:"
-          cat ../temp/web/profiles/custom/ducore/ducore.info.yml
-
-          # Debug: Show dependencies section specifically
-          echo -e "\nDependencies section:"
-          grep -A 20 "^dependencies:" ../temp/web/profiles/custom/ducore/ducore.info.yml
-
-          # Parse ducore.info.yml for both install and dependencies sections
-          echo "Extracting modules from ducore.info.yml..."
-          MODULES=$(awk '/^install:|^dependencies:/{p=1;next} /^[a-z]/{p=0} p&&/^  -/{print $2}' ../temp/web/profiles/custom/ducore/ducore.info.yml | \
-            grep -v '^system$\|^user$\|^node$\|^block$\|^field$\|^file$\|^filter$\|^image$\|^text$\|^views$\|^taxonomy$\|^path$\|^datetime$\|^options$\|^menu_link_content$\|^dblog$\|^block_content$\|^media$\|^content_moderation$\|^field_ui$\|^ckeditor5$\|^du_bootstrap$\|^du_widen$\|^du_site$\|^du_paragraphs$\|^responsive_image$\|^claro$' | \
-            sort -u | \
-            sed 's/^/drupal\//' | \
-            tr '\n' ' ')
-
-          echo "Found modules: $MODULES"
-
-          # Force specific versions for known modules matching upstream
-          ddev composer require --no-update "drupal/config_update:^2.0@alpha"
-
-          # Install all found modules
-          for MODULE in $MODULES
-          do
-            if [ -n "$MODULE" ] && [ "$MODULE" != "drupal/config_update" ]; then
-              echo "Installing module: $MODULE"
-              ddev composer require --no-update "$MODULE" || true
-            fi
-          done
-
-          # Update everything with all dependencies
-          ddev composer update --with-all-dependencies -W
-
-          # Now copy the profile
-          mkdir -p web/profiles/custom
-          cp -r ../temp/web/profiles/custom/ducore web/profiles/custom/
-          rm -rf ../temp
+          # Copy our theme into the themes directory
+          mkdir -p web/themes/custom
+          cp -r ../theme web/themes/custom/du_bootstrap
 
       - name: Install site
         working-directory: drupal-test
