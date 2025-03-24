@@ -17,21 +17,13 @@ jobs:
           path: theme
 
       - name: Create test directory
-        run: |
-          mkdir drupal-test
-          cd drupal-test
+        run: mkdir drupal-test
 
       - name: Install DDEV
         working-directory: drupal-test
         run: |
           curl -fsSL https://ddev.com/install.sh | bash
           ddev --version
-
-      - name: Setup Docker
-        working-directory: drupal-test
-        run: |
-          docker --version
-          docker compose version
 
       - name: Configure and start DDEV
         working-directory: drupal-test
@@ -42,34 +34,26 @@ jobs:
       - name: Install Drupal with Profile
         working-directory: drupal-test
         run: |
-          # Backup .ddev configuration
+          # Backup and clear directory
           mv .ddev ../ddev-backup
-
-          # Clear directory
           rm -rf *
 
-          # Clone the main repository
+          # Clone and setup repository
           git clone https://github.com/University-of-Denver/drupal-composer-managed.git .
-
-          # Restore .ddev configuration
           rm -rf .ddev
           mv ../ddev-backup .ddev
 
-          # Install dependencies
+          # Install dependencies and copy theme
           ddev composer install
-
-          # Copy our theme into the themes directory
           mkdir -p web/themes/custom
           cp -r ../theme web/themes/custom/du_bootstrap
 
-      - name: Setup Database and Settings
+      - name: Setup Database
         working-directory: drupal-test
         run: |
-          # Create directories and set permissions
           mkdir -p web/sites/default/files
           chmod 777 web/sites/default/files
 
-          # Create settings.local.php
           cat << 'EOSETTINGS' > web/sites/default/settings.local.php
           <?php
           $databases['default']['default'] = [
@@ -81,32 +65,21 @@ jobs:
             'driver' => 'mysql',
             'prefix' => '',
           ];
-
           $settings['hash_salt'] = 'test';
-          $settings['file_private_path'] = '../private';
-          $settings['config_sync_directory'] = '../config/sync';
           EOSETTINGS
 
-          # Ensure settings.php includes settings.local.php
-          if [ ! -f web/sites/default/settings.php ]; then
-            cp web/sites/default/default.settings.php web/sites/default/settings.php
-          fi
+          cp web/sites/default/default.settings.php web/sites/default/settings.php
           echo "include \$app_root . '/' . \$site_path . '/settings.local.php';" >> web/sites/default/settings.php
-
-          # Verify database connection
-          ddev mysql -e "SHOW DATABASES;"
 
       - name: Install site
         working-directory: drupal-test
         run: |
-          # Install Drupal using ducore profile
           ddev exec drush site:install ducore \
             --account-name=admin \
             --account-pass=admin \
             --site-name="Test Site" \
             --yes
 
-          # Enable theme
           ddev exec drush theme:enable du_bootstrap
           ddev exec drush config-set system.theme default du_bootstrap -y
           ddev exec drush cr
