@@ -39,6 +39,22 @@ jobs:
           ddev config --project-type=drupal10 --docroot=web --create-docroot
           ddev start
 
+      - name: Copy DU Core profile
+        working-directory: drupal-test
+        run: |
+          # Create profiles directory if it doesn't exist
+          mkdir -p web/profiles/custom
+
+          # Clone the ducore profile
+          git clone https://github.com/University-of-Denver/drupal-composer-managed.git temp
+          cp -r temp/web/profiles/custom/ducore web/profiles/custom/
+
+          # Debug: Show the file exists and its contents
+          ls -la web/profiles/custom/ducore/ducore.info.yml
+          cat web/profiles/custom/ducore/ducore.info.yml
+
+          rm -rf temp
+
       - name: Install Drupal
         working-directory: drupal-test
         run: |
@@ -60,26 +76,19 @@ jobs:
           ddev composer require --no-update "drush/drush:^12"
 
           # Parse ducore.info.yml and install required modules
-          CORE_MODULES=$(grep -E '^  - ' ../theme/web/profiles/custom/ducore/ducore.info.yml | grep -v '^  - system\|^  - user\|^  - node\|^  - block\|^  - field\|^  - file\|^  - filter\|^  - image\|^  - text\|^  - views\|^  - taxonomy\|^  - path\|^  - datetime\|^  - options\|^  - menu_link_content\|^  - dblog\|^  - block_content\|^  - media' | sed 's/^  - /drupal\//' | tr '\n' ' ')
+          echo "Extracting modules from ducore.info.yml..."
+          CORE_MODULES=$(grep -E '^  - ' web/profiles/custom/ducore/ducore.info.yml | grep -v '^  - system\|^  - user\|^  - node\|^  - block\|^  - field\|^  - file\|^  - filter\|^  - image\|^  - text\|^  - views\|^  - taxonomy\|^  - path\|^  - datetime\|^  - options\|^  - menu_link_content\|^  - dblog\|^  - block_content\|^  - media' | sed 's/^  - /drupal\//' | tr '\n' ' ')
+
+          echo "Found modules: $CORE_MODULES"
 
           for MODULE in $CORE_MODULES
           do
+            echo "Installing module: $MODULE"
             ddev composer require --no-update $MODULE
           done
 
           # Update everything
           ddev composer update --with-all-dependencies
-
-      - name: Copy DU Core profile
-        working-directory: drupal-test
-        run: |
-          # Create profiles directory if it doesn't exist
-          mkdir -p web/profiles/custom
-
-          # Clone the ducore profile
-          git clone https://github.com/University-of-Denver/drupal-composer-managed.git temp
-          cp -r temp/web/profiles/custom/ducore web/profiles/custom/
-          rm -rf temp
 
       - name: Install site
         working-directory: drupal-test
