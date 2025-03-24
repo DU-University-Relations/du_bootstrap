@@ -38,6 +38,7 @@ jobs:
         run: |
           ddev config --project-type=drupal10 --docroot=web --create-docroot
           ddev start
+
       - name: Install Drupal
         working-directory: drupal-test
         run: |
@@ -64,17 +65,13 @@ jobs:
           # Parse ducore.info.yml and install required modules
           echo "Extracting modules from ducore.info.yml..."
           CORE_MODULES=$(grep -E '^  - ' ../temp/web/profiles/custom/ducore/ducore.info.yml | \
-            grep -v '^  - system\|^  - user\|^  - node\|^  - block\|^  - field\|^  - file\|^  - filter\|^  - image\|^  - text\|^  - views\|^  - taxonomy\|^  - path\|^  - datetime\|^  - options\|^  - menu_link_content\|^  - dblog\|^  - block_content\|^  - media\|^  - content_moderation\|^  - field_ui\|^  - ckeditor5\|^  - claro\|^  - du_bootstrap' | \
+            grep -v '^  - system\|^  - user\|^  - node\|^  - block\|^  - field\|^  - file\|^  - filter\|^  - image\|^  - text\|^  - views\|^  - taxonomy\|^  - path\|^  - datetime\|^  - options\|^  - menu_link_content\|^  - dblog\|^  - block_content\|^  - media\|^  - content_moderation\|^  - field_ui\|^  - ckeditor5\|^  - du_bootstrap\|^  - du_widen\|^  - du_site\|^  - du_paragraphs\|^  - responsive_image' | \
             sed 's/^  - /drupal\//' | tr '\n' ' ')
 
           echo "Found modules: $CORE_MODULES"
 
-          # Create a temporary composer.json for testing versions
-          echo '{
-            "require": {
-              "drupal/core": "^10"
-            }
-          }' > ../temp-composer.json
+          # Force specific versions for known modules matching upstream
+          ddev composer require --no-update "drupal/config_update:^2.0@alpha"
 
           for MODULE in $CORE_MODULES
           do
@@ -82,23 +79,20 @@ jobs:
                [ "$MODULE" != "drupal/field_ui" ] && \
                [ "$MODULE" != "drupal/ckeditor5" ] && \
                [ "$MODULE" != "drupal/media" ] && \
-               [ "$MODULE" != "drupal/options" ]; then
-              echo "Testing compatibility for: $MODULE"
-              if composer require --no-update --working-dir=../temp "$MODULE" 2>/dev/null; then
-                echo "Installing module: $MODULE"
-                ddev composer require --no-update $MODULE || true
-              else
-                echo "Skipping incompatible module: $MODULE"
-              fi
+               [ "$MODULE" != "drupal/options" ] && \
+               [ "$MODULE" != "drupal/config_update" ] && \
+               [ "$MODULE" != "drupal/responsive_image" ] && \
+               [ "$MODULE" != "drupal/du_widen" ] && \
+               [ "$MODULE" != "drupal/du_paragraphs" ]; then
+              echo "Installing module: $MODULE"
+              ddev composer require --no-update $MODULE || true
             else
-              echo "Skipping core module: $MODULE"
+              echo "Skipping core module or pre-specified module: $MODULE"
             fi
           done
 
-          rm -f ../temp-composer.json
-
-          # Update everything
-          ddev composer update --with-all-dependencies
+          # Update everything with all dependencies
+          ddev composer update --with-all-dependencies -W
 
           # Now copy the profile
           mkdir -p web/profiles/custom
