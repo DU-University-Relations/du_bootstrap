@@ -76,7 +76,7 @@ jobs:
           ddev exec chmod 777 web/sites/default/files
           ddev exec cp web/sites/default/default.settings.php web/sites/default/settings.php
           ddev exec chmod 777 web/sites/default/settings.php
-          ddev exec echo "\$databases['default']['default'] = ['driver' => 'mysql','database' => 'db','username' => 'db','password' => 'db','host' => 'db','port' => '3306'];" >> web/sites/default/settings.php
+          ddev exec "echo '\$databases[\"default\"][\"default\"] = [\"driver\" => \"mysql\",\"database\" => \"db\",\"username\" => \"db\",\"password\" => \"db\",\"host\" => \"db\",\"port\" => \"3306\"];' >> web/sites/default/settings.php"
 
       - name: Install site
         working-directory: drupal-test
