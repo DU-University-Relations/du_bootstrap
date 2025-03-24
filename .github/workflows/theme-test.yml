@@ -47,6 +47,16 @@ jobs:
           ddev composer require --no-update drupal/bootstrap:^5.0
           ddev composer update
 
+      - name: Setup DU Core Profile
+        run: |
+          # Create profiles directory if it doesn't exist
+          ddev exec mkdir -p web/profiles/custom
+          # Clone DU Core profile
+          ddev exec git clone https://github.com/University-of-Denver/drupal-composer-managed.git /tmp/drupal-composer-managed
+          ddev exec cp -r /tmp/drupal-composer-managed/web/profiles/custom/ducore web/profiles/custom/
+          # Clean up
+          ddev exec rm -rf /tmp/drupal-composer-managed
+
       - name: Install site
         run: |
           ddev drush si ducore -y
