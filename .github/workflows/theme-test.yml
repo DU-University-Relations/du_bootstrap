@@ -70,35 +70,25 @@ jobs:
           echo -e "\nDependencies section:"
           grep -A 20 "^dependencies:" ../temp/web/profiles/custom/ducore/ducore.info.yml
 
-          # Parse ducore.info.yml for both regular modules and dependencies
-          echo -e "\nExtracting modules and dependencies from ducore.info.yml..."
-          MODULES=$(cat ../temp/web/profiles/custom/ducore/ducore.info.yml | \
-            grep -E '^  - |^dependencies:' | \
-            grep -v '^  - system\|^  - user\|^  - node\|^  - block\|^  - field\|^  - file\|^  - filter\|^  - image\|^  - text\|^  - views\|^  - taxonomy\|^  - path\|^  - datetime\|^  - options\|^  - menu_link_content\|^  - dblog\|^  - block_content\|^  - media\|^  - content_moderation\|^  - field_ui\|^  - ckeditor5\|^  - du_bootstrap\|^  - du_widen\|^  - du_site\|^  - du_paragraphs\|^  - responsive_image\|^  - claro' | \
-            sed -e 's/^  - /drupal\//' -e 's/^dependencies://' | \
+          # Parse ducore.info.yml for both install and dependencies sections
+          echo "Extracting modules from ducore.info.yml..."
+          MODULES=$(awk '/^install:|^dependencies:/{p=1;next} /^[a-z]/{p=0} p&&/^  -/{print $2}' ../temp/web/profiles/custom/ducore/ducore.info.yml | \
+            grep -v '^system$\|^user$\|^node$\|^block$\|^field$\|^file$\|^filter$\|^image$\|^text$\|^views$\|^taxonomy$\|^path$\|^datetime$\|^options$\|^menu_link_content$\|^dblog$\|^block_content$\|^media$\|^content_moderation$\|^field_ui$\|^ckeditor5$\|^du_bootstrap$\|^du_widen$\|^du_site$\|^du_paragraphs$\|^responsive_image$\|^claro$' | \
+            sort -u | \
+            sed 's/^/drupal\//' | \
             tr '\n' ' ')
 
-          echo "Found modules and dependencies: $MODULES"
+          echo "Found modules: $MODULES"
 
           # Force specific versions for known modules matching upstream
           ddev composer require --no-update "drupal/config_update:^2.0@alpha"
 
+          # Install all found modules
           for MODULE in $MODULES
           do
-            if [ "$MODULE" != "drupal/content_moderation" ] && \
-               [ "$MODULE" != "drupal/field_ui" ] && \
-               [ "$MODULE" != "drupal/ckeditor5" ] && \
-               [ "$MODULE" != "drupal/media" ] && \
-               [ "$MODULE" != "drupal/options" ] && \
-               [ "$MODULE" != "drupal/config_update" ] && \
-               [ "$MODULE" != "drupal/responsive_image" ] && \
-               [ "$MODULE" != "drupal/du_widen" ] && \
-               [ "$MODULE" != "drupal/du_paragraphs" ] && \
-               [ "$MODULE" != "drupal/claro" ]; then
+            if [ -n "$MODULE" ]; then
               echo "Installing module: $MODULE"
-              ddev composer require --no-update $MODULE || true
-            else
-              echo "Skipping core module or pre-specified module: $MODULE"
+              ddev composer require --no-update "$MODULE" || true
             fi
           done
 
