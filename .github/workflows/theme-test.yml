@@ -59,7 +59,7 @@ jobs:
           ddev composer require --no-update "drupal/core-project-message:~10.3.2"
           ddev composer require --no-update "drush/drush:^12"
 
-          # Install theme and its dependencies
+          # Install contributed modules
           ddev composer require --no-update drupal/bootstrap:^5.0
           ddev composer require --no-update drupal/admin_toolbar
           ddev composer require --no-update drupal/paragraphs
@@ -74,64 +74,26 @@ jobs:
           # Update everything
           ddev composer update --with-all-dependencies
 
-      - name: Copy theme
+      - name: Copy DU Core profile
         working-directory: drupal-test
         run: |
-          mkdir -p web/themes/custom
-          cp -r ../theme web/themes/custom/du_bootstrap
+          # Create profiles directory if it doesn't exist
+          mkdir -p web/profiles/custom
 
-      - name: Setup Database and Settings
-        working-directory: drupal-test
-        run: |
-          # Create settings file
-          ddev exec mkdir -p web/sites/default/files
-          ddev exec chmod 777 web/sites/default/files
-          ddev exec cp web/sites/default/default.settings.php web/sites/default/settings.php
-          ddev exec chmod 777 web/sites/default/settings.php
-
-          # Create settings.local.php with database configuration
-          cat << 'EOSETTINGS' > settings.local.php
-          <?php
-          $databases['default']['default'] = [
-            'database' => 'db',
-            'username' => 'db',
-            'password' => 'db',
-            'host' => 'db',
-            'port' => '3306',
-            'driver' => 'mysql',
-            'prefix' => '',
-          ];
-          EOSETTINGS
-
-          # Copy settings file into container
-          ddev exec cp settings.local.php web/sites/default/settings.local.php
-          ddev exec "echo 'include \$app_root . \"/\" . \$site_path . \"/settings.local.php\";' >> web/sites/default/settings.php"
-
-          # Verify database connection
-          ddev mysql -e "SHOW DATABASES;"
+          # Clone the ducore profile
+          git clone https://github.com/University-of-Denver/drupal-composer-managed.git temp
+          cp -r temp/web/profiles/custom/ducore web/profiles/custom/
+          rm -rf temp
 
       - name: Install site
         working-directory: drupal-test
         run: |
-          # Install Drupal using standard profile
-          ddev exec drush site:install standard \
+          # Install Drupal using ducore profile
+          ddev exec drush site:install ducore \
             --account-name=admin \
             --account-pass=admin \
             --site-name="Test Site" \
             --yes
-
-          # Enable all required modules first
-          ddev exec drush pm:enable -y \
-            content_moderation \
-            entity_browser \
-            link_attributes \
-            paragraphs \
-            svg_image \
-            entity_reference_revisions \
-            allowed_formats \
-            responsive_image \
-            video_embed_field \
-            menu_item_extras
 
           # Enable theme
           ddev exec drush theme:enable du_bootstrap
