@@ -62,15 +62,16 @@ jobs:
           # Clone ducore temporarily to read info file
           git clone https://github.com/University-of-Denver/drupal-composer-managed.git ../temp
 
-          # Debug: Show the file exists and its contents
-          ls -la ../temp/web/profiles/custom/ducore/ducore.info.yml
-          cat ../temp/web/profiles/custom/ducore/ducore.info.yml
-
           # Parse ducore.info.yml and install required modules
           echo "Extracting modules from ducore.info.yml..."
-          CORE_MODULES=$(grep -E '^  - ' ../temp/web/profiles/custom/ducore/ducore.info.yml | grep -v '^  - system\|^  - user\|^  - node\|^  - block\|^  - field\|^  - file\|^  - filter\|^  - image\|^  - text\|^  - views\|^  - taxonomy\|^  - path\|^  - datetime\|^  - options\|^  - menu_link_content\|^  - dblog\|^  - block_content\|^  - media\|^  - content_moderation\|^  - field_ui\|^  - ckeditor5' | sed 's/^  - /drupal\//' | tr '\n' ' ')
+          CORE_MODULES=$(grep -E '^  - ' ../temp/web/profiles/custom/ducore/ducore.info.yml | \
+            grep -v '^  - system\|^  - user\|^  - node\|^  - block\|^  - field\|^  - file\|^  - filter\|^  - image\|^  - text\|^  - views\|^  - taxonomy\|^  - path\|^  - datetime\|^  - options\|^  - menu_link_content\|^  - dblog\|^  - block_content\|^  - media\|^  - content_moderation\|^  - field_ui\|^  - ckeditor5\|^  - du_bootstrap' | \
+            sed 's/^  - /drupal\//' | tr '\n' ' ')
 
           echo "Found modules: $CORE_MODULES"
+
+          # Force specific versions for known D10 compatible modules
+          ddev composer require --no-update "drupal/config_update:^2.0"
 
           for MODULE in $CORE_MODULES
           do
@@ -78,11 +79,12 @@ jobs:
                [ "$MODULE" != "drupal/field_ui" ] && \
                [ "$MODULE" != "drupal/ckeditor5" ] && \
                [ "$MODULE" != "drupal/media" ] && \
-               [ "$MODULE" != "drupal/options" ]; then
+               [ "$MODULE" != "drupal/options" ] && \
+               [ "$MODULE" != "drupal/config_update" ]; then
               echo "Installing module: $MODULE"
               ddev composer require --no-update $MODULE || true
             else
-              echo "Skipping core module: $MODULE"
+              echo "Skipping core module or pre-specified module: $MODULE"
             fi
           done
 
