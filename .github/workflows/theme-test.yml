@@ -62,6 +62,40 @@ jobs:
           mkdir -p web/themes/custom
           cp -r ../theme web/themes/custom/du_bootstrap
 
+      - name: Setup Database and Settings
+        working-directory: drupal-test
+        run: |
+          # Create directories and set permissions
+          mkdir -p web/sites/default/files
+          chmod 777 web/sites/default/files
+
+          # Create settings.local.php
+          cat << 'EOSETTINGS' > web/sites/default/settings.local.php
+          <?php
+          $databases['default']['default'] = [
+            'database' => 'db',
+            'username' => 'db',
+            'password' => 'db',
+            'host' => 'db',
+            'port' => '3306',
+            'driver' => 'mysql',
+            'prefix' => '',
+          ];
+
+          $settings['hash_salt'] = 'test';
+          $settings['file_private_path'] = '../private';
+          $settings['config_sync_directory'] = '../config/sync';
+          EOSETTINGS
+
+          # Ensure settings.php includes settings.local.php
+          if [ ! -f web/sites/default/settings.php ]; then
+            cp web/sites/default/default.settings.php web/sites/default/settings.php
+          fi
+          echo "include \$app_root . '/' . \$site_path . '/settings.local.php';" >> web/sites/default/settings.php
+
+          # Verify database connection
+          ddev mysql -e "SHOW DATABASES;"
+
       - name: Install site
         working-directory: drupal-test
         run: |
