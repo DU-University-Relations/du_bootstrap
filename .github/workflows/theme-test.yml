@@ -62,8 +62,16 @@ jobs:
           # Clone ducore temporarily to read info file
           git clone https://github.com/University-of-Denver/drupal-composer-managed.git ../temp
 
+          # Debug: Show the full info file content
+          echo "Full ducore.info.yml content:"
+          cat ../temp/web/profiles/custom/ducore/ducore.info.yml
+
+          # Debug: Show dependencies section specifically
+          echo -e "\nDependencies section:"
+          grep -A 20 "^dependencies:" ../temp/web/profiles/custom/ducore/ducore.info.yml
+
           # Parse ducore.info.yml for both regular modules and dependencies
-          echo "Extracting modules and dependencies from ducore.info.yml..."
+          echo -e "\nExtracting modules and dependencies from ducore.info.yml..."
           MODULES=$(cat ../temp/web/profiles/custom/ducore/ducore.info.yml | \
             grep -E '^  - |^dependencies:' | \
             grep -v '^  - system\|^  - user\|^  - node\|^  - block\|^  - field\|^  - file\|^  - filter\|^  - image\|^  - text\|^  - views\|^  - taxonomy\|^  - path\|^  - datetime\|^  - options\|^  - menu_link_content\|^  - dblog\|^  - block_content\|^  - media\|^  - content_moderation\|^  - field_ui\|^  - ckeditor5\|^  - du_bootstrap\|^  - du_widen\|^  - du_site\|^  - du_paragraphs\|^  - responsive_image\|^  - claro' | \
