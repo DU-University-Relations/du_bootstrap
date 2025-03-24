@@ -42,10 +42,20 @@ jobs:
       - name: Install Drupal with Profile
         working-directory: drupal-test
         run: |
+          # Backup .ddev configuration
+          mv .ddev ../ddev-backup
+
+          # Clear directory
+          rm -rf *
+
           # Clone the main repository
           git clone https://github.com/University-of-Denver/drupal-composer-managed.git .
 
-          # Start with a fresh composer.json from the profile
+          # Restore .ddev configuration
+          rm -rf .ddev
+          mv ../ddev-backup .ddev
+
+          # Install dependencies
           ddev composer install
 
           # Copy our theme into the themes directory
