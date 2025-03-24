@@ -57,9 +57,19 @@ jobs:
           # Clean up
           ddev exec rm -rf /tmp/drupal-composer-managed
 
+      - name: Setup Drupal
+        run: |
+          # Create settings.php
+          ddev exec mkdir -p web/sites/default/files
+          ddev exec chmod 777 web/sites/default/files
+          ddev exec cp web/sites/default/default.settings.php web/sites/default/settings.php
+          ddev exec chmod 777 web/sites/default/settings.php
+          # Add database configuration
+          ddev exec echo "\$databases['default']['default'] = ['driver' => 'mysql','database' => 'db','username' => 'db','password' => 'db','host' => 'db','port' => '3306'];" >> web/sites/default/settings.php
+
       - name: Install site
         run: |
-          ddev drush si ducore -y
+          ddev exec drush site:install ducore --db-url=mysql://db:db@db:3306/db -y
           ddev drush status
           # Capture any errors in the watchdog
           ddev drush wd-show
