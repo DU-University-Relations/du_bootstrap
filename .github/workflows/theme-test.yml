@@ -95,7 +95,7 @@ jobs:
 
           # Copy settings file into container
           ddev exec cp settings.local.php web/sites/default/settings.local.php
-          ddev exec echo "include \$app_root . '/' . \$site_path . '/settings.local.php';" >> web/sites/default/settings.php
+          ddev exec "echo 'include \$app_root . \"/\" . \$site_path . \"/settings.local.php\";' >> web/sites/default/settings.php"
 
           # Verify database connection
           ddev mysql -e "SHOW DATABASES;"
