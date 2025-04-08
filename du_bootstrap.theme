@@ -395,6 +395,16 @@ function du_bootstrap_preprocess_page(&$variables) {
   // If an inline unit has a different logo, use that.
   $logo_fid = $logo_alt = NULL;
   $variables['menu_item_count'] = 1;
+
+  // Get default values from theme settings
+  $theme_config = \Drupal::config('du_bootstrap.settings');
+  $default_site_prefix = $theme_config->get('site_prefix');
+  $default_site_name = $theme_config->get('site_name') ?: 'University of Denver';
+
+  // Set default values for site prefix and site name
+  $variables['site_prefix'] = $default_site_prefix;
+  $variables['site_name'] = $default_site_name;
+
   if (!empty($inline_unit)) {
     $variables['inline_site'] = TRUE;
     $variables['logo_url'] = $inline_unit->field_home_page->entity->path->alias;
@@ -406,9 +416,13 @@ function du_bootstrap_preprocess_page(&$variables) {
       $logo_alt = $logo_value['alt'] ?? '';
     }
 
-    // Set the site prefix and name.
-    $variables['site_prefix'] = $inline_unit->field_site_prefix->value;
-    $variables['site_name'] = $inline_unit->field_site_name->value;
+    // Set the site prefix and name from inline unit if available
+    if (isset($inline_unit->field_site_prefix->value)) {
+      $variables['site_prefix'] = $inline_unit->field_site_prefix->value;
+    }
+    if (!empty($inline_unit->field_site_name->value)) {
+      $variables['site_name'] = $inline_unit->field_site_name->value;
+    }
 
     if (!empty($logo_fid)) {
       $logo = File::load($logo_fid);
@@ -435,6 +449,16 @@ function du_bootstrap_preprocess_page(&$variables) {
     $settings = \Drupal::config('du_unit_site_config.settings');
     if ($settings->get('unit_hide_resources_for_menu') !== "NULL" and !empty($settings->get('unit_hide_resources_for_menu'))) {
       $variables['hide_resources_for_menu'] = $settings->get('unit_hide_resources_for_menu');
+    }
+
+    // Check if the current node has site prefix and site name fields
+    if (!empty($variables['node']) && $variables['node'] instanceof NodeInterface) {
+      if (isset($variables['node']->field_site_prefix->value)) {
+        $variables['site_prefix'] = $variables['node']->field_site_prefix->value;
+      }
+      if (!empty($variables['node']->field_site_name->value)) {
+        $variables['site_name'] = $variables['node']->field_site_name->value;
+      }
     }
   }
 
@@ -1244,6 +1268,22 @@ function du_bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
     '#description' => t('Select the subtheme for this site. Current value: @current_value', ['@current_value' => $config->get('subtheme_selection') ?: 'unit']),
   ];
 
+  // Add site prefix field
+  $form['site_prefix'] = [
+    '#type' => 'textfield',
+    '#title' => t('Site Prefix'),
+    '#default_value' => $config->get('site_prefix'),
+    '#description' => t('The prefix for the site name (e.g., "University of"). Leave empty if no prefix is needed.'),
+  ];
+
+  // Add site name field
+  $form['site_name'] = [
+    '#type' => 'textfield',
+    '#title' => t('Site Name'),
+    '#default_value' => $config->get('site_name') ?: 'University of Denver',
+    '#description' => t('The name of the site (e.g., "Denver"). Defaults to "University of Denver" if empty.'),
+  ];
+
   $selected_value = $form_state->getValue('subtheme_selection');
 
   // Ensure the selected value is saved to the configuration.
@@ -1256,6 +1296,11 @@ function du_bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
 
     // Save the new value to the configuration.
     $config->set('subtheme_selection', $selected_value);
+
+    // Save site prefix and site name
+    $config->set('site_prefix', $form_state->getValue('site_prefix'));
+    $config->set('site_name', $form_state->getValue('site_name'));
+
     $config->save();
   }
 }
