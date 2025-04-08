@@ -47,7 +47,7 @@
 {% for items in unit.field_unit_footer_link %}
     {% set footerlink = {
         "title": items.title,
-        "href": items.uri,
+        "href": items.url,
         "alt_text": items.options.attributes.title,
         "target": items.options.attributes.target,
         "onclick": items.options.attributes.onclick
@@ -55,10 +55,10 @@
     {% set footerlinks = footerlinks|merge([footerlink]) %}
 {% endfor %}
 {% if (unit.field_unit_url is not empty) and (unit.field_unit_logo is not empty) %}
-    {% set href = unit.field_unit_url.0.uri %}
+    {% set href = unit.field_unit_url.0.url %}
     {% set cssClass = "logo" %}
     {% set alt_text = unit.field_unit_logo.0.alt %}
-    {% set src = file_url(unit.field_unit_logo.0.entity.uri.value) %}
+    {% set src = file_url(unit.field_unit_logo.0.entity.url.value) %}
     {% set image = {
       "alt_text": alt_text,
       "src": src,
