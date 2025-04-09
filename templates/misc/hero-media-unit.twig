@@ -31,7 +31,7 @@
   </div>
   {% if not hide_hero_caption %}
     <div class="hero-media__caption" id="hero-media__caption">
-      <div class="row">
+      <div class="row row-mw-120">
         {% if hero_caption %}
           <div class="col-12 offset-lg-4 col-lg-8 row-mw-120 justify-content-end">
             <div class="hero-media__caption__text">
@@ -84,7 +84,7 @@
   </div>
   {% if not hide_hero_caption %}
     <div class="hero-media__caption" id="hero-media__caption">
-      <div class="row">
+      <div class="row row-mw-120">
         <div class="col-12">
           {% if headline %}
             {% include "@du_bootstrap/navigation/headline.twig" with headline %}
@@ -103,7 +103,7 @@
 {% if is_home and (hero_class == "content-card") %}
 <div class="hero-media {{ hero_class }} unit-hero-media {% if hero_image is empty %}hero-image-empty {% endif %}{% if hero_embed is not empty %}hero-embed-wrapper{% endif %}">
   <div class="col">
-    <div class="row">
+    <div class="row row-mw-120">
       <div class="col-12 col-md-12 col-lg-9">
         {% if hero_video == true %}
           <div {{attributes.addClass('has-video')}}>

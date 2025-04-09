@@ -33,7 +33,7 @@
 {% block content %}
   {{ content }} {# This must be on or no output. #}
   <div class="block-find-stories-by-categories">
-    <div class="row">
+    <div class="row row-mw-120">
       {% for category in categories %}
             {{ drupal_view('newsroom_find_stories', 'default', category) }}
       {% endfor %}

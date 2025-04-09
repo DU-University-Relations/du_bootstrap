@@ -86,11 +86,9 @@
 </head>
 
 <body {{ attributes.addClass(path).addClass(subtheme_selection == 'micro' ? 'micro' : (subtheme_selection == 'unit' ? 'unit-site' : '')) }}>
-    <p class="visually-hidden visually-hidden-focusable">
-        <a href="#main-content">
-            Skip to main content
-        </a>
-    </p>
+    <a href="#main-content" class="visually-hidden-focusable position-absolute start-0 top-0 bg-dark text-white p-2 rounded-bottom" style="z-index: 50;">
+        Skip to main content
+    </a>
     <div class="off-canvas-wrap">
         {{ page_top }}
         {{ page }}

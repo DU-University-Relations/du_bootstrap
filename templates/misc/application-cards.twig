@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row row-mw-120">
 	<div class="columns small-12 {{ deadline_data_css }}">
 		<div class="application-cards__description">
 		{% include "@du_bootstrap/navigation/headline.twig" with application_card_info %}
@@ -20,7 +20,7 @@
 	{% endif %}
 </div>
 <div class="application-cards-module application-cards-module-overlay" data-equalizer="cards-module__content" style="background-image: url('{{ application_card_info.img_url }}')">
-  <div class="row">
+  <div class="row row-mw-120">
 	{% block cards %}
 		{% for card in cards %}
 			{% include "@du_bootstrap/misc/application-card.twig" with card %}

@@ -719,6 +719,9 @@ function du_bootstrap_preprocess_page(&$variables) {
  * Implements hook_preprocess_node() for NODE document templates.
  */
 function du_bootstrap_preprocess_node(&$variables) {
+  // Check if du_menu_blocks module is available
+  $module_handler = \Drupal::service('module_handler');
+  $variables['du_menu_blocks_available'] = $module_handler->moduleExists('du_menu_blocks');
 
   /*
    * Here we're adding a 'page' region (subnav) to the node template

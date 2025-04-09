@@ -85,16 +85,41 @@
   {% endblock %}
 
   {% block sub_nav_block %}
-    {% embed "@du_bootstrap/navigation/sub-nav.twig" %}
-      {% block back_to_parent %}
-        {{ subnav.parentlevelnav }}
-      {% endblock %}
-      {% set toggler_text = 'Explore this Section' %}
-      {% set hide_subnav_block = content.field_hide_subnav_block|field_raw('value') %}
-      {% block sub_nav_menu %}
-          {{ subnav.subnavblock }}
-      {% endblock %}
-    {% endembed %}
+    {% set hide_subnav_block = content.field_hide_subnav_block|field_raw('value') %}
+
+    {% if hide_subnav_block != '1' %}
+      <div class="col-12 col-lg-3 pull-up">
+        <div class="sub-menu-wrap">
+          {# Check if du_menu_blocks module is available #}
+          {% if _context['du_menu_blocks_available'] is defined and _context['du_menu_blocks_available'] %}
+            {# Parent level navigation #}
+            {{ drupal_block('du_menu_blocks:parent_level') }}
+
+            {# Get the subnav block content to check if it has items #}
+            {% set subnav_block = drupal_block('du_menu_blocks:subnav') %}
+
+            {# Only show the toggler and subnav if there are items in the menu #}
+            {% if subnav_block is not empty %}
+              {# Render the block to check if it has content #}
+              {% set rendered_subnav = subnav_block|render %}
+              {% if rendered_subnav is not empty and rendered_subnav|striptags|trim is not empty %}
+                {# Toggler for mobile view #}
+                <p id="sub-menu-toggler" data-responsive-toggle="sub-menu" data-hide-for="large">
+                  <a href="#" data-toggle>
+                    Explore this Section
+                  </a>
+                </p>
+
+                {# Sub-navigation menu #}
+                <nav id="sub-menu" aria-label="sub-navigation">
+                  {{ subnav_block }}
+                </nav>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
   {% endblock %}
 
   {% block page_content %}

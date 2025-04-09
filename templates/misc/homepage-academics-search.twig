@@ -8,7 +8,7 @@
         {% include "@du_bootstrap/misc/search-box.twig" with {search_id:"academics-search-id", "search_box": { "placeholder": placeholder } } %} {# Prevent duplicate id with header search box. Later, maybe this could be refactored. The search box atom may be too multi-purpose. Also has hard-coded tabindex. #}
         <div class="row program-search-filters">
             {% if button1 %}
-                <div class="columns small-12 medium-6">
+                <div class="col-12 col-md-6">
                     <button class="btn" type="submit" data-action="{{ button1.action }}" title="{{ button1.title|e('html_attr') }}" onclick="{{ button1.onclick|e('html_attr') }}">
                         {{ button1.title }}
                         {% include "@du_bootstrap/misc/_du-icon.twig" with {"icon_name": "cust-search"} %}
@@ -16,7 +16,7 @@
                 </div>
             {% endif %}
             {% if button2 %}
-                <div class="columns small-12 medium-6">
+                <div class="col-12 col-md-6">
                     <button class="btn" type="submit" data-action="{{ button2.action }}" title="{{ button2.title|e('html_attr') }}" onclick="{{ button2.onclick|e('html_attr') }}">
                         {{ button2.title }}
                         {% include "@du_bootstrap/misc/_du-icon.twig" with {"icon_name": "cust-search"} %}

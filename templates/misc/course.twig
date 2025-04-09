@@ -1,5 +1,5 @@
 <article{{ attributes }} id="main-content" role="main" class="row-mw-120">
-    <div class="row">
+    <div class="row row-mw-120">
         <div class="columns large-offset-2 large-8 pull-up page-title-band">
             {% block page_title %}
                 {% include "@du_bootstrap/navigation/headline.twig" with {'title' : title, 'type' : 'h1'} %}
@@ -14,7 +14,7 @@
 
 			<!-- course description details-->
 			<div class="course__detail">
-				<div class="row">
+				<div class="row row-mw-120">
 					<div class="columns small-12 {{ additional_info_col_css }}">
 						<div class="course-description">
 							{% include "@du_bootstrap/paragraph/paragraph.twig" with {'text' : course_desc } %}
@@ -23,7 +23,7 @@
 					{% if additional_info_col_css %}
 					<div class="columns small-12 medium-4 additional-info">
 
-						<div class="row">
+						<div class="row row-mw-120">
 							<div class="columns {% if course_info_2.title is not empty %}show-right-border{% endif %}">
 								<div class="additional-info--has-icons">
 									{% include "@du_bootstrap/navigation/headline.twig" with {'title' : course_info_1.title,  'type' : 'h4'} %}

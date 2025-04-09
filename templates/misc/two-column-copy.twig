@@ -1,12 +1,12 @@
 {% if header %}
-    <div class="row">
+    <div class="row row-mw-120">
         <div class="columns small-12">
             <h3 class="btm-divider buffer-top ">{{ header|raw }}</h3>
         </div>
     </div>
 {% endif %}
 <div class="row two-column-copy">
-    <div class="columns small-12 medium-6">
+    <div class="col-12 col-md-6">
         {% if col_1_header %}
             <h4>{{ col_1_header|raw }}</h4>
         {% endif %}
@@ -40,7 +40,7 @@
             {% endif %}
         {% endblock %}
     </div>
-    <div class="columns small-12 medium-6">
+    <div class="col-12 col-md-6">
         {% if col_2_header %}
             <h4>{{ col_2_header|raw }}</h4>
         {% endif %}

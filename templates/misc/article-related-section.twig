@@ -1,13 +1,13 @@
 {% if related_list %}
     <div class="article-related">
         {% if (related_title and related_list|length > 2) %}
-            <div class="row">
+            <div class="row row-mw-120">
                 <div class="columns">
                     {% include "@du_bootstrap/navigation/headline.twig" with related_title %}
                 </div>
             </div>
         {% endif %}
-        <div class="row">
+        <div class="row row-mw-120">
             {% if (related_title and related_list|length < 3) %}
                 <div class="columns small-12 medium-4">
                     {% include "@du_bootstrap/navigation/headline.twig" with related_title %}

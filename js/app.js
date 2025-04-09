@@ -713,7 +713,10 @@
       // MOBILE CARDS MODULE FUNCTIONALITY
       $('.cards-module .cards-module__content > h4').on('click', function() {
         if (Foundation.MediaQuery.atLeast('large')) return;
-        $(this).closest('.cards-module__content').toggleClass('expanded');
+        const $content = $(this).closest('.cards-module__content');
+        const $contentBlock = $content.find('.d-md-block');
+        $content.toggleClass('expanded');
+        $contentBlock.toggleClass('d-none');
         reCalcSticky();
       });
 
@@ -1355,8 +1358,15 @@ function debounce(func, wait, immediate) {
 };
 
 function reCalcSticky() {
-  if ($('#top-bar-sticky-wrap').length) {
-    $('#top-bar-sticky-wrap').foundation('_calc', true);
+  const stickyWrap = document.getElementById('top-bar-sticky-wrap');
+  if (stickyWrap) {
+    // Force a reflow of the sticky element by temporarily modifying a style
+    const currentTop = stickyWrap.style.top;
+    stickyWrap.style.top = (parseInt(currentTop || 0) - 1) + 'px';
+    // Use requestAnimationFrame to ensure the browser processes the change
+    requestAnimationFrame(() => {
+      stickyWrap.style.top = currentTop;
+    });
   }
 }
 /*! Lazy Load XT v1.1.0 2016-01-12
@@ -2601,7 +2611,7 @@ function reCalcSticky() {
     Drupal.behaviors.utilityMenuExploreDropdownUpdate = {
         attach: function() {
             // Clicking the Explore button will open up the dropdown on CORE.
-            $('.menu-toggle-utility').click(function() {
+            $('.menu-toggle-utility__title').click(function() {
                 $('.menu-toggle-utility li').toggle();
             });
         }

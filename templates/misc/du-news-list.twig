@@ -4,7 +4,7 @@
             {% include "@du_bootstrap/navigation/headline.twig" with {'title' : title, 'type' : 'h3', 'cssClass': 'btm-divider'} %}
         </div>
     {% endif %}
-    <div class="row">
+    <div class="row row-mw-120">
         {% block du_news_list %}
             {% for item in rows %}
                 {% include "@du_bootstrap/misc/du-in-the-news.twig" with item %}
