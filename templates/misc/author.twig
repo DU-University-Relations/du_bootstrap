@@ -1,5 +1,5 @@
 <div class="author-item">
-    <div class="row">
+    <div class="row row-mw-120">
         <div class="columns">
             <h4>{{ name }}</h4>
             <p>{{ title|raw }}</p>
@@ -10,13 +10,13 @@
     </div>
     <div class="author-info">
         {% if email %}
-            <div class="row">
+            <div class="row row-mw-120">
                 {% include "@du_bootstrap/misc/icon.twig" with { "icon_class": "mail-alt", "url": email_url } %}
                 <p>{{ email }}</p>
             </div>
         {% endif %}
         {% if phone %}
-            <div class="row">
+            <div class="row row-mw-120">
                 {% include "@du_bootstrap/misc/icon.twig" with { "icon_class": "phone", "url": phone_url } %}
                 <p>{{ phone }}</p>
             </div>

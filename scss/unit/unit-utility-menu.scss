@@ -38,11 +38,11 @@
         &::after {
           content: '\e822';
           font-family: $icon-font;
-          padding-left: .7rem;
+          margin-left: .7rem;
           transform: rotate(-90deg);
         }
         @include media-breakpoint-down(sm) {
-          display: block;
+          display: contents;
         }
       }
 

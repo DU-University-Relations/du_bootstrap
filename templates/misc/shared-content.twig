@@ -1,13 +1,13 @@
 <div class="shared-content buffer-on-inner-row">
     {% block shared %}
         {% if shared.show == 1 %}
-            <div class="row">
+            <div class="row row-mw-120">
                 <div class="columns shared-content-header">
                     {% include "@du_bootstrap/navigation/headline.twig" with { 'title' : label, 'type' : 'h3', 'cssClass': 'shared-content-title' } %}
                 </div>
             </div>
         {% endif %}
-            <div class="row">
+            <div class="row row-mw-120">
                 <div class="columns shared-content-text">
                     {% include "@du_bootstrap/paragraph/paragraph.twig" with { 'text' : text } %}
                 </div>

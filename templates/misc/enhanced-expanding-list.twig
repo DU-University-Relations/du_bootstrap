@@ -1,12 +1,12 @@
 {% if col_header %}
-    <div class="row">
+    <div class="row row-mw-120">
         <div class="columns">
             {% include "@du_bootstrap/navigation/headline.twig" with col_header %}
         </div>
     </div>
 {% endif %}
 {% if expanding_list is not empty %}
-    <div class="row">
+    <div class="row row-mw-120">
         <div class="columns">
             <div class="item-list row" id="enhanced-expanding-list-container">
                 <ul class="accordion" data-multi-expand="true" data-allow-all-closed="true" data-accordion="data-accordion" role="tablist">

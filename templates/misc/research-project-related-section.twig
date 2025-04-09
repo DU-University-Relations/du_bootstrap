@@ -8,13 +8,13 @@
     {% endif %}
 
     {% if (related_material_list|length > 2) %}
-      <div class="row">
+      <div class="row row-mw-120">
         <div class="columns small-12 medium-4">
           {% include "@du_bootstrap/navigation/headline.twig" with project.related.header %}
         </div>
       </div>
     {% endif %}
-    <div class="row">
+    <div class="row row-mw-120">
       {% if (related_material_list|length < 3) %}
         <div class="columns small-12 medium-4">
           {% include "@du_bootstrap/navigation/headline.twig" with project.related.header %}

@@ -1,9 +1,9 @@
 <div class="copy-module{% if image and (not full) %} copy-module--image{% endif %}{% if alt and (not full) %} copy-module--image-alt{% endif %}">
-    <div class="row expanded">
-        <div class="columns">
-            <div class="row">
+    <div class="row w-100">
+        <div class="col">
+            <div class="row row-mw-120">
                 {% if image and (content.field_copy_style|field_raw.value != 'full') and (image_placement == 'image-left' or content.field_copy_image_placement|render is empty) %}
-                    <div class="columns small-12{% if not alt %} large-6{% endif %}{% if alt %} large-9{% endif %}">
+                    <div class="col-12{% if not alt %} col-lg-6{% endif %}{% if alt %} col-lg-9{% endif %}">
                         {% if not alt %}
                             {{ copy_image }}
                         {% elseif alt %}
@@ -13,7 +13,7 @@
                         {% endif %}
                     </div>
                 {% elseif image and (content.field_copy_style|field_raw.value != 'full') and (image_placement == 'image-right') %}
-                    <div class="columns small-12{% if not alt %} large-6 large-offset-6{% endif %}{% if alt %} large-9 large-offset-3{% endif %} image-right">
+                    <div class="col-12{% if not alt %} col-lg-6 offset-lg-6{% endif %}{% if alt %} col-lg-9 offset-lg-3{% endif %} image-right">
                         {% if not alt %}
                             {{ copy_image }}
                         {% elseif alt %}
@@ -24,12 +24,12 @@
                     </div>
                 {% endif %}
 
-                <div class="columns small-12
-                    {% if (not image) and (not full) %} medium-12 large-8 large-offset-4{% endif %}
-                    {% if full %} medium-12 large-12 large-offset-12{% endif %}
+                <div class="col-12
+                    {% if (not image) and (not full) %} col-md-12 col-lg-8 offset-lg-4{% endif %}
+                    {% if full %} col-md-12 col-lg-12 offset-lg-12{% endif %}
                     {% if image and (not full) %}
-                        {% if not alt %} large-6{% endif %}
-                        {% if alt %} large-3{% endif %}
+                        {% if not alt %} col-lg-6{% endif %}
+                        {% if alt %} col-lg-3{% endif %}
                     {% endif %}">
                     <div class="content {% if image_placement %}{{ image_placement }}{% endif %}">
                         {% if header %}

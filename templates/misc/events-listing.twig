@@ -45,7 +45,7 @@
 
         <div class="row events-listing__nav events-listing__date-filters">
             <div class="small-12 medium-6 columns">
-                <div class="row" id="month-nav">
+                <div class="row row-mw-120" id="month-nav">
                     <div class="columns order-1 medium-order-2 expand row month-range">
                         {% if calendar_month %}
                             {% include "@du_bootstrap/navigation/headline.twig" with calendar_month %}
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="small-12 medium-6 columns">
-                <div class="row" id="byDate">
+                <div class="row row-mw-120" id="byDate">
                     <div class="small-6 medium-6 columns" id="datepickerImageStart"><img src='{{ calendar_image }}' alt="calendar-picker"/><h2>
                             {{ start_date }}
                         </h2>
