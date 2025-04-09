@@ -34,6 +34,9 @@
     </div>
 
     {# Set up hero variables based on conditions #}
+    {# Set hide_hero to true by default #}
+    {% set hide_hero = true %}
+
     {% if hero_video_url %}
       {% set hero_video = {
         "id": "hero-video",
