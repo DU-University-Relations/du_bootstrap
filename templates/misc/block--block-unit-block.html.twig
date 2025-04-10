@@ -58,7 +58,7 @@
     {% set href = unit.field_unit_url.0.url %}
     {% set cssClass = "logo" %}
     {% set alt_text = unit.field_unit_logo.0.alt %}
-    {% set src = file_url(unit.field_unit_logo.0.entity.url.value) %}
+    {% set src = file_url(unit.field_unit_logo.0.entity.uri.value) %}
     {% set image = {
       "alt_text": alt_text,
       "src": src,
