@@ -601,7 +601,8 @@ function du_bootstrap_preprocess_page(&$variables) {
   * Checks if either the Google Programmable Search or Cludo Search module
   * is enabled. If neither is active, the search icon and form will not be shown
   * in the theme. The result is passed to Twig as a boolean variable.
-  */  $module_handler = \Drupal::moduleHandler();
+  */  
+  $module_handler = \Drupal::moduleHandler();
   
   $google_enabled = $module_handler->moduleExists('google_cse');
   $cludo_enabled = $module_handler->moduleExists('cludo_search');
