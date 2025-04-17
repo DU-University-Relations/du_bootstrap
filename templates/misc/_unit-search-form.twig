@@ -1,12 +1,14 @@
-<form class="unit-search-form" id="utility-main-search" aria-expanded="false">
+{% if show_search %}
+  <form class="unit-search-form" id="utility-main-search" aria-expanded="false">
     <div class="unit-search-form-wrapper">
-        <label class="visually-hidden" for="site-search-input" aria-label="search-label">Search Input</label>
-        <input name="search" id="site-search-input" placeholder="Search" type="text" required="required" tabindex="1">
-        <button class="search-submit" type="button" title="Submit Search">
-            <span class="icon-du-cust-search" aria-hidden="true"></span>
-            <span class="visually-hidden">Submit Search</span>
-        </button>
+      <label class="visually-hidden" for="site-search-input" aria-label="search-label">Search Input</label>
+      <input name="search" id="site-search-input" placeholder="Search" type="text" required="required" tabindex="1">
+      <button class="search-submit" type="button" title="Submit Search">
+        <span class="icon-du-cust-search" aria-hidden="true"></span>
+        <span class="visually-hidden">Submit Search</span>
+      </button>
     </div>
     {% include "@du_bootstrap/misc/_unit-nav-close.twig" with {controls: "#main-search"} %}
     {% include "@du_bootstrap/misc/_unit-nav-back.twig" with {controls: "#main-search"} %}
-</form>
+  </form>
+{% endif %}
