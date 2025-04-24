@@ -594,16 +594,16 @@ function du_bootstrap_preprocess_page(&$variables) {
   if (!empty($config->get('subtheme_selection'))) {
     $variables['subtheme_selection'] = $subtheme_selection;
   }
-  
+
   /*
   * Determine whether the search UI should be displayed.
   *
   * Checks if either the Google Programmable Search or Cludo Search module
   * is enabled. If neither is active, the search icon and form will not be shown
   * in the theme. The result is passed to Twig as a boolean variable.
-  */  
+  */
   $module_handler = \Drupal::moduleHandler();
-  
+
   $google_enabled = $module_handler->moduleExists('google_cse');
   $cludo_enabled = $module_handler->moduleExists('cludo_search');
 
@@ -1326,25 +1326,30 @@ function du_bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
 /**
  * Implements hook_preprocess_region__utility_nav().
  */
-function du_bootstrap_preprocess_region__utility_nav(&$variables) {
-  // Load the utility menu
-  $menu_tree = \Drupal::menuTree();
-  $menu_name = 'utility'; // or whatever your menu machine name is
+function du_bootstrap_preprocess_block__system_menu_block__utility_nav(&$variables) {
+  // Set show_search based on module availability
+  $module_handler = \Drupal::moduleHandler();
+  $google_enabled = $module_handler->moduleExists('google_cse');
+  $cludo_enabled = $module_handler->moduleExists('cludo_search');
+  $variables['show_search'] = $google_enabled || $cludo_enabled;
 
-  // Load the menu tree
-  $parameters = $menu_tree->getCurrentRouteMenuTreeParameters($menu_name);
-  $tree = $menu_tree->load($menu_name, $parameters);
-  $manipulators = [
-    ['callable' => 'menu.default_tree_manipulators:checkAccess'],
-    ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
-  ];
-  $tree = $menu_tree->transform($tree, $manipulators);
+  // Check for blocks in the utility_flyouts region.
+  $theme = \Drupal::theme()->getActiveTheme()->getName();
+  $blocks = \Drupal::entityTypeManager()->getStorage('block')->loadByProperties([
+    'theme' => $theme,
+    'region' => 'utility_flyouts',
+  ]);
 
-  // Add the menu items to the variables
-  $variables['items'] = $menu_tree->build($tree);
+  // Check if any blocks are actually visible on the current page.
+  // If there are visible blocks, the resource_links variable will be set to TRUE.
+  $has_visible_blocks = FALSE;
+  foreach ($blocks as $block) {
+    if ($block->access('view')) {
+      $has_visible_blocks = TRUE;
+      break;
+    }
+  }
 
-  // Add other necessary variables
-  $variables['utility_resource_for_menu_display'] = false;
-  $variables['flyout_menu_title'] = 'Resources For';
-  $variables['du_elevate_display_active'] = false;
+  // Set resource_links based on whether there are visible blocks in the utility_flyouts region.
+  $variables['resource_links'] = $has_visible_blocks;
 }
