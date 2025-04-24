@@ -1352,4 +1352,9 @@ function du_bootstrap_preprocess_block__system_menu_block__utility_nav(&$variabl
 
   // Set resource_links based on whether there are visible blocks in the utility_flyouts region.
   $variables['resource_links'] = $has_visible_blocks;
+
+  // Set remaining variables.
+  $variables['utility_resource_for_menu_display'] = false;
+  $variables['flyout_menu_title'] = 'Resources For';
+  $variables['du_elevate_display_active'] = false;
 }
