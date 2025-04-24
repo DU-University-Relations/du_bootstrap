@@ -32,7 +32,7 @@
                 {# Meta navigation section #}
                 <div id="unit-meta-navigation-wrapper" class="unit-meta-navigation-wrapper">
                     <ul class="menu meta-navigation nav">
-                        {% if not utility_menu_options.hide_resource_for_menu %}
+                        {% if not utility_menu_options.hide_resource_for_menu and resource_links is defined and resource_links is not empty %}
                             <li class="nav-item">
                                 <a href="#utility-resources-for" class="unit-utility-menu__audience-button nav-link d-flex align-items-center">
                                     <span class="toggle-icon z-1">{% include "@du_bootstrap/misc/_du-icon.twig" with {"icon_name": "user", "bold":true} %}</span>
