@@ -1358,3 +1358,22 @@ function du_bootstrap_preprocess_block__system_menu_block__utility_nav(&$variabl
   $variables['flyout_menu_title'] = 'Resources For';
   $variables['du_elevate_display_active'] = false;
 }
+
+/**
+ * Removes lazy load for hero images - Alex.
+ * https://api.drupal.org/api/drupal/core%21includes%21theme.inc/function/template_preprocess_image/9
+ */
+function du_bootstrap_preprocess_image(&$variables) {
+  //dpm($variables);
+  // Without dimensions specified, layout shifts can occur,
+  // which are more noticeable on pages that take some time to load.
+  // As a result, only mark images as lazy load that have dimensions.
+  if (isset($variables['width'], $variables['height']) && !isset($variables['attributes']['loading'])) {
+      $variables['attributes']['loading'] = 'lazy';
+  }
+  
+  if(str_contains($variables['uri'], "hero_image")){
+   unset($variables['attributes']['loading']);
+  }
+  //dpm($variables);
+ }
