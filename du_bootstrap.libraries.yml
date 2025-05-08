@@ -17,9 +17,11 @@ global-styling:
   css:
     component:
       css/style.css: {}
-    remote_library:
-      css:
-        - https://use.typekit.net/tir4vjc.css
+    theme:
+      css/external.css: { external: true }
+      external/remote.css:
+        external: true
+        url: "https://use.typekit.net/tir4vjc.css"
   dependencies:
     - core/jquery
     - core/drupal
