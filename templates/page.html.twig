@@ -12,6 +12,12 @@
   {{ page.content }}
 {% else %}
   <div class="page-wrapper">
+
+    {# Display Drupal system messages as Bootstrap 5.3 toasts #}
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container">
+      {{ page.messages }}
+    </div>
+
     {# Render tabs #}
     <div class="content-top">
       {# Only logged_in users for now but this should be done in permissions if possible#}
