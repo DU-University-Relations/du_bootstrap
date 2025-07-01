@@ -2,7 +2,7 @@
   "name": "university-of-denver/du_bootstrap",
   "description": "Bootstrap 5 base theme.",
   "type": "drupal-theme",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "license": "GPL-2.0-or-later",
   "homepage": "https://github.com/University-of-Denver/du_bootstrap",
   "require": {
