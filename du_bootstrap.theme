@@ -1279,8 +1279,8 @@ function du_bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
     '#title' => t('Select Subtheme'),
     '#options' => [
       'unit' => t('Unit'),
-      'micro' => t('Micro'),
-      'core' => t('Core'),
+      //'micro' => t('Micro'), 
+      'www' => t('WWW'),
     ],
     '#default_value' => $config->get('subtheme_selection') ?: 'unit',
     '#description' => t('Select the subtheme for this site. Current value: @current_value', ['@current_value' => $config->get('subtheme_selection') ?: 'unit']),
