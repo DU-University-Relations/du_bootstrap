@@ -6163,100 +6163,6 @@ textarea.form-control-lg {
   top: -1px;
 }
 
-.alert {
-  --bs-alert-bg: transparent;
-  --bs-alert-padding-x: 1rem;
-  --bs-alert-padding-y: 1rem;
-  --bs-alert-margin-bottom: 1rem;
-  --bs-alert-color: inherit;
-  --bs-alert-border-color: transparent;
-  --bs-alert-border: var(--bs-border-width) solid var(--bs-alert-border-color);
-  --bs-alert-border-radius: var(--bs-border-radius);
-  --bs-alert-link-color: inherit;
-  position: relative;
-  padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
-  margin-bottom: var(--bs-alert-margin-bottom);
-  color: var(--bs-alert-color);
-  background-color: var(--bs-alert-bg);
-  border: var(--bs-alert-border);
-  border-radius: var(--bs-alert-border-radius);
-}
-
-.alert-heading {
-  color: inherit;
-}
-
-.alert-link {
-  font-weight: 700;
-  color: var(--bs-alert-link-color);
-}
-
-.alert-dismissible {
-  padding-right: 3rem;
-}
-.alert-dismissible .btn-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 2;
-  padding: 1.25rem 1rem;
-}
-
-.alert-primary {
-  --bs-alert-color: var(--bs-primary-text-emphasis);
-  --bs-alert-bg: var(--bs-primary-bg-subtle);
-  --bs-alert-border-color: var(--bs-primary-border-subtle);
-  --bs-alert-link-color: var(--bs-primary-text-emphasis);
-}
-
-.alert-secondary {
-  --bs-alert-color: var(--bs-secondary-text-emphasis);
-  --bs-alert-bg: var(--bs-secondary-bg-subtle);
-  --bs-alert-border-color: var(--bs-secondary-border-subtle);
-  --bs-alert-link-color: var(--bs-secondary-text-emphasis);
-}
-
-.alert-success {
-  --bs-alert-color: var(--bs-success-text-emphasis);
-  --bs-alert-bg: var(--bs-success-bg-subtle);
-  --bs-alert-border-color: var(--bs-success-border-subtle);
-  --bs-alert-link-color: var(--bs-success-text-emphasis);
-}
-
-.alert-info {
-  --bs-alert-color: var(--bs-info-text-emphasis);
-  --bs-alert-bg: var(--bs-info-bg-subtle);
-  --bs-alert-border-color: var(--bs-info-border-subtle);
-  --bs-alert-link-color: var(--bs-info-text-emphasis);
-}
-
-.alert-warning {
-  --bs-alert-color: var(--bs-warning-text-emphasis);
-  --bs-alert-bg: var(--bs-warning-bg-subtle);
-  --bs-alert-border-color: var(--bs-warning-border-subtle);
-  --bs-alert-link-color: var(--bs-warning-text-emphasis);
-}
-
-.alert-danger {
-  --bs-alert-color: var(--bs-danger-text-emphasis);
-  --bs-alert-bg: var(--bs-danger-bg-subtle);
-  --bs-alert-border-color: var(--bs-danger-border-subtle);
-  --bs-alert-link-color: var(--bs-danger-text-emphasis);
-}
-
-.alert-light {
-  --bs-alert-color: var(--bs-light-text-emphasis);
-  --bs-alert-bg: var(--bs-light-bg-subtle);
-  --bs-alert-border-color: var(--bs-light-border-subtle);
-  --bs-alert-link-color: var(--bs-light-text-emphasis);
-}
-
-.alert-dark {
-  --bs-alert-color: var(--bs-dark-text-emphasis);
-  --bs-alert-bg: var(--bs-dark-bg-subtle);
-  --bs-alert-border-color: var(--bs-dark-border-subtle);
-  --bs-alert-link-color: var(--bs-dark-text-emphasis);
-}
 
 @-webkit-keyframes progress-bar-stripes {
   0% {
@@ -14540,25 +14446,12 @@ textarea.form-control-lg {
  * @file
  * Visual styles for comments in Bootstrap.
  */
-.alert-wrapper {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  max-width: 100%;
-  max-height: 75vh;
-  overflow: scroll;
-  z-index: 9999;
-}
 
 .toast-wrapper {
   position: fixed;
   top: 0;
   right: 0;
   z-index: 9999;
-}
-
-.alert svg {
-  max-width: 2rem;
 }
 
 /**
@@ -18648,10 +18541,7 @@ body {
     top: 1.1rem;
   }
 }
-.du-alert {
-  padding: 2.2rem 0;
-  background-color: #faebce;
-}
+
 .du-alert > .row > .columns, .show-pager.paragraph--type--du-in-the-news-list .du-alert > .row > header, .show-pager.paragraph--type--du-in-the-news-list .du-alert > header > .columns, .show-pager.paragraph--type--du-in-the-news-list .du-alert > header > header, .du-alert > .row > .paragraph--type--du-in-the-news-list, .show-pager.paragraph--type--du-in-the-news-list .du-alert > header > .paragraph--type--du-in-the-news-list, .du-alert > .paragraph--type--du-in-the-news-list > .columns, .show-pager.paragraph--type--du-in-the-news-list .du-alert > .paragraph--type--du-in-the-news-list > header, .du-alert > .paragraph--type--du-in-the-news-list > .paragraph--type--du-in-the-news-list, .paragraph--type--du-in-the-news-list .du-alert > .row > .views-element-container, .show-pager.paragraph--type--du-in-the-news-list .du-alert > header > .views-element-container, .paragraph--type--du-in-the-news-list .du-alert > .paragraph--type--du-in-the-news-list > .views-element-container, .paragraph--type--du-in-the-news-list .du-alert > .views-element-container > .columns, .show-pager.paragraph--type--du-in-the-news-list .du-alert > .views-element-container > header, .paragraph--type--du-in-the-news-list .du-alert > .views-element-container > .paragraph--type--du-in-the-news-list, .paragraph--type--du-in-the-news-list .du-alert > .views-element-container > .views-element-container {
   position: relative;
   padding-right: 0;
@@ -18679,346 +18569,6 @@ body {
 .js .du-alert > .row > .columns .du-alert__action-button:hover, .js .show-pager.paragraph--type--du-in-the-news-list .du-alert > .row > header .du-alert__action-button:hover, .show-pager.paragraph--type--du-in-the-news-list .js .du-alert > .row > header .du-alert__action-button:hover, .js .show-pager.paragraph--type--du-in-the-news-list .du-alert > header > .columns .du-alert__action-button:hover, .js .show-pager.paragraph--type--du-in-the-news-list .du-alert > header > header .du-alert__action-button:hover, .show-pager.paragraph--type--du-in-the-news-list .js .du-alert > header > .columns .du-alert__action-button:hover, .show-pager.paragraph--type--du-in-the-news-list .js .du-alert > header > header .du-alert__action-button:hover, .js .du-alert > .row > .paragraph--type--du-in-the-news-list .du-alert__action-button:hover, .js .show-pager.paragraph--type--du-in-the-news-list .du-alert > header > .paragraph--type--du-in-the-news-list .du-alert__action-button:hover, .show-pager.paragraph--type--du-in-the-news-list .js .du-alert > header > .paragraph--type--du-in-the-news-list .du-alert__action-button:hover, .js .du-alert > .paragraph--type--du-in-the-news-list > .columns .du-alert__action-button:hover, .js .show-pager.paragraph--type--du-in-the-news-list .du-alert > .paragraph--type--du-in-the-news-list > header .du-alert__action-button:hover, .show-pager.paragraph--type--du-in-the-news-list .js .du-alert > .paragraph--type--du-in-the-news-list > header .du-alert__action-button:hover, .js .du-alert > .paragraph--type--du-in-the-news-list > .paragraph--type--du-in-the-news-list .du-alert__action-button:hover, .js .paragraph--type--du-in-the-news-list .du-alert > .row > .views-element-container .du-alert__action-button:hover, .js .show-pager.paragraph--type--du-in-the-news-list .du-alert > header > .views-element-container .du-alert__action-button:hover, .js .paragraph--type--du-in-the-news-list .du-alert > .paragraph--type--du-in-the-news-list > .views-element-container .du-alert__action-button:hover, .paragraph--type--du-in-the-news-list .js .du-alert > .row > .views-element-container .du-alert__action-button:hover, .show-pager.paragraph--type--du-in-the-news-list .js .du-alert > header > .views-element-container .du-alert__action-button:hover, .paragraph--type--du-in-the-news-list .js .du-alert > .paragraph--type--du-in-the-news-list > .views-element-container .du-alert__action-button:hover, .js .paragraph--type--du-in-the-news-list .du-alert > .views-element-container > .columns .du-alert__action-button:hover, .js .show-pager.paragraph--type--du-in-the-news-list .du-alert > .views-element-container > header .du-alert__action-button:hover, .js .paragraph--type--du-in-the-news-list .du-alert > .views-element-container > .paragraph--type--du-in-the-news-list .du-alert__action-button:hover, .js .paragraph--type--du-in-the-news-list .du-alert > .views-element-container > .views-element-container .du-alert__action-button:hover, .paragraph--type--du-in-the-news-list .js .du-alert > .views-element-container > .columns .du-alert__action-button:hover, .show-pager.paragraph--type--du-in-the-news-list .js .du-alert > .views-element-container > header .du-alert__action-button:hover, .paragraph--type--du-in-the-news-list .js .du-alert > .views-element-container > .paragraph--type--du-in-the-news-list .du-alert__action-button:hover, .paragraph--type--du-in-the-news-list .js .du-alert > .views-element-container > .views-element-container .du-alert__action-button:hover, .js .du-alert > .row > .columns .du-alert__action-button:focus, .js .show-pager.paragraph--type--du-in-the-news-list .du-alert > .row > header .du-alert__action-button:focus, .show-pager.paragraph--type--du-in-the-news-list .js .du-alert > .row > header .du-alert__action-button:focus, .js .show-pager.paragraph--type--du-in-the-news-list .du-alert > header > .columns .du-alert__action-button:focus, .js .show-pager.paragraph--type--du-in-the-news-list .du-alert > header > header .du-alert__action-button:focus, .show-pager.paragraph--type--du-in-the-news-list .js .du-alert > header > .columns .du-alert__action-button:focus, .show-pager.paragraph--type--du-in-the-news-list .js .du-alert > header > header .du-alert__action-button:focus, .js .du-alert > .row > .paragraph--type--du-in-the-news-list .du-alert__action-button:focus, .js .show-pager.paragraph--type--du-in-the-news-list .du-alert > header > .paragraph--type--du-in-the-news-list .du-alert__action-button:focus, .show-pager.paragraph--type--du-in-the-news-list .js .du-alert > header > .paragraph--type--du-in-the-news-list .du-alert__action-button:focus, .js .du-alert > .paragraph--type--du-in-the-news-list > .columns .du-alert__action-button:focus, .js .show-pager.paragraph--type--du-in-the-news-list .du-alert > .paragraph--type--du-in-the-news-list > header .du-alert__action-button:focus, .show-pager.paragraph--type--du-in-the-news-list .js .du-alert > .paragraph--type--du-in-the-news-list > header .du-alert__action-button:focus, .js .du-alert > .paragraph--type--du-in-the-news-list > .paragraph--type--du-in-the-news-list .du-alert__action-button:focus, .js .paragraph--type--du-in-the-news-list .du-alert > .row > .views-element-container .du-alert__action-button:focus, .js .show-pager.paragraph--type--du-in-the-news-list .du-alert > header > .views-element-container .du-alert__action-button:focus, .js .paragraph--type--du-in-the-news-list .du-alert > .paragraph--type--du-in-the-news-list > .views-element-container .du-alert__action-button:focus, .paragraph--type--du-in-the-news-list .js .du-alert > .row > .views-element-container .du-alert__action-button:focus, .show-pager.paragraph--type--du-in-the-news-list .js .du-alert > header > .views-element-container .du-alert__action-button:focus, .paragraph--type--du-in-the-news-list .js .du-alert > .paragraph--type--du-in-the-news-list > .views-element-container .du-alert__action-button:focus, .js .paragraph--type--du-in-the-news-list .du-alert > .views-element-container > .columns .du-alert__action-button:focus, .js .show-pager.paragraph--type--du-in-the-news-list .du-alert > .views-element-container > header .du-alert__action-button:focus, .js .paragraph--type--du-in-the-news-list .du-alert > .views-element-container > .paragraph--type--du-in-the-news-list .du-alert__action-button:focus, .js .paragraph--type--du-in-the-news-list .du-alert > .views-element-container > .views-element-container .du-alert__action-button:focus, .paragraph--type--du-in-the-news-list .js .du-alert > .views-element-container > .columns .du-alert__action-button:focus, .show-pager.paragraph--type--du-in-the-news-list .js .du-alert > .views-element-container > header .du-alert__action-button:focus, .paragraph--type--du-in-the-news-list .js .du-alert > .views-element-container > .paragraph--type--du-in-the-news-list .du-alert__action-button:focus, .paragraph--type--du-in-the-news-list .js .du-alert > .views-element-container > .views-element-container .du-alert__action-button:focus {
   color: #000000;
   cursor: pointer;
-}
-.js .du-alert #du-alert__content {
-  display: none;
-}
-.js .du-alert #du-alert__content.du-alert__content--expanded {
-  display: contents;
-  padding: 1rem;
-  position: absolute;
-  margin-top: 2rem;
-  width: 100%;
-  z-index: 11;
-  background-color: inherit;
-}
-.du-alert #du-alert__content.du-alert__content--expanded {
-  text-align: center;
-}
-.du-alert #du-alert__content.du-alert__content--expanded p {
-  font-size: 1.4rem;
-  line-height: 2.2rem;
-  color: #302d2e;
-}
-@media (min-width: 48rem) {
-  .du-alert #du-alert__content.du-alert__content--expanded p {
-    font-size: 1.6rem;
-  }
-}
-.du-alert #du-alert__content.du-alert__content--expanded a {
-  color: #302d2e;
-}
-.du-alert #du-alert__content.du-alert__content--expanded a:hover, .du-alert #du-alert__content.du-alert__content--expanded a:focus {
-  color: #560d20;
-}
-.du-alert__first-word {
-  font-family: "BreveSlabTitle", sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  color: #18161f;
-  text-rendering: optimizeLegibility;
-}
-.du-alert h1, .du-alert .hero-headline-wrapper .hero-headline, .hero-headline-wrapper .du-alert .hero-headline, .du-alert .h1, .du-alert h2, .du-alert .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert .hero-subhead, .du-alert .h2, .du-alert__first-word {
-  font-size: 2.6rem;
-  text-transform: uppercase;
-  margin-right: 0;
-  margin-bottom: 0.5rem;
-  padding-right: 0;
-}
-@media (min-width: 48rem) {
-  .du-alert h1, .du-alert .hero-headline-wrapper .hero-headline, .hero-headline-wrapper .du-alert .hero-headline, .du-alert .h1, .du-alert h2, .du-alert .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert .hero-subhead, .du-alert .h2, .du-alert__first-word {
-    padding-right: 1rem;
-    margin-right: 1rem;
-    margin-bottom: 0;
-    border-right: 0.1rem solid #000000;
-  }
-}
-.du-alert h1:before, .du-alert .hero-headline-wrapper .hero-headline:before, .hero-headline-wrapper .du-alert .hero-headline:before, .du-alert .h1:before, .du-alert h2:before, .du-alert .hero-headline-wrapper .hero-subhead:before, .hero-headline-wrapper .du-alert .hero-subhead:before, .du-alert .h2:before, .du-alert__first-word:before {
-  content: "\e810";
-  font-family: "Fontello";
-  color: #c50c0c;
-  padding-right: 0.4rem;
-}
-.du-alert h1, .du-alert .hero-headline-wrapper .hero-headline, .hero-headline-wrapper .du-alert .hero-headline, .du-alert .h1,
-.du-alert h1 + p,
-.du-alert .hero-headline-wrapper .hero-headline + p,
-.hero-headline-wrapper .du-alert .hero-headline + p,
-.du-alert .h1 + p, .du-alert h2, .du-alert .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert .hero-subhead, .du-alert .h2,
-.du-alert h2 + p,
-.du-alert .hero-headline-wrapper .hero-subhead + p,
-.hero-headline-wrapper .du-alert .hero-subhead + p,
-.du-alert .h2 + p, .du-alert__first-word,
-.du-alert__first-word + p {
-  display: block;
-}
-@media (min-width: 48rem) {
-  .du-alert h1, .du-alert .hero-headline-wrapper .hero-headline, .hero-headline-wrapper .du-alert .hero-headline, .du-alert .h1,
-  .du-alert h1 + p,
-  .du-alert .hero-headline-wrapper .hero-headline + p,
-  .hero-headline-wrapper .du-alert .hero-headline + p,
-  .du-alert .h1 + p, .du-alert h2, .du-alert .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert .hero-subhead, .du-alert .h2,
-  .du-alert h2 + p,
-  .du-alert .hero-headline-wrapper .hero-subhead + p,
-  .hero-headline-wrapper .du-alert .hero-subhead + p,
-  .du-alert .h2 + p, .du-alert__first-word,
-  .du-alert__first-word + p {
-    display: inline-block;
-  }
-}
-.du-alert h1 + p, .du-alert .hero-headline-wrapper .hero-headline + p, .hero-headline-wrapper .du-alert .hero-headline + p, .du-alert .h1 + p, .du-alert h2 + p, .du-alert .hero-headline-wrapper .hero-subhead + p, .hero-headline-wrapper .du-alert .hero-subhead + p, .du-alert .h2 + p, .du-alert__first-word + p {
-  font-weight: bold;
-  color: #18171e;
-  border-left: 0 none;
-  margin-left: 0;
-  padding-left: 0;
-  font-size: 2rem;
-  line-height: 2.2rem;
-}
-@media (min-width: 48rem) {
-  .du-alert h1 + p, .du-alert .hero-headline-wrapper .hero-headline + p, .hero-headline-wrapper .du-alert .hero-headline + p, .du-alert .h1 + p, .du-alert h2 + p, .du-alert .hero-headline-wrapper .hero-subhead + p, .hero-headline-wrapper .du-alert .hero-subhead + p, .du-alert .h2 + p, .du-alert__first-word + p {
-    border-left: 0.2rem solid #ccbda3;
-    margin-left: 1.4rem;
-    padding-left: 1.6rem;
-    font-size: 2.4rem;
-    line-height: inherit;
-  }
-}
-.du-alert .title {
-  font-weight: bold;
-  font-size: 2rem;
-}
-.js .du-alert--notification {
-  display: none;
-}
-.js .du-alert--notification.du-alert--notification--show {
-  display: block;
-}
-.du-alert--notification h1, .du-alert--notification .hero-headline-wrapper .hero-headline, .hero-headline-wrapper .du-alert--notification .hero-headline, .du-alert--notification .h1, .du-alert--notification h2, .du-alert--notification .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert--notification .hero-subhead, .du-alert--notification .h2 {
-  font-size: 2.2rem;
-}
-.du-alert--notification h1:before, .du-alert--notification .hero-headline-wrapper .hero-headline:before, .hero-headline-wrapper .du-alert--notification .hero-headline:before, .du-alert--notification .h1:before, .du-alert--notification h2:before, .du-alert--notification .hero-headline-wrapper .hero-subhead:before, .hero-headline-wrapper .du-alert--notification .hero-subhead:before, .du-alert--notification .h2:before {
-  color: #ac9147;
-}
-.du-alert--notification h1 + p, .du-alert--notification .hero-headline-wrapper .hero-headline + p, .hero-headline-wrapper .du-alert--notification .hero-headline + p, .du-alert--notification .h1 + p, .du-alert--notification h2 + p, .du-alert--notification .hero-headline-wrapper .hero-subhead + p, .hero-headline-wrapper .du-alert--notification .hero-subhead + p, .du-alert--notification .h2 + p {
-  font-size: 1.8rem;
-}
-.du-alert.notification-green {
-  background: #198919;
-  color: white;
-}
-.du-alert.notification-green h2, .du-alert.notification-green .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert.notification-green .hero-subhead, .du-alert.notification-green .h2,
-.du-alert.notification-green h2:before,
-.du-alert.notification-green .hero-headline-wrapper .hero-subhead:before,
-.hero-headline-wrapper .du-alert.notification-green .hero-subhead:before,
-.du-alert.notification-green .h2:before,
-.du-alert.notification-green .icon-du-down-arrow:before,
-.du-alert.notification-green .icon-du-up-arrow:before,
-.du-alert.notification-green .icon-du-cust-close:before,
-.du-alert.notification-green #du-alert__content.du-alert__content--expanded p,
-.du-alert.notification-green #du-alert__content.du-alert__content--expanded a {
-  color: white;
-}
-.du-alert.notification-green h2, .du-alert.notification-green .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert.notification-green .hero-subhead, .du-alert.notification-green .h2 {
-  border-right-color: white;
-}
-.du-alert.notification-yellow {
-  background: #d3ae46;
-  color: #18171e;
-}
-.du-alert.notification-yellow h2, .du-alert.notification-yellow .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert.notification-yellow .hero-subhead, .du-alert.notification-yellow .h2,
-.du-alert.notification-yellow h2:before,
-.du-alert.notification-yellow .hero-headline-wrapper .hero-subhead:before,
-.hero-headline-wrapper .du-alert.notification-yellow .hero-subhead:before,
-.du-alert.notification-yellow .h2:before,
-.du-alert.notification-yellow .icon-du-down-arrow:before,
-.du-alert.notification-yellow .icon-du-up-arrow:before,
-.du-alert.notification-yellow .icon-du-cust-close:before,
-.du-alert.notification-yellow #du-alert__content.du-alert__content--expanded p,
-.du-alert.notification-yellow #du-alert__content.du-alert__content--expanded a {
-  color: #18171e;
-}
-.du-alert.notification-yellow h2, .du-alert.notification-yellow .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert.notification-yellow .hero-subhead, .du-alert.notification-yellow .h2 {
-  border-right-color: #18171e;
-}
-.du-alert.notification-orange {
-  background: #BA5C00;
-  color: white;
-}
-.du-alert.notification-orange h2, .du-alert.notification-orange .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert.notification-orange .hero-subhead, .du-alert.notification-orange .h2,
-.du-alert.notification-orange h2:before,
-.du-alert.notification-orange .hero-headline-wrapper .hero-subhead:before,
-.hero-headline-wrapper .du-alert.notification-orange .hero-subhead:before,
-.du-alert.notification-orange .h2:before,
-.du-alert.notification-orange .icon-du-down-arrow:before,
-.du-alert.notification-orange .icon-du-up-arrow:before,
-.du-alert.notification-orange .icon-du-cust-close:before,
-.du-alert.notification-orange #du-alert__content.du-alert__content--expanded p,
-.du-alert.notification-orange #du-alert__content.du-alert__content--expanded a {
-  color: white;
-}
-.du-alert.notification-orange h2, .du-alert.notification-orange .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert.notification-orange .hero-subhead, .du-alert.notification-orange .h2 {
-  border-right-color: white;
-}
-.du-alert.notification-red {
-  background: #a91617;
-  color: white;
-}
-.du-alert.notification-red h2, .du-alert.notification-red .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert.notification-red .hero-subhead, .du-alert.notification-red .h2,
-.du-alert.notification-red h2:before,
-.du-alert.notification-red .hero-headline-wrapper .hero-subhead:before,
-.hero-headline-wrapper .du-alert.notification-red .hero-subhead:before,
-.du-alert.notification-red .h2:before,
-.du-alert.notification-red .icon-du-down-arrow:before,
-.du-alert.notification-red .icon-du-up-arrow:before,
-.du-alert.notification-red .icon-du-cust-close:before,
-.du-alert.notification-red #du-alert__content.du-alert__content--expanded p,
-.du-alert.notification-red #du-alert__content.du-alert__content--expanded a {
-  color: white;
-}
-.du-alert.notification-red h2, .du-alert.notification-red .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert.notification-red .hero-subhead, .du-alert.notification-red .h2 {
-  border-right-color: white;
-}
-.du-alert.notification-blue {
-  background: #9fc5e9;
-  color: #18171e;
-}
-.du-alert.notification-blue h2, .du-alert.notification-blue .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert.notification-blue .hero-subhead, .du-alert.notification-blue .h2,
-.du-alert.notification-blue h2:before,
-.du-alert.notification-blue .hero-headline-wrapper .hero-subhead:before,
-.hero-headline-wrapper .du-alert.notification-blue .hero-subhead:before,
-.du-alert.notification-blue .h2:before,
-.du-alert.notification-blue .icon-du-down-arrow:before,
-.du-alert.notification-blue .icon-du-up-arrow:before,
-.du-alert.notification-blue .icon-du-cust-close:before,
-.du-alert.notification-blue #du-alert__content.du-alert__content--expanded p,
-.du-alert.notification-blue #du-alert__content.du-alert__content--expanded a {
-  color: #18171e;
-}
-.du-alert.notification-blue h2, .du-alert.notification-blue .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert.notification-blue .hero-subhead, .du-alert.notification-blue .h2 {
-  border-right-color: #18171e;
-}
-.du-alert.notification-purple {
-  background: #d7bfd7;
-  color: #18171e;
-}
-.du-alert.notification-purple h2, .du-alert.notification-purple .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert.notification-purple .hero-subhead, .du-alert.notification-purple .h2,
-.du-alert.notification-purple h2:before,
-.du-alert.notification-purple .hero-headline-wrapper .hero-subhead:before,
-.hero-headline-wrapper .du-alert.notification-purple .hero-subhead:before,
-.du-alert.notification-purple .h2:before,
-.du-alert.notification-purple .icon-du-down-arrow:before,
-.du-alert.notification-purple .icon-du-up-arrow:before,
-.du-alert.notification-purple .icon-du-cust-close:before,
-.du-alert.notification-purple #du-alert__content.du-alert__content--expanded p,
-.du-alert.notification-purple #du-alert__content.du-alert__content--expanded a {
-  color: #18171e;
-}
-.du-alert.notification-purple h2, .du-alert.notification-purple .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .du-alert.notification-purple .hero-subhead, .du-alert.notification-purple .h2 {
-  border-right-color: #18171e;
-}
-
-.catastrophic-alert header {
-  background-color: #333335;
-  height: auto;
-  margin-bottom: 4rem;
-  text-align: center;
-  padding-bottom: 1.3rem;
-  padding-top: 2.1rem;
-  padding-left: 2.2rem;
-  padding-right: 2.2rem;
-}
-@media (min-width: 48rem) {
-  .catastrophic-alert header {
-    padding-bottom: 3.2rem;
-    padding-top: 4rem;
-    padding-left: 6.2rem;
-    padding-right: 6.2rem;
-    text-align: left;
-  }
-  .catastrophic-alert header img {
-    width: 23.5rem;
-    height: auto;
-  }
-}
-.catastrophic-alert header h1, .catastrophic-alert header .hero-headline-wrapper .hero-headline, .hero-headline-wrapper .catastrophic-alert header .hero-headline, .catastrophic-alert header .h1 {
-  text-align: left;
-  padding-left: 4.9rem;
-  position: relative;
-  max-width: 26.4rem;
-  margin-left: auto;
-  margin-right: auto;
-  text-transform: uppercase;
-  color: white;
-  font-size: 4rem;
-}
-@media (min-width: 48rem) {
-  .catastrophic-alert header h1, .catastrophic-alert header .hero-headline-wrapper .hero-headline, .hero-headline-wrapper .catastrophic-alert header .hero-headline, .catastrophic-alert header .h1 {
-    font-size: 5rem;
-    margin-top: 1.4rem;
-    margin-bottom: 1.1rem;
-    max-width: 100%;
-  }
-}
-.catastrophic-alert header h1:before, .catastrophic-alert header .hero-headline-wrapper .hero-headline:before, .hero-headline-wrapper .catastrophic-alert header .hero-headline:before, .catastrophic-alert header .h1:before {
-  content: "";
-  background: transparent url("../images/alert-attention-circle.png") no-repeat scroll center center;
-  -webkit-background-size: 100% 100%;
-          background-size: 100% 100%;
-  width: 3.1rem;
-  height: 3.1rem;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  margin-top: -1.7rem;
-  margin-left: 0.6rem;
-}
-@media (min-width: 48rem) {
-  .catastrophic-alert header h1:before, .catastrophic-alert header .hero-headline-wrapper .hero-headline:before, .hero-headline-wrapper .catastrophic-alert header .hero-headline:before, .catastrophic-alert header .h1:before {
-    width: 3.3rem;
-    height: 3.3rem;
-  }
-}
-@media (min-width: 62rem) {
-  .catastrophic-alert header h1:before, .catastrophic-alert header .hero-headline-wrapper .hero-headline:before, .hero-headline-wrapper .catastrophic-alert header .hero-headline:before, .catastrophic-alert header .h1:before {
-    width: 3.9rem;
-    height: 3.9rem;
-    margin-right: 1rem;
-    display: inline-block;
-  }
-}
-.catastrophic-alert header h2, .catastrophic-alert header .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .catastrophic-alert header .hero-subhead, .catastrophic-alert header .h2 {
-  color: white;
-  font-size: 2.6rem;
-}
-@media (min-width: 48rem) {
-  .catastrophic-alert header h2, .catastrophic-alert header .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .catastrophic-alert header .hero-subhead, .catastrophic-alert header .h2 {
-    font-size: 3.2rem;
-  }
-}
-@media (min-width: 62rem) {
-  .catastrophic-alert header h2, .catastrophic-alert header .hero-headline-wrapper .hero-subhead, .hero-headline-wrapper .catastrophic-alert header .hero-subhead, .catastrophic-alert header .h2 {
-    font-size: 3.8rem;
-  }
-}
-@media (min-width: 62rem) {
-  .catastrophic-alert aside {
-    padding-right: 8%;
-  }
-}
-.catastrophic-alert aside h3, .catastrophic-alert aside .h3 {
-  margin-bottom: 2rem;
-  font-size: 2.4rem;
-}
-.catastrophic-alert aside h4, .catastrophic-alert aside .h4 {
-  margin-bottom: 2rem;
-  font-size: 2.2rem;
-}
-.catastrophic-alert aside p {
-  margin-left: 2rem;
-}
-.catastrophic-alert aside p + h3, .catastrophic-alert aside p + .h3 {
-  margin-top: 3.6rem;
-}
 
 .du-alert--urgent.du-alert > .row > .columns .du-alert__action-button, .show-pager.paragraph--type--du-in-the-news-list .du-alert--urgent.du-alert > .row > header .du-alert__action-button, .show-pager.paragraph--type--du-in-the-news-list .du-alert--urgent.du-alert > header > .columns .du-alert__action-button, .show-pager.paragraph--type--du-in-the-news-list .du-alert--urgent.du-alert > header > header .du-alert__action-button, .du-alert--urgent.du-alert > .row > .paragraph--type--du-in-the-news-list .du-alert__action-button, .show-pager.paragraph--type--du-in-the-news-list .du-alert--urgent.du-alert > header > .paragraph--type--du-in-the-news-list .du-alert__action-button, .du-alert--urgent.du-alert > .paragraph--type--du-in-the-news-list > .columns .du-alert__action-button, .show-pager.paragraph--type--du-in-the-news-list .du-alert--urgent.du-alert > .paragraph--type--du-in-the-news-list > header .du-alert__action-button, .du-alert--urgent.du-alert > .paragraph--type--du-in-the-news-list > .paragraph--type--du-in-the-news-list .du-alert__action-button, .paragraph--type--du-in-the-news-list .du-alert--urgent.du-alert > .row > .views-element-container .du-alert__action-button, .show-pager.paragraph--type--du-in-the-news-list .du-alert--urgent.du-alert > header > .views-element-container .du-alert__action-button, .paragraph--type--du-in-the-news-list .du-alert--urgent.du-alert > .paragraph--type--du-in-the-news-list > .views-element-container .du-alert__action-button, .paragraph--type--du-in-the-news-list .du-alert--urgent.du-alert > .views-element-container > .columns .du-alert__action-button, .show-pager.paragraph--type--du-in-the-news-list .du-alert--urgent.du-alert > .views-element-container > header .du-alert__action-button, .paragraph--type--du-in-the-news-list .du-alert--urgent.du-alert > .views-element-container > .paragraph--type--du-in-the-news-list .du-alert__action-button, .paragraph--type--du-in-the-news-list .du-alert--urgent.du-alert > .views-element-container > .views-element-container .du-alert__action-button {
   right: 0;
@@ -23173,15 +22723,7 @@ body:not(.unit-site) .colorado-womens-college #hero-media__caption {
     margin-top: 0;
   }
 }
-@media screen and (max-width: 75rem) {
-  body:not(.unit-site).du-home .du-alert ~ .off-canvas-content.colorado-womens-college header.core-inline-site {
-    min-height: initial !important;
-    height: initial !important;
-  }
-}
-body.du-home .du-alert[style*="display: none"] ~ .off-canvas-content.colorado-womens-college header.core-inline-site {
-  height: initial !important;
-}
+
 
 .du-home .colorado-womens-college .hero-media > video {
   width: 100%;
@@ -23221,9 +22763,6 @@ body.du-home header {
   height: initial !important;
 }
 
-body.du-home .du-alert ~ .off-canvas-content.colorado-womens-college header.core-inline-site {
-  height: initial !important;
-}
 
 body:not(.unit-site).du-home .colorado-womens-college header.core-inline-site {
   height: initial !important;
@@ -30424,15 +29963,11 @@ form .form_question.form_checkbox {
   margin-top: 1rem;
 }
 
-.du-form__alert,
 .du-form__success {
   padding: 1rem 1.5rem !important;
   margin-bottom: 2.7rem;
 }
 
-.du-form__alert {
-  background-color: #faebce;
-}
 
 .du-form__success {
   background-color: #ccd8a5;
