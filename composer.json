@@ -9,7 +9,7 @@
     "twbs/bootstrap": "^5.0.0",
     "drupal/bootstrap":">=3.32 || ^5.0",
     "drupal/video_embed_field": "^2.5",
-    "drupal/menu_item_extras": "^3.1",
+    "drupal/menu_item_extras": "^3.0 || ^3.1",
     "drupal/jquery_ui": "^1.8",
     "drupal/jquery_ui_draggable": "^2.1",
     "drupal/jquery_ui_resizable": "^2.1"
